@@ -1,0 +1,688 @@
+// @use "sass:math";
+// @function derive-rgb-values-from-hex($hex) {
+//   @return red($hex), green($hex), blue($hex);
+// }
+
+.foodlist-button {
+  border-radius: 0.2rem;
+  padding: 0.3rem 1.2rem;
+  --transition: 0.2s ease-out;
+  color: var(--white-color);
+  background: var(--white-color);
+  border: 1px solid var(--main-color);
+  box-shadow: none;
+  outline: none;
+  position: relative;
+  transition: background-color 200ms linear;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  font-weight: 400;
+  overflow: hidden;
+  height: 3.2rem !important;
+
+  .mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6.4rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    transition: all 0.4s;
+
+    svg {
+      width: 3.2rem !important;
+      height: 3.2rem !important;
+    }
+
+    svg,
+    path {
+      width: 3.2rem;
+      height: 3.2rem;
+      fill: var(--white-color);
+    }
+  }
+
+  &.btn-mask {
+    background-color: var(--main-color);
+    &::after {
+      content: none;
+    }
+    &:hover {
+      .mask {
+        // width: 100%;
+        transition: all 0.4s;
+      }
+      svg,
+      path {
+        fill: var(--white-color);
+      }
+    }
+  }
+
+  div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    // font-weight: 500;
+    font-weight: 400;
+    position: relative;
+    z-index: 2;
+    transition: var(--transition);
+  }
+  &::after {
+    transition: var(--transition);
+  }
+  svg {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin: -0.4rem 0;
+    flex-shrink: 0;
+    transition: var(--transition);
+
+    path {
+      transition: var(--transition);
+    }
+  }
+  &:disabled,
+  &[disabled],
+  &[disabled="disabled"] {
+    background: none !important;
+    border-color: var(--disabled-color);
+    color: var(--disabled-color) !important;
+    cursor: not-allowed !important;
+    svg {
+      fill: var(--disabled-color) !important;
+      color: var(--disabled-color) !important;
+    }
+  }
+  &--color-primary {
+    &::after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-color: var(--main-color);
+      left: 0;
+      top: 0;
+      z-index: 1;
+      transition: var(--transition);
+    }
+    svg,
+    path {
+      fill: var(--white-color);
+      transition: var(--transition);
+    }
+    &:hover {
+      div {
+        color: var(--main-color);
+        transition: var(--transition);
+      }
+      svg,
+      path {
+        fill: var(--main-color);
+        transition: var(--transition);
+      }
+      &::after {
+        height: 0;
+        transition: var(--transition);
+      }
+    }
+    &.foodlist-button--variant-outline {
+      &:after {
+        height: 0;
+        bottom: 0;
+        top: unset;
+      }
+      svg {
+        path {
+          fill: var(--main-color);
+          color: var(--main-color);
+          transition: var(--transition);
+        }
+      }
+      &:hover,
+      &:active {
+        border-color: var(--main-color);
+        transition: var(--transition);
+        div {
+          color: var(--white-color);
+        }
+        &::after {
+          height: 100%;
+          transition: var(--transition);
+        }
+        svg {
+          path {
+            fill: var(--white-color);
+            color: var(--white-color);
+            transition: var(--transition);
+          }
+        }
+      }
+    }
+  }
+  &--variant-outline {
+    background: var(--white-color);
+    color: var(--main-color);
+    border-color: var(--main-color);
+    &::after {
+      content: "";
+      width: 100%;
+      height: 0;
+      position: absolute;
+      background-color: var(--main-color);
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+      transition: var(--transition);
+    }
+    svg {
+      fill: var(--main-color);
+      color: var(--main-color);
+      path {
+        fill: var(--main-color);
+        color: var(--main-color);
+      }
+    }
+    &:hover,
+    &:active {
+      div {
+        color: var(--white-color);
+      }
+      // border-color: transparent;
+      // background-color: transparent !important;
+      &::after {
+        height: 100%;
+        transition: var(--transition);
+      }
+      svg {
+        fill: var(--white-color);
+        color: var(--white-color);
+        transition: var(--transition);
+        path {
+          fill: var(--white-color);
+          color: var(--white-color);
+          transition: var(--transition);
+        }
+      }
+    }
+    &:disabled,
+    &[disabled],
+    &[disabled="disabled"] {
+      pointer-events: none;
+      background: none !important;
+      border-color: var(--disabled-color) !important;
+      color: var(--disabled-color) !important;
+      cursor: not-allowed !important;
+      svg {
+        fill: var(--disabled-color) !important;
+        color: var(--disabled-color) !important;
+      }
+    }
+  }
+  &--color-destroy {
+    color: var(--white-color);
+    border-color: var(--error-color);
+    background-color: var(--error-color);
+    &::after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-color: transparent;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      transition: var(--transition);
+    }
+    div {
+      path {
+        fill: var(--white-color);
+      }
+    }
+    &:hover {
+      div {
+        color: var(--error-color);
+      }
+      svg,
+      path {
+        fill: var(--error-color) !important;
+      }
+      &::after {
+        height: 0;
+        transition: var(--transition);
+      }
+      background-color: var(--white-color);
+    }
+    &.foodlist-button--variant-outline {
+      background: var(--white-color);
+      color: var(--error-color);
+      border-color: var(--error-color);
+      transition: var(--transition);
+      &:after {
+        height: 0;
+        bottom: 0;
+        top: unset;
+      }
+      svg {
+        path {
+          fill: var(--error-color);
+          color: var(--error-color);
+          transition: var(--transition);
+        }
+      }
+      &:hover,
+      &:active {
+        border-color: var(--error-color);
+        transition: var(--transition);
+
+        div {
+          color: var(--white-color);
+        }
+        &::after {
+          height: 100%;
+          background-color: var(--error-color);
+          transition: var(--transition);
+        }
+        svg {
+          path {
+            fill: var(--white-color) !important;
+            color: var(--white-color);
+            transition: var(--transition);
+          }
+        }
+      }
+    }
+  }
+  &--color-draft {
+    color: var(--white-color);
+    background: var(--draft-color);
+    &:hover {
+      background: var(--draft-color);
+      outline: none;
+    }
+    &:active {
+      background: var(--draft-color);
+      outline: none;
+    }
+    &.foodlist-button--variant-outline {
+      background: none;
+      color: var(--draft-color);
+      border-color: var(--draft-color);
+      svg {
+        fill: var(--draft-color);
+        color: var(--draft-color);
+      }
+      &:hover {
+        background: var(--draft-color);
+        color: var(--white-color);
+        border-color: transparent;
+        svg {
+          fill: var(--white-color);
+          color: var(--white-color);
+        }
+      }
+      &:active {
+        background: var(--draft-color);
+        color: var(--white-color);
+        border-color: transparent;
+        svg {
+          fill: var(--white-color);
+          color: var(--white-color);
+        }
+      }
+    }
+  }
+  &--color-success {
+    color: var(--success-color);
+    background: var(--success-color);
+    &:hover {
+      background: rgba(var(--success-color-rgb), 0.8);
+      outline: none;
+    }
+    &:active {
+      background: var(--success-darker-color);
+      outline: none;
+    }
+    &.foodlist-button--variant-outline {
+      background: none;
+      color: var(--success-color);
+      border-color: var(--success-color);
+      svg,
+      path {
+        fill: var(--success-color);
+        color: var(--success-color);
+      }
+      &:hover {
+        background: rgba(var(--success-color-rgb), 0.8);
+        color: var(--white-color);
+        border-color: transparent;
+        svg,
+        path {
+          fill: var(--white-color);
+          color: var(--white-color);
+        }
+      }
+      &:active {
+        background: var(--success-darker-color);
+        color: var(--white-color);
+        border-color: transparent;
+        svg,
+        path {
+          fill: var(--white-color);
+          color: var(--white-color);
+        }
+      }
+    }
+  }
+
+  &--color-nomal {
+    color: var(--extra-color-80);
+    border: 1px solid var(--extra-color-40);
+    svg,
+    path {
+      fill: var(--extra-color-80);
+      transition: var(--transition);
+    }
+    &.foodlist-button--variant-outline {
+      &::after {
+        top: unset;
+        bottom: 0;
+      }
+      svg {
+        path {
+          fill: var(--extra-color-80);
+          transition: var(--transition);
+        }
+      }
+      &:hover {
+        svg,
+        path {
+          fill: var(--white-color);
+          transition: var(--transition);
+        }
+      }
+    }
+    &::after {
+      content: "";
+      width: 100%;
+      height: 0%;
+      position: absolute;
+      background-color: var(--extra-color-80);
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+      transition: var(--transition);
+    }
+
+    &:hover,
+    &:active {
+      div {
+        color: var(--white-color);
+        transition: var(--transition);
+      }
+      border-color: var(--extra-color-80);
+      transition: var(--transition);
+      &::after {
+        height: 100%;
+        transition: var(--transition);
+      }
+      svg,
+      path {
+        fill: var(--white-color);
+        transition: var(--transition);
+      }
+    }
+  }
+
+  &--color-white {
+    &.black-color {
+      div {
+        color: var(--black-color);
+        svg,
+        path {
+          fill: var(--black-color);
+        }
+      }
+    }
+    background: var(--white-color);
+    border: 1px solid var(--extra-color-20);
+    div {
+      color: var(--main-color);
+    }
+    &::after {
+      content: "";
+      width: 100%;
+      height: 0;
+      position: absolute;
+      background-color: var(--main-color);
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+      transition: var(--transition);
+    }
+    svg {
+      fill: var(--main-color);
+      color: var(--main-color);
+      path {
+        fill: var(--main-color);
+        color: var(--main-color);
+      }
+    }
+    &:hover,
+    &:active {
+      div {
+        color: var(--white-color);
+      }
+      border-color: transparent;
+      background-color: transparent !important;
+      &::after {
+        height: 100%;
+        transition: var(--transition);
+      }
+      svg {
+        fill: var(--white-color);
+        color: var(--white-color);
+        transition: var(--transition);
+        path {
+          fill: var(--white-color);
+          color: var(--white-color);
+          transition: var(--transition);
+        }
+      }
+    }
+  }
+  &--color-warning {
+    color: var(--warning-color);
+    background: var(--warning-color);
+    &:hover {
+      background: rgba(var(--warning-color-rgb), 0.8);
+      outline: none;
+    }
+    &:active {
+      background: var(--warning-darker-color);
+      outline: none;
+    }
+    &.foodlist-button--variant-outline {
+      background: none;
+      color: var(--warning-color);
+      border-color: var(--warning-color);
+      svg {
+        fill: var(--warning-color);
+        color: var(--warning-color);
+      }
+      &:hover {
+        background: rgba(var(--warning-color-rgb), 0.8);
+        color: var(--white-color);
+        border-color: transparent;
+        svg {
+          fill: var(--white-color);
+          color: var(--white-color);
+        }
+      }
+      &:active {
+        background: var(--warning-darker-color);
+        color: var(--white-color);
+        border-color: transparent;
+        svg {
+          fill: var(--white-color);
+          color: var(--white-color);
+        }
+      }
+    }
+  }
+
+  &--color-transparent {
+    background: none;
+    color: var(--main-color);
+    border-color: transparent;
+    svg {
+      fill: var(--main-color);
+      color: var(--main-color);
+    }
+    &:hover {
+      background: rgba(var(--main-rgba-color));
+      border-color: transparent;
+      outline: none;
+    }
+    &:active {
+      background: rgba(var(--main-rgba-color));
+      border-color: transparent;
+      outline: none;
+    }
+    &:disabled,
+    &[disabled],
+    &[disabled="disabled"] {
+      border: none;
+    }
+  }
+  &--color-grey {
+    background: none;
+    color: var(--extra-color-80);
+    border-color: var(--extra-color-60);
+    svg {
+      fill: var(--extra-color-80);
+      color: var(--extra-color-80);
+      path {
+        fill: var(--extra-color-80);
+        color: var(--extra-color-80);
+      }
+    }
+    &:hover,
+    &:active {
+      color: var(--white-color);
+      border-color: transparent;
+      background-color: var(--extra-color-80) !important;
+      svg {
+        fill: var(--white-color);
+        color: var(--white-color);
+        path {
+          fill: var(--white-color);
+          color: var(--white-color);
+        }
+      }
+    }
+    &:disabled,
+    &[disabled],
+    &[disabled="disabled"] {
+      background: none !important;
+      border-color: var(--disabled-color);
+      color: var(--disabled-color) !important;
+      cursor: not-allowed !important;
+      svg {
+        fill: var(--disabled-color) !important;
+        color: var(--disabled-color) !important;
+      }
+    }
+  }
+  &--color-primaryOpacity {
+    background-color: rgba(var(--main-rgba-color));
+    color: var(--main-color);
+    border: none;
+    svg {
+      path {
+        fill: var(--main-color);
+      }
+    }
+    &:hover {
+      color: var(--white-color);
+      background-color: var(--main-color);
+      svg {
+        path {
+          fill: var(--white-color);
+        }
+      }
+    }
+  }
+  &--color-mix-white {
+    background-color: var(--white-color);
+    color: var(--extra-color-80);
+    border: 0.1rem solid #dde2e9;
+    &:hover {
+      background-color: var(--white-color);
+      color: var(--extra-color-80);
+      border: 0.1rem solid #dde2e9;
+    }
+  }
+  &__only-icon {
+    padding: 0;
+    svg {
+      margin: 0;
+    }
+  }
+  &--color-link {
+    border: none;
+    color: var(--blue-color);
+    padding: 0;
+    background: none;
+    font-weight: 400;
+    &:hover,
+    &:active {
+      border: none;
+      background: none;
+      text-decoration: underline;
+    }
+  }
+  &.loading {
+    pointer-events: none;
+    border-color: var(--main-color) !important;
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: var(--main-color) !important;
+      width: 100%;
+      height: 100%;
+      display: block;
+      top: 0;
+      left: 0;
+      z-index: 5;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) rotate(0);
+      width: 2rem !important;
+      height: 2rem !important;
+      z-index: 5;
+      border-radius: 50%;
+      border: 0.2rem solid var(--white-color);
+      border-left: 0.2rem solid transparent;
+      animation: spinner 1s linear infinite forwards;
+      transition: unset !important;
+    }
+    @keyframes spinner {
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+  }
+}

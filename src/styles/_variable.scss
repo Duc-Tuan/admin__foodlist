@@ -1,0 +1,56 @@
+$main-color: #c2185b;
+$main-rgba-color: 194, 24, 91, 0.1;
+
+$white-color: #ffffff;
+$hover-white-color: rgba(255, 255, 255, 0.3);
+$black-color: #000000;
+$blue-color: #1c8cff;
+$text-black-color: #575757;
+$disabled-color: #e8e8e8;
+$error-color: #fb4e4e;
+$draft-color: #3265b7;
+$success-color: #2ac769;
+$success-darker-color: #1fa153;
+$warning-color: #f6a609;
+$warning-darker-color: #e89806;
+
+$extra-color: #25282b;
+$extra-color-1: #fafafa;
+$extra-color-5: #f7f7f7; // bg head
+$extra-color-10: #666666;
+$extra-color-20: #dbdde0;
+$extra-color-30: #d9d9d9;
+$extra-color-40: #cacccf;
+$extra-color-45: #8c8c8c;
+$extra-color-60: #a0a4a8;
+$extra-color-70: #f7f7f7;
+$extra-color-80: #52575c;
+
+:root {
+  --main-color: #{$main-color};
+  --white-color: #{$white-color};
+  --hover-white-color: #{$hover-white-color};
+  --black-color: #{$black-color};
+  --blue-color: #{$blue-color};
+  --text-black-color: #{$black-color};
+  --main-rgba-color: #{$main-rgba-color};
+  --disabled-color: #{$disabled-color};
+  --error-color: #{$disabled-color};
+  --draft-color: #{$draft-color};
+  --success-color: #{$success-color};
+  --success-color-rgb: #{red($success-color), green($success-color), blue($success-color)};
+  --success-darker-color: #{$success-darker-color};
+  --extra-color-1: #{$extra-color-1};
+  --extra-color-5: #{$extra-color-5};
+  --extra-color-20: #{$extra-color-20};
+  --extra-color-30: #{$extra-color-30};
+  --extra-color-40: #{$extra-color-40};
+  --extra-color-45: #{$extra-color-45};
+  --extra-color-60: #{$extra-color-60};
+  --extra-color-70: #{$extra-color-70};
+  --extra-color-80: #{$extra-color-80};
+  --warning-color: #{$warning-color};
+  --warning-color-rgb: #{red($warning-color), green($warning-color), blue($warning-color)};
+  --warning-darker-color: #{$warning-darker-color};
+  --warning-darker-color-rgb: #{red($warning-darker-color), green($warning-darker-color), blue($warning-darker-color)};
+}

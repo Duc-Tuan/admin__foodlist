@@ -1,0 +1,11 @@
+.app__food {
+  .main__app {
+    flex: 1;
+    background: #ebeef2;
+    &--content {
+      padding: 20px;
+      height: calc(100% - 60px);
+      position: relative;
+    }
+  }
+}
