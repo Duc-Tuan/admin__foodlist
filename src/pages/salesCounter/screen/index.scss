@@ -1,0 +1,32 @@
+.wrapper__salesCounter {
+  --height-main: 100vh - 56px;
+  --height-product: 200px;
+  background-color: var(--bg-color);
+  &--header {
+    height: 56px;
+    background-color: var(--main-color);
+    color: var(--white-color);
+    padding: 4px 20px;
+  }
+  &--main {
+    overflow: hidden;
+    height: calc(var(--height-main));
+  }
+  &--productsPayments,
+  &--payments,
+  &--productsPayments,
+  &--products {
+    height: 100%;
+    padding: 10px;
+    background-color: var(--white-color);
+  }
+  &--productsPayments {
+    height: calc(var(--height-main) - var(--height-product) - 2px);
+  }
+  &--products {
+    height: var(--height-product);
+  }
+  &--payments {
+    width: 440px;
+  }
+}

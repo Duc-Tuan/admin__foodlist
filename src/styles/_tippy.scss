@@ -18,3 +18,54 @@
     }
   }
 }
+
+.wrapper__menu--login {
+  .menu {
+    gap: 4px;
+    min-width: 180px;
+    color: var(--black-color);
+    &__info,
+    &__logout {
+      cursor: pointer;
+      padding: 6px;
+      width: 100%;
+      border-radius: 4px;
+      transition: all 0.3s;
+      &:hover {
+        background-color: rgba(var(--main-rgba-color));
+        transition: all 0.3s;
+        h3 {
+          color: var(--main-color);
+        }
+        .icon {
+          svg {
+            path {
+              fill: var(--main-color);
+            }
+          }
+        }
+      }
+      img {
+        width: 24px;
+        height: 24px;
+        border-radius: 100%;
+      }
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+      h3 {
+        font-weight: 500;
+        font-size: 1.4rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.wrapper__menu--notifitions {
+  .menu {
+    min-width: 260px;
+    color: var(--black-color);
+  }
+}

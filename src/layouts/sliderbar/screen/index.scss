@@ -46,6 +46,8 @@
           transition: var(--transition);
         }
         svg {
+          width: 18px;
+          height: 18px;
           path {
             fill: var(--white-color);
           }
@@ -55,6 +57,7 @@
         color: var(--white-color);
         overflow: hidden;
         font-size: 1.4rem;
+        line-height: normal;
         &.open {
           opacity: 1;
           visibility: initial;

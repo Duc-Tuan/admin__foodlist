@@ -1,0 +1,1 @@
+export { default as ScreenSalesCounter } from './screen'

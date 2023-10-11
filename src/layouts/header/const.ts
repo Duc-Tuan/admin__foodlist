@@ -1,3 +1,5 @@
+import { ICommon } from "../../types/general";
+
 export const nameSliderbar: string = 'Sliderbar_header';
 export const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 

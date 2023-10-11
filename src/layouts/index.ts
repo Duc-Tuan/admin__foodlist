@@ -6,12 +6,18 @@ export { default as DefaultLayout } from './default';
 export const navMenu: INavMenu[] = [
     {
         id: 1,
+        name: 'Bán hàng',
+        icon: 'icon-shopping-cart-v2',
+        link: PATHNAME.SCREENSALESCOUNTER
+    },
+    {
+        id: 2,
         name: 'Trang chủ',
         icon: 'home-nav',
         link: PATHNAME.SCREENDASHBOARD
     },
     {
-        id: 2,
+        id: 3,
         name: 'Đơn hàng',
         icon: 'order-nav',
         link: PATHNAME.SCREENORDER,
@@ -24,7 +30,7 @@ export const navMenu: INavMenu[] = [
         ]
     },
     {
-        id: 3,
+        id: 4,
         name: 'Tài khoản',
         icon: 'customer-nav',
         link: PATHNAME.SCREENSTAFF,

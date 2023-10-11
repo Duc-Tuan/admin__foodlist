@@ -1,6 +1,7 @@
 $main-color: #c2185b;
 $main-rgba-color: 194, 24, 91, 0.1;
 
+$bg-color: #ebeef2;
 $white-color: #ffffff;
 $hover-white-color: rgba(255, 255, 255, 0.3);
 $black-color: #000000;
@@ -13,6 +14,7 @@ $success-color: #2ac769;
 $success-darker-color: #1fa153;
 $warning-color: #f6a609;
 $warning-darker-color: #e89806;
+$main-grey-color: #d9d9d9;
 
 $extra-color: #25282b;
 $extra-color-1: #fafafa;
@@ -27,8 +29,10 @@ $extra-color-70: #f7f7f7;
 $extra-color-80: #52575c;
 
 :root {
+  --bg-color: #{$bg-color};
   --main-color: #{$main-color};
   --white-color: #{$white-color};
+  --main-grey-color: #{$main-grey-color};
   --hover-white-color: #{$hover-white-color};
   --black-color: #{$black-color};
   --blue-color: #{$blue-color};

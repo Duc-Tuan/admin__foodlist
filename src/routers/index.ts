@@ -1,9 +1,11 @@
 import { PATHNAME } from "../configs/pathname";
 import { ScreenStaff, ScreenUsers } from "../pages/accounts";
+import { ScreenInfoAccount } from "../pages/auth";
 import { ScreenDashboard } from "../pages/dashboard";
 import { ScreenLogin } from "../pages/login";
 import { ScreenOrders } from "../pages/orders";
 import ScreenPrommotions from "../pages/prommotions";
+import { ScreenSalesCounter } from "../pages/salesCounter";
 import { IRouter } from "./types";
 
 export const privateRouters: IRouter[] = [
@@ -31,6 +33,18 @@ export const privateRouters: IRouter[] = [
         title: 'Khách hàng | admin',
         path: PATHNAME.SCREENUSER,
         component: ScreenUsers
+    },
+    {
+        title: 'Thông tin tài khoản của bạn | admin',
+        path: PATHNAME.SCREENINFOUSER,
+        component: ScreenInfoAccount
+    },
+    {
+
+        title: 'Bán hàng tại quầy | admin',
+        path: PATHNAME.SCREENSALESCOUNTER,
+        component: ScreenSalesCounter,
+        isDefaultSales: true,
     },
 ]
 

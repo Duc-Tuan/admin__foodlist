@@ -1,7 +1,13 @@
 import React from 'react';
+import { Loading } from '../../../components';
 
 const ScreenDashBoard = () => {
-  return <div>ScreenDashBoard</div>;
+  return (
+    <div>
+      <Loading />
+      ScreenDashBoard
+    </div>
+  );
 };
 
 export default ScreenDashBoard;

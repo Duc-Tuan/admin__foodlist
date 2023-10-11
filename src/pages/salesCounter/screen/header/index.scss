@@ -1,0 +1,192 @@
+.wrapper__header--sales {
+  --width-left: 440px;
+  .wrapper__main {
+    &--tabs {
+      width: calc(100% - var(--width-left) + 48px);
+      &_search {
+        height: 40px;
+        input {
+          min-width: 250px;
+          transition: all 0.3s;
+          &:focus {
+            width: 350px;
+            transition: all 0.3s;
+          }
+        }
+        .blurred_bg {
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          background-color: rgba(0, 0, 0, 0.2);
+          z-index: 20;
+        }
+      }
+      .wrapper__main--tabs_items {
+        cursor: pointer;
+        .wrapper__tabsSales {
+          .order-tab-box {
+            height: 56px;
+            max-width: 50rem;
+            overflow: auto;
+
+            flex-wrap: nowrap;
+            gap: 0.8rem;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+
+            &.hide {
+              opacity: 0.6;
+              pointer-events: none;
+              transition: all 0.4s;
+            }
+          }
+          .arrow-left,
+          .arrow-right {
+            align-items: center;
+            background-color: var(--white-color);
+            border-radius: 0.4rem;
+            cursor: pointer;
+            display: flex;
+            height: 4.2rem;
+            justify-content: center;
+            transition: all 0.4s;
+            user-select: none;
+            width: 2.4rem;
+            &.hide {
+              opacity: 0.6;
+              pointer-events: none;
+              transition: all 0.4s;
+            }
+            svg {
+              width: 16px;
+              height: 16px;
+              path {
+                fill: var(--main-color);
+              }
+            }
+          }
+          .arrow-left {
+            svg {
+              transform: rotate(90deg);
+            }
+          }
+          .arrow-right {
+            svg {
+              transform: rotate(-90deg);
+            }
+          }
+          .button__tabsSales {
+            padding: 1rem 1.2rem;
+          }
+          &_item,
+          .button__tabsSales {
+            background: rgba(0, 0, 0, 0.2);
+            height: 40px;
+            border-radius: 0.4rem;
+          }
+          &_item {
+            min-width: 100px;
+            h4 {
+              padding: 1rem 1.2rem;
+              white-space: nowrap;
+            }
+            &.active {
+              background-color: var(--white-color);
+              border-bottom-left-radius: 0;
+              border-bottom-right-radius: 0;
+              position: relative;
+              &::after {
+                content: '';
+                position: absolute;
+                bottom: -13px;
+                right: 95%;
+                width: 100%;
+                height: 70%;
+                border-bottom-right-radius: 16px;
+                border-color: transparent #ffffff #ffffff transparent;
+                border-style: solid;
+                border-width: 5px;
+                box-shadow: 10px 17px 5px 0 #fff;
+                z-index: 10;
+              }
+              &.hidenBefore {
+                &::before {
+                  content: '';
+                  position: absolute;
+                  bottom: -13px;
+                  left: 95%;
+                  width: 100%;
+                  height: 70%;
+                  border-bottom-left-radius: 16px;
+                  border-color: transparent transparent #ffffff #ffffff;
+                  border-style: solid;
+                  border-width: 5px;
+                  box-shadow: -10px 17px 5px 0 #fff;
+                  z-index: 10;
+                }
+              }
+              .space {
+                position: absolute;
+                background-color: white;
+                width: 100%;
+                height: 10px;
+                bottom: -10px;
+                left: 0;
+              }
+              h4 {
+                color: var(--main-color);
+              }
+              .close {
+                svg {
+                  path {
+                    fill: var(--main-color);
+                  }
+                }
+              }
+            }
+            .close {
+              padding-right: 1.2rem;
+              cursor: pointer;
+              svg {
+                width: 18px;
+                height: 18px;
+                path {
+                  fill: var(--white-color);
+                }
+              }
+            }
+          }
+          .button__tabsSales {
+            border: none;
+          }
+        }
+      }
+    }
+    &--orhter {
+      width: var(--width-left);
+      padding-left: 12px;
+      .info__user {
+        h3 {
+          font-size: 1.2rem;
+        }
+        h4 {
+          font-size: 1.4rem;
+        }
+      }
+      .info__other {
+        &--item {
+          cursor: pointer;
+          padding: 6px;
+          border-radius: 100%;
+          background-color: var(--hover-white-color);
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -11,6 +11,8 @@ import { privateRouters } from './routers';
 import Protectedroute from './routers/protectedroute';
 import { IRouter } from './routers/types';
 
+import './i18n';
+
 const ScreenLogin = lazy(() => import('./pages/login/screen'));
 
 function App() {
@@ -47,16 +49,20 @@ export default App;
 
 const renderRoute = (routes: IRouter[]) => {
   return routes.map((route) => {
-    const { path, component: Component, title, isLayout } = route;
+    const { path, component: Component, title, isLayout, isDefaultSales } = route;
     const Comp = () => {
       return (
         <>
           <Helmet>
             <title>{title || 'Food App | admin'}</title>
           </Helmet>
-          <DefaultLayout>
+          {isDefaultSales ? (
             <Component />
-          </DefaultLayout>
+          ) : (
+            <DefaultLayout>
+              <Component />
+            </DefaultLayout>
+          )}
         </>
       );
     };

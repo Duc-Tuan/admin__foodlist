@@ -9,8 +9,10 @@ import { actions as actionsHeader } from '../../sliderbar/store';
 import { INavMenu, ISubMenu } from '../../types';
 import './index.scss';
 import MenuSub from './MenuSub';
+import { useTranslation } from 'react-i18next';
 
 const Sliderbar = () => {
+  const { t } = useTranslation();
   const { isHeader, isSubMenu } = useHeader();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -74,11 +76,11 @@ const Sliderbar = () => {
                     }
                   }}
                 >
-                  <div className="right d-flex justify-content-center align-items-center gap-10">
+                  <div className="right d-flex justify-content-center align-items-end gap-10">
                     <div className="icon">
                       <Icon name={i?.icon} />
                     </div>
-                    <div className={`name ${isHeader ? 'open' : 'off'}`}>{i?.name}</div>
+                    <div className={`name ${isHeader ? 'open' : 'off'}`}>{t(i?.name)}</div>
                   </div>
 
                   {subMenu && isHeader && (
@@ -104,7 +106,7 @@ const Sliderbar = () => {
                         navigate(sub?.link);
                       }}
                     >
-                      {sub?.name}
+                      {t(sub?.name)}
                     </div>
                   ))}
               </div>

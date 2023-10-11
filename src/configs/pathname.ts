@@ -5,5 +5,7 @@ export const PATHNAME = {
     SCREENPROMMOTIONS: '/prommotions',
     SCREENSTAFF: '/accounts/staffs',
     SCREENUSER: '/accounts/users',
+    SCREENINFOUSER: '/info-user',
+    SCREENSALESCOUNTER: '/sales-counter',
     SCREENERROR: '/error-404',
 }

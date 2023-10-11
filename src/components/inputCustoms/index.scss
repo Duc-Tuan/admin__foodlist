@@ -1,0 +1,23 @@
+.wrapper__input {
+  height: 100%;
+  border-radius: 4px;
+  padding: 4px 10px;
+  border: 1px solid var(--hover-white-color);
+  background-color: var(--white-color);
+  position: relative;
+  z-index: 1000;
+  input {
+    outline: none;
+    border: none;
+    height: 100%;
+  }
+  .iconSearch {
+    svg {
+      width: 20px;
+      height: 20px;
+      path {
+        fill: #404040;
+      }
+    }
+  }
+}
