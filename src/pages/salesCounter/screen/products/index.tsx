@@ -1,11 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { Loading } from '../../../../components';
+import './index.scss';
 
-type Props = {}
+type Props = {};
 
 const ProductsSales = (props: Props) => {
   return (
-    <div>ProductsSales</div>
-  )
-}
+    <div className="wrapper__productsSales">
+      <Loading />
+    </div>
+  );
+};
 
-export default ProductsSales
+export default ProductsSales;

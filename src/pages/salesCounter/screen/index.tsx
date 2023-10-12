@@ -14,8 +14,8 @@ const ScreenSalesCounter = (props: Props) => {
         <HeaderSales />
       </div>
 
-      <div className="wrapper__salesCounter--main d-flex align-items-center justify-content-center gap-4">
-        <div className="wrapper__salesCounter--productsBuy flex-fill d-flex justify-conten-center align-items-start flex-column gap-4">
+      <div className="wrapper__salesCounter--main d-flex align-items-center justify-content-center gap-6">
+        <div className="wrapper__salesCounter--productsBuy flex-fill d-flex justify-conten-center align-items-start flex-column gap-6">
           <div className="wrapper__salesCounter--productsPayments w-100">
             <ProductsBuysSales />
           </div>

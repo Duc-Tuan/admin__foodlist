@@ -1,6 +1,9 @@
 $main-color: #c2185b;
 $main-rgba-color: 194, 24, 91, 0.1;
 
+$box-shadow: 0 3px 5px rgba(0, 0, 0, 0.04);
+$border: 1px solid #dde2e9;
+
 $bg-color: #ebeef2;
 $white-color: #ffffff;
 $hover-white-color: rgba(255, 255, 255, 0.3);
@@ -29,7 +32,9 @@ $extra-color-70: #f7f7f7;
 $extra-color-80: #52575c;
 
 :root {
+  --border: #{$border};
   --bg-color: #{$bg-color};
+  --box-shadow: #{$box-shadow};
   --main-color: #{$main-color};
   --white-color: #{$white-color};
   --main-grey-color: #{$main-grey-color};

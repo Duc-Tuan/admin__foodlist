@@ -40,6 +40,6 @@ export type TableConfigs = {
 export interface ICommon {
   id: string | number;
   code: string,
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

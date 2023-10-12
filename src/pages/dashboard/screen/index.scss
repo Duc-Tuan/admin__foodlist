@@ -1,0 +1,137 @@
+.wrapper__dashboard {
+  .wrapper__difference {
+    &--item {
+      border-radius: 0.8rem;
+      background-color: var(--white-color);
+      box-shadow: var(--box-shadow);
+      border: var(--border);
+      padding: 10px;
+      .top {
+        padding-bottom: 14px;
+        border-bottom: var(--border);
+        .price {
+          h4 {
+            span {
+              color: var(--black-color);
+              font-size: 2rem;
+              font-weight: 500;
+            }
+          }
+          span {
+            color: #52575c;
+            font-size: 1.2rem;
+          }
+        }
+        .icon {
+          padding: 10px;
+          border-radius: 100%;
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+      .bottom {
+        padding-top: 10px;
+        color: var(--black-color);
+        font-size: 1.2rem;
+        margin-bottom: 0;
+        .sign {
+          &.activePositive {
+            color: #00c39f;
+          }
+          &.activePositiveMinus {
+            color: #fb4e4e;
+          }
+        }
+      }
+    }
+    &--filter {
+      margin-bottom: 10px;
+      .name {
+        font-size: 1.8rem;
+        font-weight: 500;
+        margin-bottom: 0 !important;
+        text-transform: uppercase;
+        color: var(--extra-color-80);
+      }
+    }
+  }
+
+  .wrapper__revenue {
+    max-width: 700px;
+    @media (min-width: 1460px) and (max-width: 1620px) {
+      max-width: 1000px;
+      &.active {
+        max-width: 850px;
+      }
+    }
+    @media (min-width: 1621px) and (max-width: 1920px) {
+      max-width: 1200px;
+      &.active {
+        max-width: 1050px;
+      }
+    }
+    @media (min-width: 1921px) and (max-width: 2400px) {
+      max-width: 1400px;
+      &.active {
+        max-width: 1250px;
+      }
+    }
+    @media (min-width: 2401px) {
+      max-width: 2000px;
+    }
+    @media screen and (max-width: 1224px) {
+      max-width: 600px;
+    }
+    .highcharts {
+      width: 100%;
+    }
+  }
+  .wrapper__revenue,
+  .wrapper__work {
+    &--filter {
+      .name {
+        font-size: 1.8rem;
+        font-weight: 500;
+        margin-bottom: 0 !important;
+        text-transform: uppercase;
+        color: var(--extra-color-80);
+      }
+    }
+    .highcharts,
+    .work {
+      padding: 10px;
+      border-radius: 0.8rem;
+      box-shadow: var(--box-shadow);
+      border: var(--border);
+      background-color: var(--white-color);
+      .highcharts-scrolling {
+        &::-webkit-scrollbar {
+          width: 6px;
+          height: 10px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: var(--main-color);
+          border-radius: 6px;
+          cursor: pointer;
+        }
+        &::-webkit-scrollbar-track {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+        &::-webkit-scrollbar-track {
+          background: #fff;
+        }
+      }
+    }
+  }
+  .charts {
+    flex: 2;
+  }
+  .wrapper__work {
+    flex: 1;
+    .work {
+      height: calc(450px + 557px);
+    }
+  }
+}

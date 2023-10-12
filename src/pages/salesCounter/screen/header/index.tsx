@@ -1,16 +1,16 @@
-import React from 'react';
-import './index.scss';
-import Icon from '../../../../assets/icon';
-import { IMenu, menu } from './const';
 import Tippy from '@tippyjs/react';
-import { useNavigate } from 'react-router-dom';
-import MenuNotifition from '../../../../layouts/header/MenuNotifition';
-import { useAppDispatch } from '../../../../hooks';
-import { actions as actionsSales } from '../../store';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Icon from '../../../../assets/icon';
+import { SearchCustom } from '../../../../components';
+import { useAppDispatch } from '../../../../hooks';
+import MenuNotifition from '../../../../layouts/header/MenuNotifition';
+import { actions as actionsSales } from '../../store';
 import { isFullscreen as fullscreen } from '../../store/select';
-import { InputCustom } from '../../../../components';
 import Tabs from './Tabs';
+import { IMenu, menu } from './const';
+import './index.scss';
 
 type Props = {};
 
@@ -37,12 +37,19 @@ const HeaderSales = (props: Props) => {
   const dispatch = useAppDispatch();
   const [isFocused, setIsFocused] = React.useState<boolean>(false);
 
+  console.log(isFocused);
+
   return (
     <div className="wrapper__header--sales d-flex align-items-center justify-content-between gap-4 flex-fill">
       <div className="wrapper__main--tabs flex-fill d-flex align-items-center justify-content-start gap-10">
         <div className="wrapper__main--tabs_search">
-          <InputCustom placeholder="Tìm kiếm sản phẩm..." setFocused={setIsFocused} />
-          {isFocused && <div className="blurred_bg"></div>}
+          <SearchCustom
+            placeholder="Tìm kiếm sản phẩm..."
+            setFocused={setIsFocused}
+            classNameInput={isFocused ? 'active' : ''}
+            isFocused={isFocused}
+          />
+          {isFocused && <div className="blurred_bg" onClick={() => setIsFocused(false)}></div>}
         </div>
 
         <div className="wrapper__main--tabs_items">

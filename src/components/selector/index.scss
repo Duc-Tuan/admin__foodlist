@@ -1,0 +1,56 @@
+.select__foodApp {
+  --transitions: all 0.3s;
+  min-width: 150px;
+  position: relative;
+  &--value {
+    cursor: pointer;
+    .value {
+      font-size: 1.4rem;
+    }
+    .icon {
+      transition: var(--transitions);
+      svg {
+        width: 18px;
+        height: 18px;
+        path {
+          fill: #9a9a9a;
+        }
+      }
+      &.active {
+        transform: rotate(-180deg);
+        transition: var(--transitions);
+      }
+    }
+  }
+  &--menu {
+    background-color: var(--white-color);
+    position: absolute;
+    top: 120%;
+    right: 0;
+    width: 100%;
+    padding: 4px;
+    border-radius: 4px;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    z-index: 1000;
+    &_item {
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: var(--transitions);
+      &:hover {
+        transition: var(--transitions);
+        background: rgba(var(--main-rgba-color));
+      }
+      &.active {
+        background: var(--main-color);
+        color: var(--white-color);
+        font-weight: 500;
+      }
+      & + & {
+        margin-top: 4px;
+      }
+    }
+  }
+}

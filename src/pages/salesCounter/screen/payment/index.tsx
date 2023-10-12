@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { tabs as reducerTabs } from '../../store/select';
 import { IProduct, ITabs } from '../../const';
 import { formatCurrency } from '../../../../utils';
+import './index.scss';
+import { Loading } from '../../../../components';
 
 const PaymentSales = () => {
   const tabs = useSelector(reducerTabs);
@@ -23,7 +25,11 @@ const PaymentSales = () => {
     return result;
   }, [JSON.stringify(data)]);
 
-  return <div>PaymentSales: {formatCurrency(total, ' vnđ')}</div>;
+  return (
+    <div className="wrapper__payments">
+      {data?.length === 0 ? <Loading /> : <>PaymentSales: {formatCurrency(total, ' vnđ')}</>}{' '}
+    </div>
+  );
 };
 
 export default PaymentSales;

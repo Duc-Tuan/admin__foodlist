@@ -25,6 +25,15 @@ section {
   display: block;
 }
 
+.trunc-one-line {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+}
+
 body {
   margin: 0;
   font-family: 'Roboto' !important;
@@ -3406,4 +3415,19 @@ pre code {
   color: rgba(0, 0, 0, 0.45);
   padding: 0;
   margin: 0;
+}
+.sticky {
+  position: sticky;
+  padding: 10px 0;
+  top: -20px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: var(--bg-color);
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.mt-20 {
+  margin-top: 20px;
 }
