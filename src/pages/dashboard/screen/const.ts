@@ -142,18 +142,13 @@ export const optionsChartBar = () => {
         },
         xAxis: {
             categories: [],
-            // labels: {
-            //     style: {
-            //         fontSize: '1.4rem',
-            //     },
-            // },
             labels: {
                 formatter: (value: any) => {
                     return 'Sản phẩm ' + Math.floor(value.value);
                 },
                 style: {
                     fontSize: '1.4rem',
-                    fontFamily: 'Verdana, sans-serif',
+                    fontFamily: 'Roboto, sans-serif',
                 },
                 overflow: 'justify',
             },

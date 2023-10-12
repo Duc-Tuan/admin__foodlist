@@ -20,13 +20,18 @@ export const navMenu: INavMenu[] = [
         id: 3,
         name: 'Đơn hàng',
         icon: 'order-nav',
-        link: PATHNAME.SCREENORDER,
+        link: PATHNAME.SCREENORDERUSER,
         subMenu: [
             {
+                name: 'Đơn hàng tại quầy',
+                link: PATHNAME.SCREENORDERCOUNTERS,
+                namePath: 'order',
+            },
+            {
                 name: 'Đơn hàng',
-                link: PATHNAME.SCREENORDER,
-                namePath: 'orders',
-            }
+                link: PATHNAME.SCREENORDERUSER,
+                namePath: 'order',
+            },
         ]
     },
     {

@@ -45,13 +45,15 @@ const ScreenDashBoard = () => {
       <Difference />
       <div className="d-flex mt-20 gap-10">
         <div className="charts">
-          <Revenue optionsChartColumn={optionsChartColumn(data)} title="Doanh thu bán hàng" />
+          <Revenue optionsChartColumn={optionsChartColumn(data)} title="Doanh thu bán hàng" emty />
           <div className="mt-20">
-            <Revenue optionsChartColumn={optionsChartBar()} title="Sản phẩm bán chạy" />
+            <Revenue optionsChartColumn={optionsChartBar()} title="Sản phẩm bán chạy" emty />
           </div>
         </div>
         <Work />
       </div>
+
+      <div className="mt-20"></div>
     </div>
   );
 };

@@ -1,1 +1,1 @@
-export { default as ScreenOrders } from './screen';
+export * from './screen';

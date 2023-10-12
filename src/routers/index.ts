@@ -3,7 +3,7 @@ import { ScreenStaff, ScreenUsers } from "../pages/accounts";
 import { ScreenInfoAccount } from "../pages/auth";
 import { ScreenDashboard } from "../pages/dashboard";
 import { ScreenLogin } from "../pages/login";
-import { ScreenOrders } from "../pages/orders";
+import { ScreenOrderCounters, ScreenOrderUsers } from "../pages/orders/screen";
 import ScreenPrommotions from "../pages/prommotions";
 import { ScreenSalesCounter } from "../pages/salesCounter";
 import { IRouter } from "./types";
@@ -15,9 +15,14 @@ export const privateRouters: IRouter[] = [
         component: ScreenDashboard
     },
     {
-        title: 'Đơn hàng | admin',
-        path: PATHNAME.SCREENORDER,
-        component: ScreenOrders
+        title: 'Đơn hàng khách đặt | admin',
+        path: PATHNAME.SCREENORDERUSER,
+        component: ScreenOrderUsers
+    },
+    {
+        title: 'Đơn hàng bán tại quầy | admin',
+        path: PATHNAME.SCREENORDERCOUNTERS,
+        component: ScreenOrderCounters
     },
     {
         title: 'Khuyến mãi | admin',

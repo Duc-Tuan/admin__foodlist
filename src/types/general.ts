@@ -43,3 +43,12 @@ export interface ICommon {
   createdAt?: string;
   updatedAt?: string;
 }
+
+export interface IPaganition {
+  page: number;
+  pageSize: number;
+
+  currentPage?: number;
+  totalElement?: number;
+  totalPage?: number;
+}

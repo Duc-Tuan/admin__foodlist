@@ -1,7 +1,8 @@
 export const PATHNAME = {
     SCREENDASHBOARD: '/home',
     SCREENLOGIN: '/login',
-    SCREENORDER: '/orders',
+    SCREENORDERCOUNTERS: '/order-counters',
+    SCREENORDERUSER: '/order-onlines',
     SCREENPROMMOTIONS: '/prommotions',
     SCREENSTAFF: '/accounts/staffs',
     SCREENUSER: '/accounts/users',

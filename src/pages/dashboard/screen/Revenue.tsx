@@ -3,15 +3,17 @@ import HighchartsReact from 'highcharts-react-official';
 import Exporting from 'highcharts/modules/exporting';
 import { useTranslation } from 'react-i18next';
 import { useHeader } from '../../../hooks/common/useHeader';
+import { Loading } from '../../../components';
 Exporting(Highcharts);
 
 type Props = {
   optionsChartColumn?: any;
   title?: string;
+  emty?: boolean;
 };
 
 const Revenue = (props: Props) => {
-  const { optionsChartColumn, title } = props;
+  const { optionsChartColumn, title, emty } = props;
   const { t } = useTranslation();
   const { isHeader } = useHeader();
 
@@ -24,7 +26,7 @@ const Revenue = (props: Props) => {
       </div>
 
       <div className="highcharts">
-        <HighchartsReact highcharts={Highcharts} options={optionsChartColumn} />
+        {!emty ? <Loading /> : <HighchartsReact highcharts={Highcharts} options={optionsChartColumn} />}
       </div>
     </div>
   );
