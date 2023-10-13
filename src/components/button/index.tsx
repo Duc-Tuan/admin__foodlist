@@ -1,31 +1,30 @@
-import React, { useState } from "react";
-import "./index.scss";
+import React, { useState } from 'react';
+import './index.scss';
 
 interface ButtonProps {
   id?: string;
   color?:
-    | string
-    | "primary"
-    | "destroy"
-    | "success"
-    | "warning"
-    | "transparent"
-    | "link"
-    | "draft"
-    | "grey"
-    | "white"
-    | "nomal"
-    | "primaryOpacity"
-    | "mix-white";
+    | 'primary'
+    | 'destroy'
+    | 'success'
+    | 'warning'
+    | 'transparent'
+    | 'link'
+    | 'draft'
+    | 'grey'
+    | 'white'
+    | 'nomal'
+    | 'primaryOpacity'
+    | 'mix-white';
 
-  variant?: string | "outline";
+  variant?: string | 'outline';
   children?: any;
   disabled?: boolean;
   onClick?: any;
-  type?: "submit" | "button";
+  type?: 'submit' | 'button';
   className?: string;
   onlyIcon?: boolean;
-  size?: "slim" | "large";
+  size?: 'slim' | 'large';
   refButton?: any;
   onDrop?: any;
   onDragOver?: any;
@@ -33,13 +32,10 @@ interface ButtonProps {
   onDragEnter?: any;
   isLoading?: boolean;
   style?: {
-    type: "normal" | "mask";
+    type: 'normal' | 'mask';
     icon: any;
   };
-  rest?: React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  >;
+  rest?: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 }
 export default function Button(props: ButtonProps) {
   const {
@@ -70,24 +66,18 @@ export default function Button(props: ButtonProps) {
       onClick={onClick}
       disabled={disabled || isLoading}
       ref={refButton ?? null}
-      className={`foodlist-button${
-        color ? ` foodlist-button--color-${color}` : ""
-      }${
-        variant && (!color || color !== "transparent")
-          ? ` foodlist-button--variant-${variant}`
-          : ""
-      }${onlyIcon ? " foodlist-button__only-icon" : ""}${
-        size ? ` foodlist-button__size-${size}` : ""
-      }${className ? ` ${className}` : ""} ${isLoading && "loading"} ${
-        style?.type == "mask" ? "btn-mask" : ""
-      } `}
+      className={`foodlist-button${color ? ` foodlist-button--color-${color}` : ''}${
+        variant && (!color || color !== 'transparent') ? ` foodlist-button--variant-${variant}` : ''
+      }${onlyIcon ? ' foodlist-button__only-icon' : ''}${size ? ` foodlist-button__size-${size}` : ''}${
+        className ? ` ${className}` : ''
+      } ${isLoading && 'loading'} ${style?.type == 'mask' ? 'btn-mask' : ''} `}
       onDragEnter={onDragEnter}
       onDragLeave={onDragLeave}
       onDragOver={onDragOver}
       onDrop={onDrop}
       {...rest}
     >
-      <div>{children}</div>
+      <div className="d-flex justify-content-center align-items-center">{children}</div>
       {/* {style && (
         <div className="mask">
           <Icon name={style?.icon} />

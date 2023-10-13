@@ -3,6 +3,7 @@ $main-rgba-color: 194, 24, 91, 0.1;
 
 $box-shadow: 0 3px 5px rgba(0, 0, 0, 0.04);
 $border: 1px solid #dde2e9;
+$transition: all 0.3s;
 
 $bg-color: #ebeef2;
 $white-color: #ffffff;
@@ -33,6 +34,7 @@ $extra-color-80: #52575c;
 
 :root {
   --border: #{$border};
+  --transition: #{$transition};
   --bg-color: #{$bg-color};
   --box-shadow: #{$box-shadow};
   --main-color: #{$main-color};

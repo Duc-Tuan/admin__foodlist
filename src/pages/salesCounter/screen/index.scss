@@ -19,6 +19,8 @@
     height: 100%;
     padding: 10px;
     background-color: var(--white-color);
+    box-shadow: var(--box-shadow);
+    border: var(--border);
   }
   &--productsPayments {
     height: calc(var(--height-main) - var(--height-product) - 2px);

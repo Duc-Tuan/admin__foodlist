@@ -9,13 +9,13 @@ type Props = {
   isFocused?: boolean;
   setFocused?: React.Dispatch<React.SetStateAction<boolean>>;
   classNameInput?: string;
+  ref?: any;
 };
 
-const SearchCustom = (props: Props) => {
+const SearchCustom = React.forwardRef((props: Props, ref: any) => {
   const { placeholder = 'Tìm kiếm nhanh...', setFocused, classNameInput, isFocused } = props;
   const [value, setValue] = React.useState<string>('');
   const refInput = React.useRef<any>();
-
   return (
     <Tippy
       placement="bottom-start"
@@ -25,8 +25,9 @@ const SearchCustom = (props: Props) => {
       visible={isFocused}
       className="wrapper__menu--search"
       interactive={true}
+      appendTo={document.body}
     >
-      <div className="wrapper__input d-flex justify-content-between align-items-center gap-8">
+      <div className="wrapper__input d-flex justify-content-between align-items-center gap-8" ref={ref}>
         <input
           ref={refInput}
           type="text"
@@ -43,7 +44,7 @@ const SearchCustom = (props: Props) => {
           <div
             className="icon__clear d-flex justify-content-center align-items-center"
             onClick={() => {
-              refInput?.current?.focus();
+              isFocused && refInput?.current?.focus();
               setValue('');
             }}
           >
@@ -57,6 +58,6 @@ const SearchCustom = (props: Props) => {
       </div>
     </Tippy>
   );
-};
+});
 
-export default SearchCustom;
+export default React.memo(SearchCustom);

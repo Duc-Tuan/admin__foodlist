@@ -23,13 +23,13 @@ export const navMenu: INavMenu[] = [
         link: PATHNAME.SCREENORDERUSER,
         subMenu: [
             {
-                name: 'Đơn hàng tại quầy',
-                link: PATHNAME.SCREENORDERCOUNTERS,
+                name: 'Đơn hàng online',
+                link: PATHNAME.SCREENORDERUSER,
                 namePath: 'order',
             },
             {
-                name: 'Đơn hàng',
-                link: PATHNAME.SCREENORDERUSER,
+                name: 'Đơn hàng tại quầy',
+                link: PATHNAME.SCREENORDERCOUNTERS,
                 namePath: 'order',
             },
         ]

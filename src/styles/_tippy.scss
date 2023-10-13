@@ -1,3 +1,6 @@
+.tippy-content {
+  padding: 10px !important;
+}
 .menuSub__header {
   &--content {
     margin: 2px 6px;
@@ -77,5 +80,36 @@
     height: 26vh;
     color: var(--black-color);
     position: relative;
+  }
+}
+
+.wrapprer__hoverProductsSales {
+  .product__sales {
+    width: 280px;
+    .image {
+      width: 8.6rem;
+      height: 8.6rem;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .info {
+      flex: 1;
+      height: 8.6rem;
+      .name {
+        height: 100%;
+        word-break: break-word;
+        -webkit-line-clamp: 3;
+        color: black;
+      }
+      .price {
+        font-size: 1.4rem;
+        color: var(--main-color);
+        font-weight: 500;
+      }
+      .qty {
+        font-size: 1.2rem;
+        color: black;
+      }
+    }
   }
 }

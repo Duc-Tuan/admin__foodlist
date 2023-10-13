@@ -48,7 +48,7 @@ export interface IPaganition {
   page: number;
   pageSize: number;
 
-  currentPage?: number;
-  totalElement?: number;
-  totalPage?: number;
+  currentPage: number;
+  totalElement: number;
+  totalPage: number;
 }

@@ -32,19 +32,29 @@ declare global {
 }
 
 const HeaderSales = (props: Props) => {
+  const refInput = React.useRef<any>();
   const isFullscreen = useSelector(fullscreen);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [isFocused, setIsFocused] = React.useState<boolean>(false);
 
-  console.log(isFocused);
+  React.useEffect(() => {
+    const handleKey = (event: KeyboardEvent) => {
+      event.keyCode === 113 && refInput?.current.querySelector('input')?.focus();
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => {
+      window.removeEventListener('keydown', handleKey);
+    };
+  }, []);
 
   return (
     <div className="wrapper__header--sales d-flex align-items-center justify-content-between gap-4 flex-fill">
       <div className="wrapper__main--tabs flex-fill d-flex align-items-center justify-content-start gap-10">
         <div className="wrapper__main--tabs_search">
           <SearchCustom
-            placeholder="Tìm kiếm sản phẩm..."
+            ref={refInput}
+            placeholder="Tìm kiếm sản phẩm(F2)"
             setFocused={setIsFocused}
             classNameInput={isFocused ? 'active' : ''}
             isFocused={isFocused}

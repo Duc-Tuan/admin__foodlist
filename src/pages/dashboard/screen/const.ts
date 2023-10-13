@@ -75,7 +75,9 @@ export const optionsChartColumn = (data: any) => {
             enabled: false,
         },
         tooltip: {
-            pointFormat: '<b>{point.y:.1f} millions</b>',
+            // headerFormat: '<b>Sản phẩm {point.y:.1f}</b><br>',
+            headerFormat: '',
+            pointFormat: '<b>Doanh thu: {point.y:.1f}</b>',
             style: {
                 fontSize: '1.4rem',
                 fontFamily: 'Roboto, sans-serif',
@@ -89,11 +91,11 @@ export const optionsChartColumn = (data: any) => {
                 groupPadding: 0,
                 data: data,
                 dataLabels: {
-                    enabled: true,
+                    enabled: false,
                     rotation: -90,
                     color: '#FFFFFF',
                     align: 'right',
-                    format: '{point.y:.1f}', // one decimal
+                    format: '{point.y:.1f} ', // one decimal
                     y: 10, // 10 pixels down from the top
                     style: {
                         fontSize: '13px',
@@ -115,7 +117,7 @@ export const optionsChartBar = () => {
             height: 450,
             margin: 40,
             marginBottom: 60,
-            marginLeft: 140,
+            marginLeft: 100,
         },
         title: {
             text: '',
@@ -154,7 +156,8 @@ export const optionsChartBar = () => {
             },
         },
         tooltip: {
-            pointFormat: '<b>{point.y:.1f} millions</b>',
+            headerFormat: '<b>Sản phẩm</b><br/>',
+            pointFormat: '<b>Số lượng bán: {point.y:.2f}</b>',
             style: {
                 fontSize: '1.4rem',
                 fontFamily: 'Roboto, sans-serif',
@@ -168,7 +171,7 @@ export const optionsChartBar = () => {
                 },
                 style: {
                     fontSize: '1.4rem',
-                    fontFamily: 'Verdana, sans-serif',
+                    fontFamily: 'Roboto, sans-serif',
                 },
                 overflow: 'justify',
             },
@@ -178,7 +181,7 @@ export const optionsChartBar = () => {
         },
         series: [
             {
-                name: 'Sản phẩm ádadad',
+                name: 'Sản phẩm',
                 data: [60, 78, 58, 25, 18],
                 color: 'var(--main-color)',
             },

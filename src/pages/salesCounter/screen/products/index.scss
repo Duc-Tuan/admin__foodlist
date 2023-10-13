@@ -1,23 +1,118 @@
 .wrapper__productsSales {
   position: relative;
   height: 100%;
+  &--header {
+    .search__Advanced {
+      border: 1px solid var(--extra-color-20);
+      border-radius: 4px;
+      cursor: pointer;
+      height: 3.6rem;
+      width: 3.6rem;
+      transition: var(--transition);
+      &:hover {
+        border-color: var(--main-color);
+        transition: var(--transition);
+        svg {
+          path {
+            fill: var(--main-color);
+            transition: var(--transition);
+          }
+        }
+      }
+    }
+    .paganition {
+      .prev,
+      .next {
+        border: var(--border);
+        border-radius: 50%;
+        cursor: pointer;
+        height: 3rem;
+        width: 3rem;
+        transition: var(--transition);
+        svg {
+          width: 1.6rem;
+          height: 1.6rem;
+          path {
+            fill: #a0a4a8;
+          }
+        }
+        &.active {
+          &:hover {
+            border-color: var(--main-color);
+            transition: var(--transition);
+            svg {
+              path {
+                fill: var(--main-color);
+              }
+            }
+          }
+        }
+      }
+      .prev {
+        transform: rotate(90deg);
+      }
+      .next {
+        transform: rotate(-90deg);
+      }
+      .text {
+        font-size: 1.6rem;
+      }
+    }
+  }
   .list-drug {
     display: grid;
     gap: 0.6rem;
-    margin: 0 -0.4rem;
+    // margin: 0 -0.4rem;
     max-height: 100%;
     position: relative;
     width: 100%;
     grid-template-columns: repeat(4, 1fr);
+    @media (min-width: 1540px) and (max-width: 1800px) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    @media (min-width: 1801px) and (max-width: 2050px) {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    @media (min-width: 2051px) and (max-width: 2345px) {
+      grid-template-columns: repeat(7, 1fr);
+    }
+    @media (min-width: 2346px) {
+      grid-template-columns: repeat(8, 1fr);
+    }
 
     .product__item {
       border: 0.1rem solid #eeebeb;
       border-radius: 0.4rem;
       padding: 0.6rem;
-      img {
+      max-width: 263px;
+      cursor: pointer;
+      transition: var(--transition);
+      &:hover {
+        transition: var(--transition);
+        background: rgba(var(--main-rgba-color));
+        border-color: var(--main-color);
+      }
+      .image {
         width: 4.8rem;
         height: 4.8rem;
-        border-radius: 0.4rem;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .name {
+        font-size: 1.5rem;
+      }
+      .info {
+        flex: 1;
+        height: 4.8rem;
+        line-height: 16px;
+        .price {
+          font-size: 1.4rem;
+          color: var(--main-color);
+          font-weight: 500;
+        }
+        .qty {
+          font-size: 1.2rem;
+        }
       }
     }
   }
