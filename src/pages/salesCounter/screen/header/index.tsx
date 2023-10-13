@@ -78,6 +78,7 @@ const HeaderSales = (props: Props) => {
           {menu.map((i: IMenu, idx: number) => (
             <React.Fragment key={`menu__sales--${idx}`}>
               <Tippy
+                appendTo={document.body}
                 content={i?.isPopup ? <MenuNotifition /> : i?.name}
                 arrow={true}
                 interactive={true}
@@ -97,6 +98,7 @@ const HeaderSales = (props: Props) => {
           ))}
 
           <Tippy
+            appendTo={document.body}
             content={!isFullscreen ? 'Mở rộng màn hình' : 'Thu nhỏ màn hình'}
             arrow={true}
             interactive={true}

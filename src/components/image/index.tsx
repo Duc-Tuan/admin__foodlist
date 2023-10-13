@@ -1,7 +1,7 @@
 import React from 'react';
 
 type Props = {
-  url: string;
+  url?: string;
   alt: string;
   className?: string;
 };

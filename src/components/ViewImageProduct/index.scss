@@ -1,0 +1,14 @@
+.wrapper__imagas {
+  width: 100%;
+  .image {
+    width: 100%;
+    height: 36rem;
+    background: var(--extra-color-60);
+  }
+  .images {
+    .img {
+      cursor: pointer;
+      width: calc(100% / 4);
+    }
+  }
+}

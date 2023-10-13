@@ -27,6 +27,7 @@ const Header = (props: Props) => {
 
       <div className="header__info d-flex justidy-content-center align-items-center">
         <Tippy
+          appendTo={document.body}
           placement="bottom"
           content={<MenuNotifition />}
           theme="light"
@@ -40,6 +41,7 @@ const Header = (props: Props) => {
           </div>
         </Tippy>
         <Tippy
+          appendTo={document.body}
           content={<MenuLogin />}
           theme="light"
           trigger="click"

@@ -1,14 +1,16 @@
+import { ICommon } from "../../types/general";
+
 export interface ITabs {
     indexTab: number;
     status: boolean;
     nameTab: string;
-    contentTab: IProduct[];
+    contentTab: IProductSales[];
 }
 
-export interface IProduct {
-    id: number,
+export interface IProductSales extends ICommon {
     name: string,
     image: string,
     qty: number,
-    price: number
+    price: number,
+    prommotion: number,
 }

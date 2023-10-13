@@ -41,6 +41,7 @@ const Sliderbar = () => {
           return (
             <React.Fragment key={`sliderbar__${idx}`}>
               <Tippy
+                appendTo={document.body}
                 content={<MenuSub data={subMenu} onClick={onClickSubmenu} idx={idx} />}
                 className="menuSub__header"
                 placement="right-start"

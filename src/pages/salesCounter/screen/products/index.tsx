@@ -9,12 +9,19 @@ import { formatCurrency } from '../../../../utils';
 import Icon from '../../../../assets/icon';
 import Tippy from '@tippyjs/react';
 import Images from '../../../../components/image';
-import { useBoolean, useClickOutSide } from '../../../../hooks';
+import { useAppDispatch, useBoolean, useClickOutSide } from '../../../../hooks';
 import MenuSubSales from '../menuSub';
 import { useTranslation } from 'react-i18next';
+import { actions as actionsSales } from '../../store';
+import { ProductSalesContructor } from '../contructor';
+import { IProductSales, ITabs } from '../../const';
+import { useSelector } from 'react-redux';
+import { tabs as reducerTabs } from '../../store/select';
 
 const ProductsSales = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const tabs = useSelector(reducerTabs);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [data, setData] = React.useState<IProducts[]>([]);
   const [isOpen, { on, off, toggle }] = useBoolean();
@@ -47,7 +54,7 @@ const ProductsSales = () => {
 
   React.useEffect(() => {
     getData();
-  }, [JSON.stringify(paganition)]);
+  }, [paganition?.page]);
 
   const handlePrev = () => {
     if (paganition?.currentPage > 1) {
@@ -66,6 +73,26 @@ const ProductsSales = () => {
     }
   };
 
+  const handlerAddProduct = (data: IProducts) => {
+    const dataProduct: IProductSales = new ProductSalesContructor(
+      data?._id ?? '',
+      data?.code,
+      data?.productName,
+      data?.productImage,
+      1,
+      data?.productPrice,
+      data?.productPromotion,
+    );
+    dispatch(
+      actionsSales?.setProductSales({
+        productSales: {
+          idTab: tabs?.filter((i: ITabs) => i?.status === true)[0]?.indexTab,
+          data: { ...dataProduct },
+        },
+      }),
+    );
+  };
+
   React.useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
       event?.keyCode == 115 && toggle();
@@ -82,7 +109,7 @@ const ProductsSales = () => {
     <>
       <div className="wrapper__productsSales  d-flex justify-content-start align-items-start flex-column gap-10">
         <div className="wrapper__productsSales--header d-flex justify-content-between align-items-start gap-10 w-100">
-          <Tippy content={t('Nhấn F4 để đóng/mở bộ lọc')}>
+          <Tippy content={t('Nhấn F4 để đóng/mở bộ lọc')} appendTo={document.body}>
             <div className="search__Advanced d-flex justify-content-center align-items-center" onClick={toggle}>
               <Icon name="icon-hambuger-filter" />
             </div>
@@ -125,7 +152,10 @@ const ProductsSales = () => {
                     theme="light"
                     className="wrapprer__hoverProductsSales"
                   >
-                    <div className="product__item d-flex justify-content-start align-items-start gap-10">
+                    <div
+                      className="product__item d-flex justify-content-start align-items-start gap-10"
+                      onClick={() => handlerAddProduct(i)}
+                    >
                       <Images className="image" alt="Sản phẩm" url={i?.productImage} />
                       <div className="info d-flex justify-content-between align-items-start flex-column">
                         <div className="name trunc-one-line">{i?.productName}</div>

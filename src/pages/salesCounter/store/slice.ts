@@ -1,11 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ITabs } from '../const';
+import { IProductSales, ITabs } from '../const';
 import { cloneDeep } from 'lodash';
 
 interface State {
     isFullscreen: boolean;
     tabs: ITabs[];
     tab: ITabs;
+    productSales?: {
+        idTab: number;
+        data: IProductSales
+    };
 }
 
 const initialState: State = {
@@ -24,6 +28,7 @@ const initialState: State = {
         nameTab: 'Đơn 1',
         contentTab: [],
     },
+    productSales: undefined
 };
 
 const sliderbar = createSlice({
@@ -53,6 +58,51 @@ const sliderbar = createSlice({
             dataOld[dataOld.length - 1].status = true;
             dataOld?.map((i: ITabs, idx: number) => i.indexTab = idx);
             state.tabs = dataOld;
+        },
+        setProductSales(state, action: PayloadAction<Pick<Required<State>, 'productSales'>>) {
+            const dataOld: ITabs[] = cloneDeep(state.tabs);
+            const { payload } = action;
+            const findIndexTab = dataOld?.findIndex((i: ITabs) => i?.indexTab === payload?.productSales?.idTab);
+            const tab = dataOld?.filter((i: ITabs) => i?.indexTab === payload?.productSales?.idTab)[0];
+            const dataProoducts: IProductSales[] = cloneDeep(tab?.contentTab);
+            const findIndex = dataProoducts?.findIndex((i: IProductSales) => i?.id === payload?.productSales?.data?.id);
+
+            if (findIndexTab !== -1) {
+                if (findIndex !== -1) {
+                    dataOld[findIndexTab].contentTab[findIndex].qty += 1;
+                    state.tabs = [...dataOld];
+                } else {
+                    dataOld[findIndexTab].contentTab = dataOld[findIndexTab]?.contentTab?.length !== 0 ? [payload?.productSales?.data, ...dataOld[findIndexTab]?.contentTab] : [payload?.productSales?.data];
+                    state.tabs = [...dataOld];
+                }
+            }
+        },
+        setDeleteSales(state, action: PayloadAction<{ data: IProductSales }>) {
+            const dataOld: ITabs[] = cloneDeep(state.tabs);
+            const { payload } = action;
+            const findIndexTab = dataOld?.findIndex((i: ITabs) => i?.status === true);
+
+            if (findIndexTab !== -1) {
+                const dataProoducts: IProductSales[] = cloneDeep(dataOld[findIndexTab].contentTab);
+                const dataNew = dataProoducts?.filter((i: IProductSales) => i?.id !== payload?.data?.id)
+                dataOld[findIndexTab].contentTab = [...dataNew]
+                state.tabs = [...dataOld];
+            }
+        },
+        setUpdateSales(state, action: PayloadAction<{ data: IProductSales }>) {
+            const dataOld: ITabs[] = cloneDeep(state.tabs);
+            const { payload } = action;
+            const findIndexTab = dataOld?.findIndex((i: ITabs) => i?.status === true);
+
+            if (findIndexTab !== -1) {
+                const dataProoducts: IProductSales[] = cloneDeep(dataOld[findIndexTab].contentTab);
+                const indexContentTab = dataProoducts.findIndex((i: IProductSales) => i?.id === payload?.data?.id);
+                if (indexContentTab !== -1) {
+                    dataProoducts[indexContentTab] = payload?.data;
+                }
+                dataOld[findIndexTab].contentTab = [...dataProoducts]
+                state.tabs = [...dataOld];
+            }
         },
     },
 });

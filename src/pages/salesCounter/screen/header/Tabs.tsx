@@ -1,11 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { tabs as reducerTabs } from '../../store/select';
-import { ITabs } from '../../const';
 import Icon from '../../../../assets/icon';
 import { useAppDispatch } from '../../../../hooks';
+import { ITabs } from '../../const';
 import { actions as actionsSales } from '../../store';
-import Tippy from '@tippyjs/react';
+import { tabs as reducerTabs } from '../../store/select';
 
 type Props = {};
 
@@ -20,15 +19,7 @@ const Tabs = (props: Props) => {
       nameTab: tabs?.some((i: ITabs) => i?.nameTab?.includes(`Đơn ${tabs?.length}`))
         ? `Đơn ${tabs?.length + 1}`
         : `Đơn ${tabs?.length}`,
-      contentTab: [
-        {
-          id: tabs?.length + 1,
-          name: `Sản phẩm ${tabs?.length + 1}`,
-          image: '',
-          qty: Math.floor(Math.random() * 11),
-          price: Math.floor(Math.random() * 100000),
-        },
-      ],
+      contentTab: [],
     };
     dispatch(actionsSales.setTabs({ tab: dataTab }));
 
