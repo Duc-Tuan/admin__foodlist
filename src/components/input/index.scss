@@ -1,0 +1,80 @@
+.wrapper__inputFoodApp {
+  --border-radius: 6px;
+  margin-bottom: 10px;
+  .mess__error,
+  .required {
+    color: var(--error-color);
+  }
+  .input {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--extra-color-60);
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: var(--transition);
+      border-radius: 10px;
+    }
+    &.active {
+      &::after {
+        background-color: var(--main-color);
+        transition: var(--transition);
+        width: 100%;
+      }
+      &::before {
+        transition: var(--transition);
+        width: 0;
+      }
+    }
+    label,
+    .eye {
+      position: absolute;
+      top: 66%;
+      transform: translateY(-50%);
+    }
+    label {
+      cursor: pointer;
+      left: 0;
+      transition: var(--transition);
+      color: var(--extra-color-80);
+      z-index: -10;
+      margin-bottom: 0;
+      &.active {
+        top: 10px;
+        font-weight: 500;
+        z-index: 10;
+        color: var(--main-color);
+        font-size: 1.4rem;
+        transition: var(--transition);
+      }
+    }
+    input {
+      width: 100%;
+      display: block;
+      outline: none;
+      padding: 22px 40px 6px 0;
+      border: none;
+      caret-color: var(--main-color);
+      background-color: transparent;
+    }
+    .eye {
+      cursor: pointer;
+      right: 10px;
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

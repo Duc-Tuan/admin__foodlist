@@ -1,7 +1,26 @@
-.tippy-content {
-  padding: 10px !important;
+.tippy-box {
+  max-width: 400px !important;
+  .tippy-content {
+    padding: 10px !important;
+  }
 }
+
 .menuSub__header {
+  .title {
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--hover-white-color);
+    .title__name {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+    svg {
+      width: 18px;
+      height: 18px;
+      path {
+        fill: var(--white-color);
+      }
+    }
+  }
   &--content {
     margin: 2px 6px;
     .item {
@@ -68,18 +87,8 @@
 
 .wrapper__menu--notifitions {
   .menu {
-    min-width: 260px;
+    width: 380px;
     color: var(--black-color);
-  }
-}
-
-.wrapper__menu--search {
-  max-width: 400px !important;
-  width: 400px;
-  .menu {
-    height: 26vh;
-    color: var(--black-color);
-    position: relative;
   }
 }
 

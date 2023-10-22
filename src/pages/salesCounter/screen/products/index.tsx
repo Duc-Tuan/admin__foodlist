@@ -16,12 +16,15 @@ import { actions as actionsSales } from '../../store';
 import { ProductSalesContructor } from '../contructor';
 import { IProductSales, ITabs } from '../../const';
 import { useSelector } from 'react-redux';
-import { tabs as reducerTabs } from '../../store/select';
+import { dataProducts, dataTotalPage, tabs as reducerTabs } from '../../store/select';
+import { handlerAddProductSales } from '../components/handlerAddProductSales';
 
 const ProductsSales = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const tabs = useSelector(reducerTabs);
+  const totalPageSales = useSelector(dataTotalPage);
+  const productsStore = useSelector(dataProducts);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [data, setData] = React.useState<IProducts[]>([]);
   const [isOpen, { on, off, toggle }] = useBoolean();
@@ -44,6 +47,7 @@ const ProductsSales = () => {
         totalElement: pa?.totalElement,
         totalPage: pa?.totalPage,
       }));
+      pa?.currentPage === 1 && dispatch(actionsSales.setProducts({ data: data, totalPage: pa?.totalPage }));
       setData(data);
     } catch (error) {
       console.log(error);
@@ -53,8 +57,19 @@ const ProductsSales = () => {
   };
 
   React.useEffect(() => {
-    getData();
+    productsStore?.length === 0 && getData();
+    if (paganition?.page !== 1) {
+      getData();
+    }
   }, [paganition?.page]);
+
+  React.useEffect(() => {
+    setData(productsStore);
+    setPaganition((prev) => ({
+      ...prev,
+      totalPage: totalPageSales,
+    }));
+  }, [productsStore]);
 
   const handlePrev = () => {
     if (paganition?.currentPage > 1) {
@@ -74,23 +89,7 @@ const ProductsSales = () => {
   };
 
   const handlerAddProduct = (data: IProducts) => {
-    const dataProduct: IProductSales = new ProductSalesContructor(
-      data?._id ?? '',
-      data?.code,
-      data?.productName,
-      data?.productImage,
-      1,
-      data?.productPrice,
-      data?.productPromotion,
-    );
-    dispatch(
-      actionsSales?.setProductSales({
-        productSales: {
-          idTab: tabs?.filter((i: ITabs) => i?.status === true)[0]?.indexTab,
-          data: { ...dataProduct },
-        },
-      }),
-    );
+    handlerAddProductSales(dispatch, tabs, data);
   };
 
   React.useEffect(() => {

@@ -6,6 +6,7 @@ import { ScreenLogin } from "../pages/login";
 import { ScreenOrderCounters, ScreenOrderUsers } from "../pages/orders/screen";
 import ScreenPrommotions from "../pages/prommotions";
 import { ScreenSalesCounter } from "../pages/salesCounter";
+import { ScreenWorks } from "../pages/works";
 import { IRouter } from "./types";
 
 export const privateRouters: IRouter[] = [
@@ -43,6 +44,12 @@ export const privateRouters: IRouter[] = [
         title: 'Thông tin tài khoản của bạn | admin',
         path: PATHNAME.SCREENINFOUSER,
         component: ScreenInfoAccount
+    },
+    {
+
+        title: 'Hoạt động gần đây | admin',
+        path: PATHNAME.SCREENWORK,
+        component: ScreenWorks,
     },
     {
 

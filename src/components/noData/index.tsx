@@ -6,14 +6,15 @@ import Images from '../image';
 
 type Props = {
   text?: string;
+  isImage?: boolean;
 };
 
 const NoData = (props: Props) => {
   const { t } = useTranslation();
-  const { text } = props;
+  const { text, isImage } = props;
   return (
     <div className="wrapprt__noData d-flex justify-content-center align-items-center flex-column gap-10">
-      <Images alt="" url={NoOrder} className="image" />
+      {!isImage && <Images alt="" url={NoOrder} className="image" />}
       <div className="text">{t(text ?? 'Đơn hàng hiện chưa có sản phẩm nào.')}</div>
     </div>
   );

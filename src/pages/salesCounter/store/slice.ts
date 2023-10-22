@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IProductSales, ITabs } from '../const';
 import { cloneDeep } from 'lodash';
+import { IProducts } from '../screen/products/const';
 
 interface State {
     isFullscreen: boolean;
@@ -10,6 +11,8 @@ interface State {
         idTab: number;
         data: IProductSales
     };
+    products: IProducts[];
+    totalPage: number;
 }
 
 const initialState: State = {
@@ -28,7 +31,9 @@ const initialState: State = {
         nameTab: 'Đơn 1',
         contentTab: [],
     },
-    productSales: undefined
+    productSales: undefined,
+    products: [],
+    totalPage: 1,
 };
 
 const sliderbar = createSlice({
@@ -103,6 +108,11 @@ const sliderbar = createSlice({
                 dataOld[findIndexTab].contentTab = [...dataProoducts]
                 state.tabs = [...dataOld];
             }
+        },
+        setProducts(state, action: PayloadAction<{ data: IProducts[], totalPage: number }>) {
+            const { payload } = action;
+            state.products = payload.data;
+            state.totalPage = payload.totalPage;
         },
     },
 });

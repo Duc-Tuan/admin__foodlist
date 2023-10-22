@@ -3,14 +3,17 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../../../assets/icon';
-import { SearchCustom } from '../../../../components';
+import { Loading, SearchCustom } from '../../../../components';
 import { useAppDispatch } from '../../../../hooks';
 import MenuNotifition from '../../../../layouts/header/MenuNotifition';
 import { actions as actionsSales } from '../../store';
-import { isFullscreen as fullscreen } from '../../store/select';
+import { dataProducts, isFullscreen as fullscreen } from '../../store/select';
 import Tabs from './Tabs';
 import { IMenu, menu } from './const';
 import './index.scss';
+import { IProducts } from '../products/const';
+import ResultSearch from './ResultSearch';
+import ApiProducts from '../../../../assets/apis/ApiProducts';
 
 type Props = {};
 
@@ -33,10 +36,14 @@ declare global {
 
 const HeaderSales = (props: Props) => {
   const refInput = React.useRef<any>();
+  const productsStore = useSelector(dataProducts);
   const isFullscreen = useSelector(fullscreen);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [isFocused, setIsFocused] = React.useState<boolean>(false);
+  const [dataSearch, setDataSearch] = React.useState<IProducts[]>([]);
+  const [valueSearch, setValueSearch] = React.useState<string>('');
+  const [laoding, setLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
@@ -48,16 +55,34 @@ const HeaderSales = (props: Props) => {
     };
   }, []);
 
+  const getData = async () => {
+    try {
+      setLoading(true);
+      const res = await ApiProducts.getProducts(1, 10, valueSearch);
+      setDataSearch(res?.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  React.useEffect(() => {
+    valueSearch !== '' ? getData() : setDataSearch(productsStore);
+  }, [valueSearch, productsStore]);
+
   return (
     <div className="wrapper__header--sales d-flex align-items-center justify-content-between gap-4 flex-fill">
       <div className="wrapper__main--tabs flex-fill d-flex align-items-center justify-content-start gap-10">
         <div className="wrapper__main--tabs_search">
           <SearchCustom
+            renderMenu={<ResultSearch isLoading={laoding} data={dataSearch} />}
             ref={refInput}
             placeholder="Tìm kiếm sản phẩm(F2)"
             setFocused={setIsFocused}
             classNameInput={isFocused ? 'active' : ''}
             isFocused={isFocused}
+            onChange={(e: string) => setValueSearch(e)}
           />
           {isFocused && <div className="blurred_bg" onClick={() => setIsFocused(false)}></div>}
         </div>

@@ -26,11 +26,11 @@ const ProductsBuysSales = () => {
   }, [JSON.stringify(tabs)]);
 
   return (
-    <div className="wrapper__productsBuy">
+    <div className="wrapper__productsBuy scroll__foodApp">
       {data?.length === 0 ? (
         <NoData />
       ) : (
-        <div className="d-flex justify-content-start align-items-start flex-column gap-10">
+        <div className="d-flex justify-content-start align-items-start flex-column gap-6">
           <div className="header__productsBuy d-flex justify-content-start align-items-center gap-10">
             <h3 className="image">{t('Ảnh')}</h3>
             <h3 className="name">{t('Tên sản phẩm')}</h3>
@@ -40,7 +40,7 @@ const ProductsBuysSales = () => {
               <h3 className="money flex-fill">{t('Thành tiền')}</h3>
             </div>
           </div>
-          {data?.map((i: IProductSales, idx: number) => <Item data={i} key={idx} />)}
+          {data?.map((i: IProductSales, idx: number) => <Item data={i} key={idx} index={idx} />)}
         </div>
       )}
     </div>

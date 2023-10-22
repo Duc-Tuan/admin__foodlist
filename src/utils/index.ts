@@ -17,3 +17,9 @@ export const formatCurrency = (
     }
     return !configNull ? 0 : configNull.format;
 };
+
+export const checkNullish = (data?: any) => {
+    if (!data || (typeof data == 'string' && data == '') || isNaN(data) || data == undefined)
+        return null;
+    return data;
+};

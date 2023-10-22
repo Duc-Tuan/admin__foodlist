@@ -43,7 +43,11 @@ const MenuSubSales = (props: Props) => {
         </div>
       </Tippy>
 
-      <div className="main__menuSub mt-10 d-flex justify-content-between align-items-start flex-column gap-10">
+      <div
+        className={`main__menuSub ${
+          isHeader ? 'mt-10' : ''
+        } d-flex justify-content-between align-items-start flex-column gap-10`}
+      >
         <div className="main" style={{ height: isFooter ? 'calc(100% - 52px)' : '100%' }}>
           {children}
         </div>

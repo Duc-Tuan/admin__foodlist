@@ -23,6 +23,51 @@
           background-color: rgba(0, 0, 0, 0.2);
           z-index: 20;
         }
+
+        .menu {
+          min-height: 30vh;
+          position: relative;
+          max-height: 40vh;
+          color: var(--black-color);
+          position: relative;
+          .menu__searchSales {
+            .item {
+              padding: 4px 6px;
+              cursor: pointer;
+              transition: var(--transition);
+              border-radius: 4px;
+              &:hover {
+                background-color: rgba(var(--main-rgba-color));
+                transition: var(--transition);
+              }
+              .image {
+                width: 4.4rem;
+                height: 4.4rem;
+                border-radius: 4px;
+                overflow: hidden;
+                border: var(--border);
+                box-shadow: var(--box-shadow);
+              }
+              .info {
+                flex: 1;
+                h3 {
+                  &.name {
+                    font-size: 1.6rem;
+                  }
+                  .price,
+                  .qty span {
+                    font-size: 1.4rem;
+                    font-weight: 600;
+                    color: var(--main-color);
+                  }
+                  .qty {
+                    font-size: 1.2rem;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
       .wrapper__main--tabs_items {
         cursor: pointer;
@@ -89,6 +134,19 @@
             border-radius: 0.4rem;
           }
           &_item {
+            transition: var(--transition);
+            &:hover {
+              transition: var(--transition);
+              background-color: var(--white-color);
+              color: var(--main-color);
+              .close {
+                svg {
+                  path {
+                    fill: var(--main-color);
+                  }
+                }
+              }
+            }
             min-width: 100px;
             h4 {
               padding: 1rem 1.2rem;
@@ -149,8 +207,15 @@
               }
             }
             .close {
-              padding-right: 1.2rem;
+              margin-right: 1.2rem;
+              padding: 2px;
               cursor: pointer;
+              transition: var(--transition);
+              &:hover {
+                transition: var(--transition);
+                border-radius: 100%;
+                background-color: rgba(var(--main-rgba-color));
+              }
               svg {
                 width: 18px;
                 height: 18px;

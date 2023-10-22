@@ -1,9 +1,46 @@
-.form__Login {
-  width: 50%;
-  margin: 0 auto;
-  input {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
+.wrapper__login {
+  position: relative;
+  .form__Login {
+    width: 30%;
+    background-color: transparent;
+    position: absolute;
+    z-index: 100;
+    padding: 10px;
+    box-shadow: var(--box-shadow-main);
+    border: var(--border);
+    -webkit-backdrop-filter: blur(3px); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
+    backdrop-filter: blur(3px); /* Supported in Chrome 76 */
+    border-radius: 6px;
+
+    .title {
+      color: var(--main-color);
+      font-weight: 900;
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+    }
+
+    .reset__pass {
+      cursor: pointer;
+      color: var(--main-color);
+    }
+
+    button {
+      height: 4rem !important;
+      & > div {
+        font-weight: 800;
+        font-size: 1.7rem;
+      }
+      &:hover {
+        background-color: rgba(var(--main-rgba-color));
+      }
+    }
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 }

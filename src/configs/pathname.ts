@@ -8,5 +8,6 @@ export const PATHNAME = {
     SCREENUSER: '/accounts/users',
     SCREENINFOUSER: '/info-user',
     SCREENSALESCOUNTER: '/sales-counter',
+    SCREENWORK: '/works',
     SCREENERROR: '/error-404',
 }

@@ -7,7 +7,7 @@
   background-color: var(--white-color);
   box-shadow: var(--box-shadow);
   border-left: var(--border);
-  z-index: 1000;
+  z-index: 10000;
   transition: var(--transition);
   padding: 10px;
   .purdah {
@@ -22,7 +22,7 @@
       right: 25%;
       transition: var(--transition);
       &.w-60 {
-        right: 60%;
+        right: 66%;
       }
     }
   }
@@ -31,7 +31,7 @@
     width: 25%;
     transition: var(--transition);
     &.w-60 {
-      width: 60%;
+      width: 66%;
     }
   }
 
@@ -48,6 +48,7 @@
     transition: var(--transition);
     &:hover {
       svg {
+        transform: scale(0.9);
         path {
           fill: var(--main-color);
           transition: var(--transition);
