@@ -8,17 +8,18 @@ type Props = {
   isHeader?: boolean;
   title?: string;
   placeholder?: string;
+  onChange?: (data: string) => void;
 };
 
 const Index = (props: Props) => {
-  const { children, isHeader = true, title, placeholder } = props;
+  const { children, isHeader = true, title, placeholder, onChange } = props;
   return (
     <div className="app__food d-flex">
       <section>
         <Sliderbar />
       </section>
       <main className="main__app">
-        <Header isHeader={isHeader} title={title} placeholder={placeholder} />
+        <Header isHeader={isHeader} title={title} placeholder={placeholder} onChange={onChange} />
         <div className="main__app--content">{children}</div>
       </main>
     </div>

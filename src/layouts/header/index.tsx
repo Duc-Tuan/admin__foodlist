@@ -10,19 +10,20 @@ import MenuNotifition from './MenuNotifition';
 import { nameSliderbar } from './const';
 import './index.scss';
 import { useTranslation } from 'react-i18next';
+import useDebounce from '../../hooks/components/useDebounce';
 
 type Props = {
   isHeader?: boolean;
   title?: string;
   placeholder?: string;
   onChange?: (data: string) => void;
-  value?: string;
 };
 
 const Header = (props: Props) => {
   const { isHeader, title = 'Tiêu đề', placeholder = 'Tìm kiếm nhanh...', onChange } = props;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const [valueSearch, setValueSearch] = React.useState<string>('');
   const [isSliderbar, { on, off, toggle: toggleSliderbar }] = useBoolean(
     getLocation(nameSliderbar) !== null ? true : false,
   );
@@ -30,6 +31,12 @@ const Header = (props: Props) => {
   React.useEffect(() => {
     dispatch(actionsHeader.setSlidebar({ isHeader: isSliderbar }));
   }, [isSliderbar]);
+
+  const debounceValue = useDebounce(valueSearch, 300);
+
+  React.useEffect(() => {
+    onChange && onChange(debounceValue);
+  }, [debounceValue]);
 
   return (
     <div className="header d-flex justify-content-between align-items-center">
@@ -48,9 +55,8 @@ const Header = (props: Props) => {
               <input
                 type="text"
                 placeholder={t(placeholder)}
-                onChange={(e) => {
-                  onChange && onChange(e?.target?.value);
-                }}
+                onChange={(e: any) => setValueSearch(e?.target?.value)}
+                value={valueSearch}
               />
             </div>
           </div>
