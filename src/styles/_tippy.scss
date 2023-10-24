@@ -122,3 +122,32 @@
     }
   }
 }
+
+.wrapper__menu--color {
+  padding: 4px;
+  .wrapper__color {
+    width: 160px;
+    max-width: 200px;
+    .title {
+      color: black;
+    }
+    .wrap {
+      .item {
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        background: var(--theme-color);
+        &.active {
+          svg {
+            width: 10px;
+            height: 10px;
+            path {
+              fill: var(--white-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}

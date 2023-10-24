@@ -25,6 +25,10 @@ section {
   display: block;
 }
 
+input {
+  caret-color: var(--main-color);
+}
+
 .trunc-one-line {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -409,7 +413,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -2069,6 +2073,21 @@ pre code {
 }
 .gap-10 {
   gap: 1rem;
+}
+.gap-12 {
+  gap: 1.2rem;
+}
+.gap-14 {
+  gap: 1.4rem;
+}
+.gap-16 {
+  gap: 1.6rem;
+}
+.gap-18 {
+  gap: 1.8rem;
+}
+.gap-20 {
+  gap: 2rem;
 }
 
 @media (min-width: 576px) {

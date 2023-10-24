@@ -6,3 +6,4 @@ export { default as NoData } from './noData';
 export { default as ViewImageProduct } from './ViewImageProduct';
 export { default as InputComp } from './input';
 export { default as CheckBox } from './checkBox';
+export { default as Radio } from './radio';

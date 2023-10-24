@@ -1,0 +1,28 @@
+.wrapper__radio {
+  --radius: 16px;
+  span {
+    cursor: pointer;
+    width: var(--radius);
+    height: var(--radius);
+    display: block;
+    border-radius: 100%;
+    border: 2px solid var(--main-color);
+    position: relative;
+    &::after {
+      content: '';
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: block;
+      width: calc(var(--radius) - 6px);
+      height: calc(var(--radius) - 6px);
+      background-color: var(--main-color);
+      border-radius: 100%;
+    }
+  }
+  label {
+    margin: 0;
+    cursor: pointer;
+  }
+}

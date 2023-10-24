@@ -10,6 +10,7 @@ import { INavMenu, ISubMenu } from '../../types';
 import './index.scss';
 import MenuSub from './MenuSub';
 import { useTranslation } from 'react-i18next';
+import { PATHNAME } from '../../../configs/pathname';
 
 const Sliderbar = () => {
   const { t } = useTranslation();
@@ -19,7 +20,6 @@ const Sliderbar = () => {
   const { pathname } = useLocation();
 
   const onClickSubmenu = (pathLink: string, indexCurrent: number) => {
-    console.log(pathLink, indexCurrent);
     dispatch(
       actionsHeader.setSubMenu({
         subMenu: { indexCurrent: indexCurrent, isCurrent: true },
@@ -30,7 +30,9 @@ const Sliderbar = () => {
 
   return (
     <div className={`sliderbar ${isHeader ? 'open' : 'off'}`}>
-      <div className="sliderbar__logo">{isHeader ? 'Food app' : 'F'}</div>
+      <div className="sliderbar__logo" onClick={() => navigate(PATHNAME.SCREENDASHBOARD)}>
+        {isHeader ? 'Food app' : 'F'}
+      </div>
       <div className="sliderbar__menu">
         {navMenu?.map((i: INavMenu, idx: number) => {
           const { subMenu } = i;

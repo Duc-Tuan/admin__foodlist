@@ -4,6 +4,7 @@ import Revenue from './Revenue';
 import Work from './Work';
 import './index.scss';
 import { optionsChartBar, optionsChartColumn } from './const';
+import { DefaultLayout } from '../../../layouts';
 
 const ScreenDashBoard = () => {
   const [data, setData] = React.useState<any[]>([
@@ -40,21 +41,23 @@ const ScreenDashBoard = () => {
     // ['31/09', 21.91],
   ]);
   return (
-    <div className="wrapper__dashboard">
-      {/* <Loading /> */}
-      <Difference />
-      <div className="d-flex mt-20 gap-10">
-        <div className="charts">
-          <Revenue optionsChartColumn={optionsChartColumn(data)} title="Doanh thu bán hàng" emty />
-          <div className="mt-20">
-            <Revenue optionsChartColumn={optionsChartBar()} title="Sản phẩm bán chạy" emty />
+    <DefaultLayout isHeader={false}>
+      <div className="wrapper__dashboard">
+        {/* <Loading /> */}
+        <Difference />
+        <div className="d-flex mt-20 gap-10">
+          <div className="charts">
+            <Revenue optionsChartColumn={optionsChartColumn(data)} title="Doanh thu bán hàng" emty />
+            <div className="mt-20">
+              <Revenue optionsChartColumn={optionsChartBar()} title="Sản phẩm bán chạy" emty />
+            </div>
           </div>
+          <Work />
         </div>
-        <Work />
-      </div>
 
-      <div className="mt-20"></div>
-    </div>
+        <div className="mt-20"></div>
+      </div>
+    </DefaultLayout>
   );
 };
 

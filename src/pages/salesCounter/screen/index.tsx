@@ -4,10 +4,12 @@ import ProductsSales from './products';
 import ProductsBuysSales from './productsBuys';
 import './index.scss';
 import PaymentSales from './payment';
+import useThemeApp from '../../../hooks/components/useTheme';
 
 type Props = {};
 
 const ScreenSalesCounter = (props: Props) => {
+  useThemeApp();
   return (
     <div className="wrapper__salesCounter">
       <div className="wrapper__salesCounter--header d-flex align-items-center">

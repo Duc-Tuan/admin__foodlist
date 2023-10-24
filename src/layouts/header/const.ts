@@ -11,3 +11,5 @@ export function generateString(length: number) {
     }
     return result
 }
+
+export interface ITheme { id: number; color: string }

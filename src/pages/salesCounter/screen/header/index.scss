@@ -139,6 +139,9 @@
               transition: var(--transition);
               background-color: var(--white-color);
               color: var(--main-color);
+              h4 {
+                font-weight: 900;
+              }
               .close {
                 svg {
                   path {
@@ -197,6 +200,7 @@
               }
               h4 {
                 color: var(--main-color);
+                font-weight: 900;
               }
               .close {
                 svg {

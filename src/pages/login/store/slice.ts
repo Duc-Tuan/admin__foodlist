@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import * as operations from './operations';
 import { IUsers } from '../types';
+import { ITheme } from '../../../layouts/header/const';
 
 interface State {
     title?: string;
     token?: string;
     isLogin: boolean;
     user: IUsers | undefined;
+    theme: ITheme;
 }
 
 const initialState: State = {
@@ -14,6 +16,10 @@ const initialState: State = {
     isLogin: false,
     user: undefined,
     token: undefined,
+    theme: {
+        id: 3,
+        color: '#c2185b',
+    }
 };
 
 const payment = createSlice({
@@ -24,6 +30,9 @@ const payment = createSlice({
         },
         transferTitle(state, action: PayloadAction<any>) {
             state.title = action.payload;
+        },
+        setColor: (state, { payload }: PayloadAction<ITheme>) => {
+            state.theme = payload;
         },
     },
     extraReducers: (builder) => {

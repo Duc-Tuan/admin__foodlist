@@ -18,6 +18,11 @@ const Selector = (props: Props) => {
   const [value, setValue] = React.useState<Option>();
   useClickOutSide(ref, off);
 
+  React.useEffect(() => {
+    const findData = options.find((i: Option) => i?.label === placeholder);
+    setValue(findData);
+  }, []);
+
   const renderTitle: () => JSX.Element = () => {
     return (
       <WrapTooltip

@@ -11,17 +11,21 @@ import { privateRouters } from './routers';
 import Protectedroute from './routers/protectedroute';
 import { IRouter } from './routers/types';
 
+import useThemeApp from './hooks/components/useTheme';
 import './i18n';
+import { useSelector } from 'react-redux';
+import { themeUser } from './pages/login/store/select';
 
 const ScreenLogin = lazy(() => import('./pages/login/screen'));
 
 function App() {
-  const disptach = useAppDispatch();
+  const dispatch = useAppDispatch();
+  // const themeStore = useSelector(themeUser);
 
   React.useEffect(() => {
     const token: string = JSON.parse(JSON.stringify(localStorage.getItem('token_foodlist')));
     if (token) {
-      disptach(actionsAccount?.autologin());
+      dispatch(actionsAccount?.autologin());
     }
   }, []);
 
@@ -59,9 +63,9 @@ const renderRoute = (routes: IRouter[]) => {
           {isDefaultSales ? (
             <Component />
           ) : (
-            <DefaultLayout>
-              <Component />
-            </DefaultLayout>
+            <Component />
+            // <DefaultLayout>
+            // </DefaultLayout>
           )}
         </>
       );
