@@ -6,6 +6,7 @@ import useThemeApp from '../../hooks/components/useTheme';
 import { actions as actionsAuth } from '../../pages//login/store';
 import { ITheme } from './const';
 import { Radio } from '../../components';
+import { getLocation } from '../../utils/localStorage';
 
 const MenuColor = React.forwardRef(() => {
   const [currentThemeUse, setCurrentThemeUse] = React.useState<ITheme>();
@@ -17,9 +18,8 @@ const MenuColor = React.forwardRef(() => {
   }, [currentThemeUse?.color]);
 
   React.useEffect(() => {
-    const themeLocation: { id: number; color: string } = (localStorage.getItem('KEY_COLOR_FOODAPP') !==
-      String(undefined) &&
-      JSON.parse(localStorage.getItem('KEY_COLOR_FOODAPP') ?? '')) ?? {
+    const themeLocation: { id: number; color: string } = (getLocation('KEY_COLOR_FOODAPP') !== null &&
+      JSON.parse(getLocation('KEY_COLOR_FOODAPP') ?? '')) ?? {
       id: 3,
       color: '#C2185B',
     };

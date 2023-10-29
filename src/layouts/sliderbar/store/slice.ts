@@ -11,10 +11,12 @@ interface State {
 
 const initialState: State = {
     isHeader: false,
-    subMenu: getLocation(subMenu) ? JSON.parse(getLocation(subMenu) ?? '') : {
-        indexCurrent: 0,
-        isCurrent: false,
-    }
+    subMenu:
+        getLocation(subMenu) !== null ? JSON.parse(getLocation(subMenu) ?? '') :
+            {
+                indexCurrent: 0,
+                isCurrent: false,
+            }
 };
 
 const sliderbar = createSlice({

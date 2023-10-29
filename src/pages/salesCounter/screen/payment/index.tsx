@@ -8,6 +8,7 @@ import { Button, Loading, Selector } from '../../../../components';
 import { useTranslation } from 'react-i18next';
 import { dataOptionPayments } from './const';
 import { useToast } from '../../../../hooks';
+import useDebounce from '../../../../hooks/components/useDebounce';
 
 const PaymentSales = () => {
   const { t } = useTranslation();
@@ -23,6 +24,8 @@ const PaymentSales = () => {
       }
     });
   }, [JSON.stringify(tabs)]);
+
+  const debounceShipping = useDebounce(shipping, 300);
 
   const total: number = React.useMemo(() => {
     const result: number = data?.reduce((total: number, curr: IProductSales) => {
@@ -65,14 +68,14 @@ const PaymentSales = () => {
               <div className="value">
                 <Selector options={dataOptionPayments} placeholder={String(dataOptionPayments[0]?.label)} />
               </div>
-              <div className="label actice">{formatCurrency(total + Number(shipping), '')}</div>
+              <div className="label actice">{formatCurrency(total + Number(debounceShipping), '')}</div>
             </div>
           </div>
         </div>
 
         <div className="group d-flex justify-content-between align-items-center gap-10 w-100">
           <div className="value actice">{t('Thành tiền')}</div>
-          <div className="label actice">{formatCurrency(total + Number(shipping), '')}</div>
+          <div className="label actice">{formatCurrency(total + Number(debounceShipping), '')}</div>
         </div>
       </div>
       <footer className="w-100">

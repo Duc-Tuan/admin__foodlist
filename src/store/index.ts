@@ -3,11 +3,13 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { reducer as accountReducer } from '../pages/login/store';
 import { reducer as reducerSalesCount } from '../pages/salesCounter/store';
 import { reducer as isHeaderReducer } from '../layouts/sliderbar/store';
+import { reducer as chatReducer } from '../layouts/chat/store';
 
 const rootReducer = combineReducers({
     accounts: accountReducer,
     headers: isHeaderReducer,
     sales: reducerSalesCount,
+    chat: chatReducer,
 });
 
 const store = configureStore({

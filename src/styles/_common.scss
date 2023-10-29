@@ -108,7 +108,8 @@ hr {
     background-color: rgba(255, 255, 255, 0.2);
   }
   &::-webkit-scrollbar-track {
-    background: #fff;
+    // background: #fff;
+    background-color: transparent;
   }
 }
 
@@ -642,6 +643,12 @@ pre code {
 }
 .mr-6 {
   margin-right: 2.4rem !important;
+}
+.pr-6 {
+  padding-right: 6px !important;
+}
+.p-6 {
+  padding: 6px !important;
 }
 
 .no-wrap {

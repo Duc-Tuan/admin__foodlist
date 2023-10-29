@@ -4,23 +4,18 @@ import { Navigate, Route, Routes as Routers } from 'react-router-dom';
 import { Loading } from './components';
 import { PATHNAME } from './configs/pathname';
 import { useAppDispatch } from './hooks';
-import { DefaultLayout } from './layouts';
 import Error404 from './pages/error';
 import { actions as actionsAccount } from './pages/login/store';
 import { privateRouters } from './routers';
 import Protectedroute from './routers/protectedroute';
 import { IRouter } from './routers/types';
 
-import useThemeApp from './hooks/components/useTheme';
 import './i18n';
-import { useSelector } from 'react-redux';
-import { themeUser } from './pages/login/store/select';
 
 const ScreenLogin = lazy(() => import('./pages/login/screen'));
 
 function App() {
   const dispatch = useAppDispatch();
-  // const themeStore = useSelector(themeUser);
 
   React.useEffect(() => {
     const token: string = JSON.parse(JSON.stringify(localStorage.getItem('token_foodlist')));

@@ -5,6 +5,7 @@ import { actions as actionsAuth } from '../../pages/login/store';
 import { hexToRGBA } from '../../utils/transform';
 import { useSelector } from 'react-redux';
 import { themeUser } from '../../pages/login/store/select';
+import { getLocation } from '../../utils/localStorage';
 
 const useThemeApp = (theme?: ITheme) => {
     const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ const useThemeApp = (theme?: ITheme) => {
 
     React.useEffect(() => {
         const themeLocation: { id: number; color: string } =
-            (localStorage.getItem('KEY_COLOR_FOODAPP') !== String(undefined) && JSON.parse(localStorage.getItem('KEY_COLOR_FOODAPP') ?? ''));
+            (getLocation('KEY_COLOR_FOODAPP') !== null && JSON.parse(getLocation('KEY_COLOR_FOODAPP') ?? ''));
         themeLocation && dispatch(actionsAuth.setColor(themeLocation));
         themeLocation && setCurrentTheme(themeLocation);
     }, []);

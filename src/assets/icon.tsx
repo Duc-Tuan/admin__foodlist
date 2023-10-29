@@ -346,9 +346,21 @@ import { ReactComponent as IconAffiliate } from './icons/icon-affiliate.svg';
 import { ReactComponent as IconSaveAdd } from './icons/icon-save-create.svg';
 import { ReactComponent as IconStorefontRemove } from './icons/icon-storefont-remove.svg';
 import { ReactComponent as IconClearStore } from './icons/icon-clear-store.svg';
+import { ReactComponent as IconChat } from './icons/icon-chat.svg';
+import { ReactComponent as IconChatOpen } from './icons/icon-open-chat.svg';
+import { ReactComponent as IconChatZoom } from './icons/icon-zoom-chat.svg';
+import { ReactComponent as IconChatSend } from './icons/icon-send.svg';
 
 export default function Icon(props: any) {
   switch (props?.name?.toLowerCase()) {
+    case 'icon-send-chat':
+      return <IconChatSend {...props} />;
+    case 'icon-zoom-chat':
+      return <IconChatZoom {...props} />;
+    case 'icon-open-chat':
+      return <IconChatOpen {...props} />;
+    case 'icon-chat':
+      return <IconChat {...props} />;
     case 'icon-save-create':
       return <IconSaveAdd {...props} />;
     case 'icon-clear-store':
