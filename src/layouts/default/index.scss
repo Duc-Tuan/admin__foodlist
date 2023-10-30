@@ -1,29 +1,14 @@
 .app__food {
   .main__app {
     flex: 1;
+
     &--content {
-      padding: 20px;
+      padding: 10px;
       height: calc(100vh - 50px);
       position: relative;
       overflow-x: hidden;
       overflow-y: auto;
       background: #ebeef2;
-
-      &::-webkit-scrollbar {
-        width: 6px;
-        height: 10px;
-      }
-      &::-webkit-scrollbar-thumb {
-        background-color: var(--main-color);
-        border-radius: 6px;
-        cursor: pointer;
-      }
-      &::-webkit-scrollbar-track {
-        background-color: rgba(255, 255, 255, 0.2);
-      }
-      &::-webkit-scrollbar-track {
-        background: #fff;
-      }
     }
   }
   .wrapper__chat {
@@ -34,8 +19,9 @@
     box-shadow: var(--box-shadow);
     border-radius: 100%;
     z-index: 100;
+    cursor: pointer;
     .icon {
-      cursor: pointer;
+      padding: 10px;
       svg {
         width: 28px;
         height: 28px;

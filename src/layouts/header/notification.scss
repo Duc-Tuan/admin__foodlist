@@ -1,0 +1,74 @@
+.wrapper__notification {
+  .header__notifi {
+    .title {
+      font-size: 1.7rem;
+      font-weight: 800;
+    }
+    .document__all {
+      color: var(--main-color);
+      cursor: pointer;
+      svg {
+        width: 14px;
+        height: 14px;
+        path {
+          fill: var(--main-color);
+        }
+      }
+    }
+  }
+  .main__notifi {
+    &--content {
+      & > div:nth-child(1) {
+        border-bottom: var(--border);
+      }
+      .main__notifi--item {
+        padding: 6px 10px;
+        cursor: pointer;
+        position: relative;
+        margin-right: 10px;
+        .sub__title {
+          background-color: rgba(var(--main-rgba-color));
+          padding: 0 6px;
+          border-radius: 10px;
+          color: var(--extra-color-45);
+        }
+        &.active {
+          border-bottom: var(--border);
+          border-color: var(--main-color);
+          border-width: 3px;
+          font-weight: bold;
+          color: var(--main-color);
+          &::before {
+            content: initial !important;
+          }
+          .sub__title {
+            color: var(--main-color);
+          }
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: var(--main-color);
+        }
+        &:hover {
+          font-weight: bold;
+          color: var(--main-color);
+          .sub__title {
+            color: var(--main-color);
+          }
+          &::before {
+            transition: var(--transition);
+            width: 100%;
+          }
+        }
+      }
+      .button__sub {
+        height: 2.6rem !important;
+      }
+    }
+  }
+}
