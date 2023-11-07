@@ -80,14 +80,14 @@ const PaymentSales = () => {
       </div>
       <footer className="w-100">
         <div className="note w-100">
-          <textarea name="note" className="scroll__fodo w-100" placeholder="Ghi chú" />
+          <textarea name="note" className="scroll__fodo w-100" placeholder={t('Ghi chú')} />
         </div>
         <Button
           color={data?.length === 0 ? 'destroy' : 'primary'}
           className={`button_payment ${data?.length === 0 ? '' : 'active'}`}
           onClick={() => data?.length !== 0 && handlePayment()}
         >
-          Thanh toán
+          {t('Thanh toán')}
         </Button>
       </footer>
     </div>

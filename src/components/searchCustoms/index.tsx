@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from '../../assets/icon';
 import useDebounce from '../../hooks/components/useDebounce';
 import './index.scss';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   placeholder?: string;
@@ -17,6 +18,7 @@ const SearchCustom = React.forwardRef((props: Props, ref: any) => {
   const { placeholder = 'Tìm kiếm nhanh...', setFocused, classNameInput, isFocused, renderMenu, onChange } = props;
   const [value, setValue] = React.useState<string>('');
   const refInput = React.useRef<any>();
+  const { t } = useTranslation();
 
   const valueDebounce = useDebounce(value, 300);
 
@@ -39,7 +41,7 @@ const SearchCustom = React.forwardRef((props: Props, ref: any) => {
       <input
         ref={refInput}
         type="text"
-        placeholder={placeholder}
+        placeholder={t(placeholder)}
         onFocus={(e) => {
           setFocused && setFocused(e?.isTrusted);
         }}

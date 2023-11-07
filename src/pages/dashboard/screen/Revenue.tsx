@@ -2,8 +2,8 @@ import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import Exporting from 'highcharts/modules/exporting';
 import { useTranslation } from 'react-i18next';
-import { useHeader } from '../../../hooks/common/useHeader';
 import { Loading } from '../../../components';
+import { useHeader } from '../../../hooks/common/useHeader';
 Exporting(Highcharts);
 
 type Props = {

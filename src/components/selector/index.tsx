@@ -5,14 +5,17 @@ import { Option } from '../../types/general';
 import { WrapTooltip } from '../wrapTooltip/WrapTooltip';
 import Menu from './Menu';
 import './index.scss';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   options: Option[];
   placeholder?: string;
+  onChange?: (data: any) => void;
 };
 
 const Selector = (props: Props) => {
-  const { options, placeholder } = props;
+  const { options, placeholder, onChange } = props;
+  const { t } = useTranslation();
   const [isOpen, { on, off, toggle }] = useBoolean();
   const ref = React.useRef<any>();
   const [value, setValue] = React.useState<Option>();
@@ -24,12 +27,7 @@ const Selector = (props: Props) => {
   }, []);
 
   const renderTitle: () => JSX.Element = () => {
-    return (
-      <WrapTooltip
-        data={String(value?.label ?? placeholder ?? 'Chọn ngay chọn ngay chọn ngay chọn ngay')}
-        length={26}
-      />
-    );
+    return <WrapTooltip data={t(String(value?.label ?? placeholder ?? 'Chọn ngay'))} length={26} />;
   };
 
   return (
@@ -42,7 +40,17 @@ const Selector = (props: Props) => {
         </div>
       </div>
 
-      {isOpen && <Menu data={options} setValue={setValue} value={value} hidden={off} />}
+      {isOpen && (
+        <Menu
+          data={options}
+          setValue={(data: Option) => {
+            onChange && onChange(data);
+            setValue(data);
+          }}
+          value={value}
+          hidden={off}
+        />
+      )}
     </div>
   );
 };

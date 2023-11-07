@@ -44,7 +44,7 @@ const MenuNotifition = (props: Props) => {
         <div className="title">{t('Thông báo')}</div>
         <div className="document__all d-flex justify-content-end align-items-center gap-6">
           <Icon name="checked" />
-          <div className="">Đã đọc tất cả</div>
+          <div className="">{t('Đã đọc tất cả')}</div>
         </div>
       </div>
 
@@ -59,7 +59,7 @@ const MenuNotifition = (props: Props) => {
                 key={idx}
                 onClick={() => setSelectedTitle(i)}
               >
-                {i?.label}
+                {t(String(i?.label))}
                 <div className="sub__title">(09)</div>
               </div>
             ))}
@@ -72,16 +72,16 @@ const MenuNotifition = (props: Props) => {
                 onClick={() => setSelected(i)}
                 className="button__sub"
               >
-                {i?.label}
+                {t(String(i?.label))}
               </Button>
             ))}
           </div>
-          <div className="main__notifi--children scroll__foodApp flex-fill d-flex justify-content-center align-items-center">
-            Chưa có dữ liệu
+          <div className="main__notifi--children scroll__foodApp flex-fill d-flex justify-content-center align-items-center w-100">
+            {t('Chưa có dữ liệu')}
           </div>
         </div>
         <Button color="primary" className="w-100">
-          Xem tất cả
+          {t('Xem tất cả')}
         </Button>
       </div>
     </div>

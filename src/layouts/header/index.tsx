@@ -17,10 +17,11 @@ type Props = {
   title?: string;
   placeholder?: string;
   onChange?: (data: string) => void;
+  isSearch?: boolean;
 };
 
 const Header = (props: Props) => {
-  const { isHeader, title = 'Tiêu đề', placeholder = 'Tìm kiếm nhanh...', onChange } = props;
+  const { isHeader, title = 'Tiêu đề', placeholder = 'Tìm kiếm nhanh...', onChange, isSearch } = props;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [valueSearch, setValueSearch] = React.useState<string>('');
@@ -48,17 +49,19 @@ const Header = (props: Props) => {
         {isHeader && (
           <div className="header__orther d-flex justify-content-start align-items-center">
             <div className="title">{t(title)}</div>
-            <div className="search d-flex justify-content-start align-items-center gap-6">
-              <div className="icon d-flex justify-content-center align-items-center ">
-                <Icon name="search" />
+            {!isSearch && (
+              <div className="search d-flex justify-content-start align-items-center gap-6">
+                <div className="icon d-flex justify-content-center align-items-center ">
+                  <Icon name="search" />
+                </div>
+                <input
+                  type="text"
+                  placeholder={t(placeholder)}
+                  onChange={(e: any) => setValueSearch(e?.target?.value)}
+                  value={valueSearch}
+                />
               </div>
-              <input
-                type="text"
-                placeholder={t(placeholder)}
-                onChange={(e: any) => setValueSearch(e?.target?.value)}
-                value={valueSearch}
-              />
-            </div>
+            )}
           </div>
         )}
       </div>

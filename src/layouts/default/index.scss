@@ -1,15 +1,17 @@
 .app__food {
   .main__app {
     flex: 1;
-
     &--content {
-      padding: 10px;
+      padding: 10px 0;
       height: calc(100vh - 50px);
       position: relative;
       overflow-x: hidden;
       overflow-y: auto;
       background: #ebeef2;
     }
+  }
+  .header__main {
+    padding: 0 10px;
   }
   .wrapper__chat {
     position: fixed;

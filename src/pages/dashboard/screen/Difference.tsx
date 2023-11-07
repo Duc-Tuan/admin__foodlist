@@ -3,16 +3,18 @@ import { IDifference, dataDifference, dataSelect, renderIconDifference } from '.
 import { formatCurrency } from '../../../utils';
 import Icon from '../../../assets/icon';
 import { Selector } from '../../../components';
-import CountUp from "react-countup";
+import CountUp from 'react-countup';
+import { useTranslation } from 'react-i18next';
 
 type Props = {};
 
 const Difference = (props: Props) => {
   const [difference, setDifference] = React.useState<IDifference[]>(dataDifference);
+  const { t } = useTranslation();
   return (
     <div className="wrapper__difference">
       <div className="wrapper__difference--filter d-flex justify-content-between align-items-center gap-10 sticky">
-        <div className="name">Thống kê trong ngày</div>
+        <div className="name">{t('Thống kê trong ngày')}</div>
 
         <div className="selected">
           <Selector options={dataSelect} />
@@ -35,7 +37,7 @@ const Difference = (props: Props) => {
                       }}
                     />
                   </h4>
-                  <span>{i?.name}</span>
+                  <span>{t(i?.name)}</span>
                 </div>
 
                 <div
@@ -55,7 +57,7 @@ const Difference = (props: Props) => {
                   {dataDifference > 0 ? '+' : '-'}
                   {((dataDifference / i?.qtyOld) * 100).toFixed(2)} %
                 </span>{' '}
-                so với hôm trước
+                {t('so với hôm trước')}
               </div>
             </div>
           );

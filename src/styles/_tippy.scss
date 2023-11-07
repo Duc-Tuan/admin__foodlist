@@ -1,7 +1,7 @@
 .tippy-box {
   max-width: 600px !important;
   .tippy-content {
-    padding: 10px !important;
+    padding: 6px !important;
   }
 }
 
@@ -23,6 +23,10 @@
   }
   &--content {
     margin: 2px 6px;
+    min-width: 180px;
+    .title {
+      margin-bottom: 4px;
+    }
     .item {
       padding: 10px;
       min-width: 140px;
@@ -86,8 +90,9 @@
 }
 
 .wrapper__menu--notifitions {
+  padding: 4px;
   .menu {
-    width: 460px;
+    width: 420px;
     min-height: 80vh;
     color: var(--black-color);
   }

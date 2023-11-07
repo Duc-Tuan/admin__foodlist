@@ -79,7 +79,7 @@ export const renderIconDifference: (data: string) => {
 
 export const dataSelect: Option[] = [
     {
-        label: 'Hôm qua hôm qua hôm qua hôm qua hôm qua hôm qua',
+        label: 'Hôm qua',
         value: 'Hôm qua'
     },
     {

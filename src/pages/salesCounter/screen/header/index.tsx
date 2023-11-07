@@ -14,6 +14,7 @@ import './index.scss';
 import { IProducts } from '../products/const';
 import ResultSearch from './ResultSearch';
 import ApiProducts from '../../../../assets/apis/ApiProducts';
+import { useTranslation } from 'react-i18next';
 
 type Props = {};
 
@@ -36,6 +37,7 @@ declare global {
 
 const HeaderSales = (props: Props) => {
   const refInput = React.useRef<any>();
+  const { t } = useTranslation();
   const productsStore = useSelector(dataProducts);
   const isFullscreen = useSelector(fullscreen);
   const navigate = useNavigate();
@@ -97,7 +99,7 @@ const HeaderSales = (props: Props) => {
             <Icon name="small-user" />
             <h3>Mr.Tuan</h3>
           </div>
-          <h4>Nhân viên bán hàng</h4>
+          <h4>{t('Nhân viên bán hàng')}</h4>
         </div>
         <div className="info__other d-flex justify-content-end align-items-center gap-10">
           {menu.map((i: IMenu, idx: number) => (
@@ -124,7 +126,7 @@ const HeaderSales = (props: Props) => {
 
           <Tippy
             appendTo={document.body}
-            content={!isFullscreen ? 'Mở rộng màn hình' : 'Thu nhỏ màn hình'}
+            content={t(!isFullscreen ? 'Mở rộng màn hình' : 'Thu nhỏ màn hình')}
             arrow={true}
             interactive={true}
             placement="bottom"
@@ -132,7 +134,7 @@ const HeaderSales = (props: Props) => {
             {!isFullscreen ? (
               <div
                 className="btn-action maximize info__other--item  d-flex justify-content-center align-items-center"
-                hover-text="Mở rộng màn hình"
+                hover-text={t('Mở rộng màn hình')}
                 onClick={() => {
                   dispatch(actionsSales.setisFullscreen({ isFullscreen: true }));
                   const elem: any = document?.documentElement;

@@ -1,10 +1,10 @@
 import React from 'react';
+import { DefaultLayout } from '../../../layouts';
 import Difference from './Difference';
 import Revenue from './Revenue';
 import Work from './Work';
-import './index.scss';
 import { optionsChartBar, optionsChartColumn } from './const';
-import { DefaultLayout } from '../../../layouts';
+import './index.scss';
 
 const ScreenDashBoard = () => {
   const [data, setData] = React.useState<any[]>([
@@ -40,6 +40,7 @@ const ScreenDashBoard = () => {
     // ['30/09', 21.91],
     // ['31/09', 21.91],
   ]);
+
   return (
     <DefaultLayout isHeader={false}>
       <div className="wrapper__dashboard">

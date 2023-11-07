@@ -35,9 +35,10 @@
     z-index: 1000;
     &_item {
       cursor: pointer;
-      padding: 6px 10px;
+      padding: 4px 10px;
       border-radius: 4px;
-      font-weight: 500;
+      font-weight: 400;
+      font-size: 1.4rem;
       transition: var(--transitions);
       &:hover {
         transition: var(--transitions);

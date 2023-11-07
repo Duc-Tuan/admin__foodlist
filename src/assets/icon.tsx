@@ -350,9 +350,15 @@ import { ReactComponent as IconChat } from './icons/icon-chat.svg';
 import { ReactComponent as IconChatOpen } from './icons/icon-open-chat.svg';
 import { ReactComponent as IconChatZoom } from './icons/icon-zoom-chat.svg';
 import { ReactComponent as IconChatSend } from './icons/icon-send.svg';
+import { ReactComponent as IconSecurity } from './icons/icon-security.svg';
+import { ReactComponent as IconLanguage } from './icons/icon-language.svg';
 
 export default function Icon(props: any) {
   switch (props?.name?.toLowerCase()) {
+    case 'icon-language':
+      return <IconLanguage {...props} />;
+    case 'icon-security':
+      return <IconSecurity {...props} />;
     case 'icon-send-chat':
       return <IconChatSend {...props} />;
     case 'icon-zoom-chat':

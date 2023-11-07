@@ -104,13 +104,13 @@ const Chat = () => {
                 </div>
               </div>
 
-              <Tippy content="Thu nhỏ chat">
+              <Tippy content={t('Thu nhỏ chat')}>
                 <div className="icon__zoomChat" onClick={off}>
                   <Icon name="icon-zoom-chat" />
                 </div>
               </Tippy>
 
-              <Tippy content="Mở chat">
+              <Tippy content={t('Mở chat')}>
                 <div className="icon__openChat">
                   <Icon name="icon-open-chat" />
                 </div>
@@ -203,7 +203,7 @@ const Chat = () => {
                     <div className="send w-100 d-flex justify-content-start align-items-center gap-2">
                       <input
                         type="text"
-                        placeholder="Nhập nội dung tin nhắn"
+                        placeholder={t('Nhập nội dung tin nhắn...')}
                         className="w-100"
                         onChange={(e: any) => setValue(e?.target?.value)}
                         value={value}

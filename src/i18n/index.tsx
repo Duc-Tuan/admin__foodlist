@@ -2,6 +2,7 @@ import { initReactI18next } from 'react-i18next';
 import i18next, { LanguageDetectorAsyncModule, Resource } from 'i18next';
 
 import vi from './locales/vi.json';
+import en from './locales/en.json';
 
 const languageDetector: LanguageDetectorAsyncModule = {
   type: 'languageDetector',
@@ -13,6 +14,7 @@ const languageDetector: LanguageDetectorAsyncModule = {
 
 const resources: Resource = {
   vi: { translation: vi },
+  en: { translation: en },
 };
 
 i18next.use(languageDetector).use(initReactI18next).init({

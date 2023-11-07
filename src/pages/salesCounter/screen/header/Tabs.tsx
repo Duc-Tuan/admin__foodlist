@@ -5,20 +5,22 @@ import { useAppDispatch } from '../../../../hooks';
 import { ITabs } from '../../const';
 import { actions as actionsSales } from '../../store';
 import { tabs as reducerTabs } from '../../store/select';
+import { useTranslation } from 'react-i18next';
 
 type Props = {};
 
 const Tabs = (props: Props) => {
   const dispatch = useAppDispatch();
   const tabs = useSelector(reducerTabs);
+  const { t } = useTranslation();
 
   const handleAddTab = React.useCallback(() => {
     const dataTab: ITabs = {
       indexTab: tabs?.length,
       status: true,
-      nameTab: tabs?.some((i: ITabs) => i?.nameTab?.includes(`Đơn ${tabs?.length}`))
-        ? `Đơn ${tabs?.length + 1}`
-        : `Đơn ${tabs?.length}`,
+      nameTab: tabs?.some((i: ITabs) => i?.nameTab?.includes(`${t('Đơn')} ${tabs?.length}`))
+        ? `${t('Đơn')} ${tabs?.length + 1}`
+        : `${t('Đơn')} ${tabs?.length}`,
       contentTab: [],
     };
     dispatch(actionsSales.setTabs({ tab: dataTab }));

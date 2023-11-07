@@ -52,4 +52,28 @@ export const navMenu: INavMenu[] = [
             }
         ]
     },
+    {
+        id: 5,
+        name: 'Quản lý phân quyền',
+        icon: 'icon-security',
+        link: PATHNAME.SCREENDECENTRALIZATION,
+        subMenu: [
+            {
+                name: 'Vai trò',
+                link: PATHNAME.SCREENROLE,
+                namePath: 'role',
+            },
+            {
+                name: 'Phân quyền',
+                link: PATHNAME.SCREENDECENTRALIZATION,
+                namePath: 'role',
+            }
+        ]
+    },
+    {
+        id: 6,
+        name: 'Thiết lập',
+        icon: 'settings-nav',
+        link: PATHNAME.SCREENSETTINGS
+    },
 ]

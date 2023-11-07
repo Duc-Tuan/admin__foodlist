@@ -1,0 +1,31 @@
+&.compont {
+  border: var(--border);
+  box-shadow: var(--box-shadow);
+  border-radius: 0.4rem;
+  overflow: hidden;
+  height: calc(100vh - 112px);
+  margin: 0 10px;
+  .describe {
+    background-color: #f8f9fa;
+    max-width: 300px;
+    width: 300px;
+    height: 100%;
+    border-right: var(--border);
+    .title {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+    .sub {
+      font-size: 1.4rem;
+      color: var(--extra-color-80);
+    }
+  }
+  .detail {
+    background-color: var(--white-color);
+    flex: 1;
+    height: 100%;
+  }
+  .p-10 {
+    padding: 10px;
+  }
+}

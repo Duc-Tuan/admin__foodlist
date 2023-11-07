@@ -1,0 +1,47 @@
+.wrapper__setting {
+  padding: 0 10px;
+  .item {
+    cursor: pointer;
+    padding: 10px;
+    background-color: var(--white-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 0.6rem;
+    border: var(--border);
+    transition: var(--transition);
+    &:hover {
+      transition: var(--transition);
+      background-color: rgba(var(--main-rgba-color));
+      border-color: var(--main-color);
+      .icon {
+        transition: var(--transition);
+        background-color: var(--main-color);
+        path {
+          transition: var(--transition);
+          fill: var(--white-color);
+        }
+      }
+    }
+    .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 100%;
+      background-color: rgba(var(--main-rgba-color));
+      svg {
+        path {
+          fill: var(--main-color);
+        }
+      }
+    }
+    .desc {
+      flex: 1;
+      .title {
+        font-size: 1.6rem;
+        font-weight: 500;
+      }
+      .content {
+        font-size: 1.4rem;
+        color: var(--extra-color-80);
+      }
+    }
+  }
+}
