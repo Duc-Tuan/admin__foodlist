@@ -9,6 +9,7 @@ import { useBoolean } from '../../hooks';
 import Function from '../../utils/function';
 import { Pagination } from '../pagination/pagination';
 import { useTranslation } from 'react-i18next';
+import { SettingTable } from '..';
 
 interface Props {
   name: string;
@@ -405,7 +406,7 @@ const Table: FC<Props> = ({
                       {t('Thao tác')}
                       {!isSettingColumn && (
                         <Tippy appendTo={document.body} content={t('Điều chỉnh cột')}>
-                          <div onClick={() => toggleOpenSettingCol()} className="actions__col">
+                          <div onClick={toggleOpenSettingCol} className="actions__col">
                             <Icon name="settings-nav" />
                           </div>
                         </Tippy>
@@ -633,9 +634,7 @@ const Table: FC<Props> = ({
         />
       ) : null}
 
-      {/* {isEditColumns && showSettings && !openSettingCol ? (
-        
-      ) : null} */}
+      {isEditColumns && openSettingCol && <SettingTable data={renderTitles} />}
     </div>
   );
 };

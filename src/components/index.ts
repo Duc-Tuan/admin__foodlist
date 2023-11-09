@@ -9,3 +9,4 @@ export { default as CheckBox } from './checkBox';
 export { default as Radio } from './radio';
 export { default as LoadingDots } from './loadingDots';
 export { default as Table } from './table';
+export { default as SettingTable } from './settingTable';

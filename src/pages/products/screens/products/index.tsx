@@ -1,14 +1,13 @@
 import React from 'react';
-import './index.scss';
 import { useTranslation } from 'react-i18next';
-import { Button, Table } from '../../../../components';
 import Icon from '../../../../assets/icon';
+import { Button, Table } from '../../../../components';
+import { PaginationModel } from '../../../../components/table/const';
 import { DefaultLayout } from '../../../../layouts';
 import { TableConfigs } from '../../../../types/general';
+import { formatCurrency } from '../../../../utils';
 import { IProducts, dataProducts } from './const';
-import { checkNullish, formatCurrency } from '../../../../utils';
-import Tippy from '@tippyjs/react';
-import { PaginationModel } from '../../../../components/table/const';
+import './index.scss';
 
 const Index = () => {
   const { t } = useTranslation();
@@ -91,8 +90,6 @@ const Index = () => {
   };
 
   const renderDetail = (data: any) => {
-    console.log(data);
-
     return <div className="wrapper__tippy--viewDetail">aaa</div>;
   };
 
@@ -115,6 +112,7 @@ const Index = () => {
         dataMappingArray={(item, idx) => dataMappingArray(item, idx)}
         hasViewDetail
         isPagination
+        isEditColumns
         renderDetail={(detail: any) => renderDetail(detail)}
         dataPagination={pagination}
       />
