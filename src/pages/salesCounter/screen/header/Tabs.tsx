@@ -18,9 +18,9 @@ const Tabs = (props: Props) => {
     const dataTab: ITabs = {
       indexTab: tabs?.length,
       status: true,
-      nameTab: tabs?.some((i: ITabs) => i?.nameTab?.includes(`${t('Đơn')} ${tabs?.length}`))
-        ? `${t('Đơn')} ${tabs?.length + 1}`
-        : `${t('Đơn')} ${tabs?.length}`,
+      nameTab: tabs?.some((i: ITabs) => i?.nameTab?.includes(`${tabs?.length}`))
+        ? `${tabs?.length + 1}`
+        : `${tabs?.length}`,
       contentTab: [],
     };
     dispatch(actionsSales.setTabs({ tab: dataTab }));
@@ -136,7 +136,9 @@ const Tabs = (props: Props) => {
                 } ${idx != tabs?.length - 1 ? 'hidenBefore' : ''}`}
                 key={idx}
               >
-                <h4 onClick={() => handleUpdateTab(i.indexTab, i?.nameTab)}>{i?.nameTab}</h4>
+                <h4 onClick={() => handleUpdateTab(i.indexTab, i?.nameTab)}>
+                  {t('Đơn')} {i?.nameTab}
+                </h4>
                 {tabs?.length >= 2 && (
                   <div
                     className="close d-flex justify-content-center align-items-center"

@@ -5,7 +5,7 @@ type Props = {};
 
 const ScreenInfoAccount = (props: Props) => {
   const handleSearch = (data: string) => {
-    console.log(data);
+    
   };
   return (
     <DefaultLayout isHeader={false}>

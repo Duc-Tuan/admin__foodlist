@@ -1,0 +1,31 @@
+.wrapper__table {
+  border: var(--border);
+  .table {
+    width: 100%;
+    &.table__header {
+      tr {
+        th {
+          background-color: #f7f7f7;
+          border-bottom: var(--border);
+        }
+      }
+    }
+    tr {
+      th,
+      td {
+        padding: 6px 10px;
+        background-color: var(--white-color);
+        &.actions {
+          svg {
+            cursor: pointer;
+            width: 2rem;
+            height: 2rem;
+            path {
+              fill: var(--main-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -12,12 +12,12 @@ const ScreenRoles = (props: Props) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const handleSearch = (data: string) => {
-    console.log(data);
+    
   };
 
   const reactNodeRight = [
     <Button color="primary" onClick={() => navigate(PATHNAME.SCREENDCREATEROLE)}>
-      <Icon name="plus-circle" /> {t('Thêm mới vai trò')}
+      <Icon name="plus-circle" /> {t('Thêm mới')}
     </Button>,
   ];
 

@@ -20,6 +20,7 @@ type Props = {
 
 const Item = (props: Props) => {
   const { data, index } = props;
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [isOpen, { on, off, toggle }] = useBoolean();
   const [qty, setQty] = React.useState<string>(String(data?.qty));
@@ -57,7 +58,7 @@ const Item = (props: Props) => {
             <div className="d-flex justify-content-start align-items-center gap-8">
               <div className="code">{data?.code}</div>
               <div className="menu__hover" onClick={toggle}>
-                Xem chi tiết
+                {t('Xem chi tiết')}
               </div>
             </div>
           </div>

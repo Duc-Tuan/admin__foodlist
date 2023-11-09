@@ -139,7 +139,7 @@ const Chat = () => {
                       <div className="name">
                         <WrapTooltip data={i?.name} length={14} />
                       </div>
-                      <div className="time">{dateTimeMess(i?.date)}</div>
+                      <div className="time">{t(dateTimeMess(i?.date))}</div>
                     </div>
 
                     <div className="content__chat">
@@ -181,7 +181,7 @@ const Chat = () => {
                           <React.Fragment key={idx}>
                             {dateTimeMessRef?.current && flag && (
                               <div className="date--notifi d-flex justify-content-center align-items-center">
-                                <span>{dateTimeMessRef?.current}</span>
+                                <span>{t(dateTimeMessRef?.current)}</span>
                               </div>
                             )}
                             <div

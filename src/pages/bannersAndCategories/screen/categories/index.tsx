@@ -1,12 +1,13 @@
 import React from 'react';
-import { DefaultLayout } from '../../../../layouts';
+import './index.scss';
+import { useTranslation } from 'react-i18next';
 import { Button } from '../../../../components';
 import Icon from '../../../../assets/icon';
-import { useTranslation } from 'react-i18next';
+import { DefaultLayout } from '../../../../layouts';
 
 type Props = {};
 
-const ScreenStaff = (props: Props) => {
+const Index = (props: Props) => {
   const { t } = useTranslation();
   const handleSearch = (data: string) => {
     
@@ -14,21 +15,21 @@ const ScreenStaff = (props: Props) => {
 
   const reactNodeRight = [
     <Button color="primary">
-      <Icon name="v2_save" /> {t('Lưu')}
+      <Icon name="v2_save" /> {t('Thêm mới')}
     </Button>,
   ];
 
   return (
     <DefaultLayout
-      title="Nhân viên"
-      placeholder="Tìm kiếm theo tên, mã, sđt nhân viên..."
+      title="Thể loại"
+      placeholder="Tìm kiếm theo tên, mã thể loại..."
       onChange={handleSearch}
       isBack
       reactNodeRight={reactNodeRight}
     >
-      <div>ScreenStaff</div>
+      <div>Thể loại</div>
     </DefaultLayout>
   );
 };
 
-export default ScreenStaff;
+export default Index;

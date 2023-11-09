@@ -18,5 +18,9 @@ export const PATHNAME = {
     SCREENSETTINGSTORE: '/settings/store',
     SCREENSETTINGPRINT: '/settings/print',
     SCREENSETTINGLANGUAGE: '/settings/language',
+    SCREENSETTINGBANNERS: '/bc/banners',
+    SCREENSETTINGCATEGORIES: '/bc/categories',
+    SCREENSETTINGPRODUCTS: '/sp/products',
+    SCREENSETTINGPROMMOTIONS: '/sp/prommotions',
     SCREENERROR: '/error-404',
 }

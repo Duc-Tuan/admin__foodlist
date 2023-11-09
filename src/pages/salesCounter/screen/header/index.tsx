@@ -106,7 +106,7 @@ const HeaderSales = (props: Props) => {
             <React.Fragment key={`menu__sales--${idx}`}>
               <Tippy
                 appendTo={document.body}
-                content={i?.isPopup ? <MenuNotifition /> : i?.name}
+                content={i?.isPopup ? <MenuNotifition /> : t(i?.name)}
                 arrow={true}
                 interactive={true}
                 placement="bottom"

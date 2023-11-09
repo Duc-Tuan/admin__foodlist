@@ -4,9 +4,8 @@ import { DefaultLayout } from '../../../../layouts';
 type Props = {};
 
 const ScreenOrderCounters = (props: Props) => {
-  const handleSearch = (data: string) => {
-    console.log(data);
-  };
+  const handleSearch = (data: string) => {};
+
   return (
     <DefaultLayout
       title="Đơn hàng bán tại quầy"

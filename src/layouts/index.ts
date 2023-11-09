@@ -36,6 +36,24 @@ export const navMenu: INavMenu[] = [
     },
     {
         id: 4,
+        name: 'Quản lý sản phẩm',
+        icon: 'product-nav',
+        link: PATHNAME.SCREENSETTINGPRODUCTS,
+        subMenu: [
+            {
+                name: 'Sản phẩm',
+                link: PATHNAME.SCREENSETTINGPRODUCTS,
+                namePath: 'sp',
+            },
+            {
+                name: 'Khuyến mãi',
+                link: PATHNAME.SCREENSETTINGPROMMOTIONS,
+                namePath: 'sp',
+            }
+        ]
+    },
+    {
+        id: 5,
         name: 'Tài khoản',
         icon: 'customer-nav',
         link: PATHNAME.SCREENSTAFF,
@@ -53,7 +71,25 @@ export const navMenu: INavMenu[] = [
         ]
     },
     {
-        id: 5,
+        id: 6,
+        name: 'Quảng cáo & thể loại',
+        icon: 'icon-category',
+        link: PATHNAME.SCREENSETTINGBANNERS,
+        subMenu: [
+            {
+                name: 'Quảng cáo',
+                link: PATHNAME.SCREENSETTINGBANNERS,
+                namePath: 'bc',
+            },
+            {
+                name: 'Thể loại',
+                link: PATHNAME.SCREENSETTINGCATEGORIES,
+                namePath: 'bc',
+            }
+        ]
+    },
+    {
+        id: 7,
         name: 'Quản lý phân quyền',
         icon: 'icon-security',
         link: PATHNAME.SCREENDECENTRALIZATION,
@@ -71,9 +107,10 @@ export const navMenu: INavMenu[] = [
         ]
     },
     {
-        id: 6,
+        id: 8,
         name: 'Thiết lập',
         icon: 'settings-nav',
         link: PATHNAME.SCREENSETTINGS
     },
+
 ]

@@ -14,14 +14,14 @@ export const dataUserChat: ISelectUser[] = [
         id: 1,
         name: 'Phạm Đức Tuấn',
         image: avatar__user,
-        date: "Su Oct 29 2023 16:49:39 GMT+0700 (Indochina Time) ",
+        date: "Tue Nov 07 2023 23:43:21 GMT+0700 (Indochina Time)",
         contentNew: 'Nhìn cái méo gì không biết nữa',
     },
     {
         id: 2,
         name: 'Mr.Tuan',
         image: avatar__user,
-        date: "Su Oct 28 2023 16:49:39 GMT+0700 (Indochina Time) ",
+        date: "Tue Nov 06 2023 23:43:21 GMT+0700 (Indochina Time)",
         contentNew: 'Nhìn cái con củ...',
     },
     {
@@ -96,28 +96,28 @@ export const fakeDataMessage: IMessager[] = [
         senderId: 2222,
         receiverId: 11,
         content: "lượn ngay",
-        date: "Wed Oct 26 2023 16:49:39 GMT+0700 (Indochina Time)",
+        date: "Tue Nov 07 2023 23:43:21 GMT+0700 (Indochina Time)",
     },
     {
         id: 9,
         senderId: 11,
         receiverId: 2222,
         content: "aaaaaa",
-        date: "Wed Oct 26 2023 16:49:39 GMT+0700 (Indochina Time)",
+        date: "Tue Nov 07 2023 23:43:21 GMT+0700 (Indochina Time)",
     },
     {
         id: 10,
         senderId: 11,
         receiverId: 11,
         content: "bbbb",
-        date: "Wed Oct 26 2023 16:49:39 GMT+0700 (Indochina Time)",
+        date: "Tue Nov 07 2023 23:43:21 GMT+0700 (Indochina Time)",
     },
     {
         id: 11,
         senderId: 2222,
         receiverId: 11,
         content: "lượn ngay",
-        date: "Wed Oct 26 2023 16:49:39 GMT+0700 (Indochina Time)",
+        date: "Tue Nov 07 2023 23:43:21 GMT+0700 (Indochina Time)",
     }
 ]
 export const fakeDataMessage2: IMessager[] = [

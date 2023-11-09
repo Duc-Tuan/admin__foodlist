@@ -41,7 +41,7 @@ const Header = (props: Props) => {
 
   return (
     <div className="header d-flex justify-content-between align-items-center">
-      <div className="d-flex justify-content-start align-items-center gap-20">
+      <div className="d-flex justify-content-start align-items-center gap-10">
         <div className="icon__menu" onClick={toggleSliderbar}>
           {!isSliderbar ? <Icon name="icon-open-sidebar" /> : <Icon name="icon-off-sidebar" />}
         </div>

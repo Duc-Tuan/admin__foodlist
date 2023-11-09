@@ -21,14 +21,14 @@ const initialState: State = {
         {
             indexTab: 0,
             status: true,
-            nameTab: 'Đơn 1',
+            nameTab: '1',
             contentTab: [],
         }
     ],
     tab: {
         indexTab: 0,
         status: true,
-        nameTab: 'Đơn 1',
+        nameTab: '1',
         contentTab: [],
     },
     productSales: undefined,

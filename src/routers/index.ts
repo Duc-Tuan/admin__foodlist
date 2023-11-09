@@ -1,10 +1,12 @@
 import { PATHNAME } from "../configs/pathname";
 import { ScreenStaff, ScreenUsers } from "../pages/accounts";
 import { ScreenInfoAccount } from "../pages/auth";
+import { ScreenBanners, ScreenCategories } from "../pages/bannersAndCategories";
 import { ScreenDashboard } from "../pages/dashboard";
 import { ScreenCreateRole, ScreenDecentralization, ScreenRoles } from "../pages/decentralization/screen";
 import { ScreenLogin } from "../pages/login";
 import { ScreenOrderCounters, ScreenOrderUsers } from "../pages/orders/screen";
+import { ScreenProducts, ScreenPrommtions } from "../pages/products";
 import ScreenPrommotions from "../pages/prommotions";
 import { ScreenSalesCounter } from "../pages/salesCounter";
 import { ScreenLanguage } from "../pages/settings";
@@ -126,6 +128,34 @@ export const privateRouters: IRouter[] = [
         title: 'Thiết lập ngôn ngữ | admin',
         path: PATHNAME.SCREENSETTINGLANGUAGE,
         component: ScreenLanguage,
+        isDefaultSales: true,
+    },
+    {
+
+        title: 'Quản lý quảng cáo | admin',
+        path: PATHNAME.SCREENSETTINGBANNERS,
+        component: ScreenBanners,
+        isDefaultSales: true,
+    },
+    {
+
+        title: 'Quản lý thể loại | admin',
+        path: PATHNAME.SCREENSETTINGCATEGORIES,
+        component: ScreenCategories,
+        isDefaultSales: true,
+    },
+    {
+
+        title: 'Quản lý sản phẩm | admin',
+        path: PATHNAME.SCREENSETTINGPRODUCTS,
+        component: ScreenProducts,
+        isDefaultSales: true,
+    },
+    {
+
+        title: 'Quản lý khuyến mãi | admin',
+        path: PATHNAME.SCREENSETTINGPROMMOTIONS,
+        component: ScreenPrommtions,
         isDefaultSales: true,
     },
 ]
