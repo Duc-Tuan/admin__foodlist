@@ -1,15 +1,16 @@
-import React, { FC, useEffect, useState } from 'react';
-import './index.scss';
-import Checkbox from '../checkboxTabel/checkbox';
-import BulkAction, { BulkActionItemModel } from '../bulkAction/bulkAction';
-import Icon from '../../assets/icon';
-import { IAction, PaginationModel } from './const';
 import Tippy from '@tippyjs/react';
-import { useBoolean } from '../../hooks';
-import Function from '../../utils/function';
-import { Pagination } from '../pagination/pagination';
+import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SettingTable } from '..';
+import Icon from '../../assets/icon';
+import { useBoolean } from '../../hooks';
+import { getCookieByName } from '../../utils';
+import Function from '../../utils/function';
+import BulkAction, { BulkActionItemModel } from '../bulkAction/bulkAction';
+import Checkbox from '../checkboxTabel/checkbox';
+import { Pagination } from '../pagination/pagination';
+import { IAction, PaginationModel } from './const';
+import './index.scss';
 
 interface Props {
   name: string;
@@ -34,7 +35,7 @@ interface Props {
   isSettingColumn?: boolean;
   hasChangeHead?: boolean;
   totalHeader?: any;
-  dataMappingArray: (item: any, idx?: number, listIdDetail?: any[], listDataDetail?: any[]) => any[];
+  dataMappingArray: (item: any, idx: number, listIdDetail?: any[], listDataDetail?: any[]) => any[];
   striped?: boolean;
   renderEmpty?: boolean;
   textEmpty?: string;
@@ -47,6 +48,7 @@ interface Props {
   clickCallBackActions?: (id: number) => void;
   dataPagination?: PaginationModel;
   isEditColumns?: boolean;
+  hasCachedCookie?: boolean;
 }
 
 const Table: FC<Props> = ({
@@ -85,16 +87,19 @@ const Table: FC<Props> = ({
   clickCallBackActions,
   dataPagination,
   isEditColumns,
+  hasCachedCookie = true,
 }) => {
   const { t } = useTranslation();
   const refActions = React.useRef<any>();
   const refViewDetail = React.useRef<any>();
   const clickOut = React.useRef<boolean>(true);
+  const reftable = React.useRef<any>();
+  const [scrollTable, setScrollTable] = useState<boolean>(false);
 
+  const [toastSort, setToastSort] = useState<boolean>(false);
   const [listItem, setListItem] = useState<any[]>();
   const [showTitles, setShowTitles] = useState<any>([]);
   const [renderTitles, setRenderTitles] = useState<any>([]);
-  const [toastSort, setToastSort] = useState<boolean>(false);
   const [sort, setSort] = useState<string>('');
   const [onSort, setOnSort] = useState<string>('');
   const [titleSort, setTitleSort] = useState<string>('');
@@ -123,18 +128,18 @@ const Table: FC<Props> = ({
   );
 
   useEffect(() => {
-    // if (hasCachedCookie) {
-    //   let current: any = getCookieByName(name).split(',') || dynamicTitles || titles;
-    //   if (current.length == 1 && current[0] == '') {
-    //     current = dynamicTitles || titles;
-    //   } else {
-    //     const jsonData = JSON.parse(current);
-    //     current = jsonData.map((i) => i.title);
-    //   }
-    //   setRenderTitles(current);
-    // } else {
-    // }
-    setRenderTitles(dynamicTitles || (titles as any[]));
+    if (hasCachedCookie) {
+      let current: any = getCookieByName(name).split(',') || dynamicTitles || titles;
+      if (current.length == 1 && current[0] == '') {
+        current = dynamicTitles || titles;
+      } else {
+        const jsonData = JSON.parse(current);
+        current = jsonData.map((i: any) => i.title);
+      }
+      setRenderTitles(current);
+    } else {
+      setRenderTitles(dynamicTitles || (titles as any[]));
+    }
   }, [dynamicTitles]);
 
   const checkAll = (isChecked: boolean) => {
@@ -301,8 +306,48 @@ const Table: FC<Props> = ({
     setListItem(listItemTemp);
   };
 
+  const onScroll = (e: any) => {
+    const isCheck =
+      Number((reftable.current?.scrollLeft + reftable.current?.offsetWidth - 2).toFixed()) >
+      reftable.current?.scrollWidth - 10;
+    if (isCheck) {
+      setScrollTable(false);
+    } else {
+      setScrollTable(true);
+    }
+  };
+
+  const totalWidth = React.useMemo(() => {
+    const data = sizes?.reduce((total: number, current: number) => {
+      return (total += current);
+    }, 0);
+
+    return data;
+  }, [sizes]);
+
+  React.useEffect(() => {
+    reftable?.current?.addEventListener('scroll', onScroll);
+    return () => reftable?.current?.removeEventListener('scroll', onScroll);
+  }, []);
+
+  console.log(reftable?.current?.clientWidth, totalWidth);
+
+  const reportWindowSize = () => {
+    console.log(reftable?.current?.clientWidth);
+  }
+
+  React.useEffect(() => {
+    // if (reftable?.current?.clientWidth > (totalWidth ?? 0)) {
+    //   setScrollTable(false);
+    // } else {
+    //   setScrollTable(true);
+    // }
+    reftable?.current?.addEventListener("change", reportWindowSize)
+    return () => reftable?.current?.removeEventListener('change', reportWindowSize);
+  }, []);
+
   return (
-    <div className="wrapper__table">
+    <div className={`scroll__foodApp wrapper__table`} ref={reftable}>
       {sizes && (
         <>
           <table
@@ -365,7 +410,7 @@ const Table: FC<Props> = ({
                 {renderTitles?.map((title: any, idx: number) => {
                   return (
                     showTitles[idx] && (
-                      <th key={idx} className={`${formats ? formats[idx] : ''} `}>
+                      <th key={idx} className={`${formats ? formats[idx] : ''} `} style={{ width: `${sizes[idx]}px` }}>
                         {title.title ? (
                           <div
                             className={`d-flex align-items-center pointer ${title.align}`}
@@ -396,12 +441,7 @@ const Table: FC<Props> = ({
                   );
                 })}
                 {renderActions?.length > 0 ? (
-                  <th
-                    //   style={{
-                    //     position: isStickyActionCol ? 'sticky' : 'relative',
-                    //   }}
-                    className="actions text-center"
-                  >
+                  <th className={`actions text-center ${!scrollTable ? '' : 'scroll-Table'}`}>
                     <div className="d-flex justify-content-center align-items-center gap-6">
                       {t('Thao tác')}
                       {!isSettingColumn && (
@@ -470,7 +510,9 @@ const Table: FC<Props> = ({
                         return (
                           showTitles[idx] && (
                             <React.Fragment key={idx}>
-                              <td className={`${formats ? formats[idx] : ''}`}>{d?.data}</td>
+                              <td className={`${formats ? formats[idx] : ''}`} style={{ width: `${sizes[idx]}px` }}>
+                                {d?.data}
+                              </td>
                             </React.Fragment>
                           )
                         );
@@ -481,7 +523,9 @@ const Table: FC<Props> = ({
                           //   style={{
                           //     position: isStickyActionCol ? 'sticky' : 'relative',
                           //   }}
-                          className="actions d-flex justify-content-center align-items-center gap-6"
+                          className={`actions d-flex justify-content-center align-items-center gap-6 ${
+                            !scrollTable ? '' : 'scroll-Table'
+                          }`}
                           onClick={async (e) => {
                             e.stopPropagation();
                           }}
@@ -634,7 +678,20 @@ const Table: FC<Props> = ({
         />
       ) : null}
 
-      {isEditColumns && openSettingCol && <SettingTable data={renderTitles} />}
+      {isEditColumns && (
+        <SettingTable
+          name={name}
+          data={titles}
+          showTitles={showTitles}
+          onHide={offOpenSettingCol}
+          onShow={openSettingCol}
+          renderColumns={renderTitles}
+          updateTitles={(data) => {
+            const dataNew = data?.map((i: any) => i.title);
+            setRenderTitles(dataNew);
+          }}
+        />
+      )}
     </div>
   );
 };

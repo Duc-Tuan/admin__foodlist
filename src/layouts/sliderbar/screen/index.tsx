@@ -1,20 +1,25 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { navMenu } from '../..';
 import Icon from '../../../assets/icon';
+import { PATHNAME } from '../../../configs/pathname';
 import { useAppDispatch } from '../../../hooks';
-import { useHeader } from '../../../hooks/common/useHeader';
 import { actions as actionsHeader } from '../../sliderbar/store';
 import { INavMenu, ISubMenu } from '../../types';
-import './index.scss';
 import MenuSub from './MenuSub';
-import { useTranslation } from 'react-i18next';
-import { PATHNAME } from '../../../configs/pathname';
+import './index.scss';
+interface ISliderbar {
+  isSlidebar?: boolean;
+  isSubMenu?: {
+    indexCurrent: number;
+    isCurrent: boolean;
+  };
+}
 
-const Sliderbar = () => {
+const Sliderbar: React.FC<ISliderbar> = ({ isSlidebar: isHeader, isSubMenu }) => {
   const { t } = useTranslation();
-  const { isHeader, isSubMenu } = useHeader();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();

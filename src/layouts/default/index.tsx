@@ -8,6 +8,7 @@ import Sliderbar from '../sliderbar/screen';
 import './index.scss';
 import { useSelector } from 'react-redux';
 import { isChat } from '../../pages/settings/store/select';
+import { useHeader } from '../../hooks/common/useHeader';
 
 type Props = {
   children: React.ReactNode | string;
@@ -39,13 +40,14 @@ const Index = (props: Props) => {
   } = props;
   const { t } = useTranslation();
   const showChat = useSelector(isChat);
+  const { isHeader: isSlidebar, isSubMenu } = useHeader();
 
   return (
     <div className="app__food d-flex">
       <section>
-        <Sliderbar />
+        <Sliderbar isSlidebar={isSlidebar} isSubMenu={isSubMenu} />
       </section>
-      <main className="main__app">
+      <main className={`main__app ${isHeader ? 'open' : 'off'}`}>
         <Header isHeader={isHeader} title={title} placeholder={placeholder} onChange={onChange} isSearch={isSearch} />
         <div className="main__app--content scroll__foodApp">
           {isBack && (

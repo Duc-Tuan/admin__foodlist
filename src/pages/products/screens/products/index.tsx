@@ -5,7 +5,7 @@ import { Button, Table } from '../../../../components';
 import { PaginationModel } from '../../../../components/table/const';
 import { DefaultLayout } from '../../../../layouts';
 import { TableConfigs } from '../../../../types/general';
-import { formatCurrency } from '../../../../utils';
+import { formatCurrency, getCookieByName } from '../../../../utils';
 import { IProducts, dataProducts } from './const';
 import './index.scss';
 
@@ -29,7 +29,7 @@ const Index = () => {
   const [tableConfigs, setTableConfigs] = React.useState<TableConfigs>({
     titles: ['STT', 'Mã', 'Tên sản phẩm', 'Giá tiền', 'Nguồn hàng', 'Trạng thái'],
     formats: ['text-center', 'text-left', 'text-left', 'text-right', 'text-center', 'text-center'],
-    sizes: [60, 100, 600, 200, 200, 200],
+    sizes: [60, 100, 600, 150, 200, 200],
     shows: [true, true, true, true, true, true],
   });
 
@@ -47,46 +47,75 @@ const Index = () => {
   ];
 
   const dataMappingArray = (item: IProducts, idx?: number) => {
+    let compareTitles: any = getCookieByName('Danh sách sản phẩm').split(',');
+    let objData: any[];
+    let defaultStatus = true;
+    if (compareTitles.length == 1 && compareTitles[0] == '') {
+      compareTitles = tableConfigs.titles;
+    } else {
+      objData = JSON.parse(compareTitles);
+      compareTitles = objData.map((i: any) => i.title);
+      defaultStatus = false;
+    }
+
     const common = [
       {
         title: 'STT',
         data: idx,
         show: true,
+        format: 'text-center',
         size: 60,
       },
       {
         title: 'Mã',
         data: item?.code,
         show: true,
+        format: 'text-left',
         size: 100,
       },
       {
         title: 'Tên sản phẩm',
         data: item?.name,
         show: true,
+        format: 'text-left',
         size: 600,
       },
       {
         title: 'Giá tiền',
         data: formatCurrency(item?.price, ''),
         show: true,
-        size: 200,
+        format: 'text-right',
+        size: 150,
       },
       {
         title: 'Nguồn hàng',
         data: item?.source,
         show: true,
-        size: 100,
+        format: 'text-center',
+        size: 200,
       },
       {
         title: 'Trạng thái',
         data: item?.source,
         show: true,
-        size: 100,
+        format: 'text-center',
+        size: 200,
       },
     ];
 
-    return common;
+    const dataShow = compareTitles?.map((o: any, idx: number) =>
+      defaultStatus ? common?.find((i) => i?.title == o)?.show : objData[idx]?.show,
+    );
+    const dataSize = compareTitles?.map((o: any, idx: number) => {
+      return common?.find((i) => i?.title == o)?.size;
+    });
+    const dataFormats = compareTitles?.map((o: any, idx: number) => {
+      return common?.find((i) => i?.title == o)?.format;
+    });
+
+    setTableConfigs((prev) => ({ ...prev, shows: dataShow, sizes: dataSize, formats: dataFormats }));
+
+    return compareTitles?.map((o: any) => common?.find((i) => i?.title === o));
   };
 
   const renderDetail = (data: any) => {
@@ -109,7 +138,7 @@ const Index = () => {
         formats={tableConfigs?.formats}
         sizes={tableConfigs?.sizes}
         titles={tableConfigs?.titles}
-        dataMappingArray={(item, idx) => dataMappingArray(item, idx)}
+        dataMappingArray={(item, idx) => dataMappingArray(item, idx + 1)}
         hasViewDetail
         isPagination
         isEditColumns
