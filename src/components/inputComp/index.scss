@@ -1,0 +1,51 @@
+.wrapper__inputComp {
+  --border-radius: 6px;
+  margin-bottom: 10px;
+  .mess__error,
+  .required {
+    font-size: 1.4rem;
+    color: var(--error-color);
+  }
+  .input {
+    position: relative;
+    input {
+      border: var(--border) !important;
+      padding: 6px 10px !important;
+      margin-top: 8px;
+      border-radius: 4px;
+      font-size: 1.5rem;
+      &:focus {
+        border-color: var(--main-color) !important;
+      }
+    }
+    .eye {
+      position: absolute;
+      top: 66%;
+      transform: translateY(-50%);
+    }
+    label {
+      cursor: pointer;
+      left: 0;
+      transition: var(--transition);
+      color: var(--extra-color-80);
+      z-index: -10;
+      margin-bottom: 0;
+    }
+    input {
+      width: 100%;
+      display: block;
+      outline: none;
+      padding: 22px 40px 6px 0;
+      border: none;
+      background-color: transparent;
+    }
+    .eye {
+      cursor: pointer;
+      right: 10px;
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

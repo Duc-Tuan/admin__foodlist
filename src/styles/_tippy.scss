@@ -1,5 +1,5 @@
 .tippy-box {
-  max-width: 600px !important;
+  max-width: 800px !important;
   .tippy-content {
     padding: 6px !important;
   }
@@ -153,6 +153,64 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+.wrapper__tippy--viewDetail {
+  width: 680px;
+  padding: 4px;
+  .detail__view {
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    svg {
+      width: 2.8rem;
+      height: 2.8rem;
+      path {
+        stroke: var(--main-color);
+      }
+    }
+  }
+  .detail__main {
+    .left,
+    .right {
+      width: calc(100% / 2);
+      position: relative;
+      .blog__main {
+        &:last-child {
+          border-bottom: none !important;
+        }
+      }
+    }
+    .left {
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -8px;
+        bottom: 0;
+        width: 1px;
+        height: 100%;
+        background-color: #dde2e9;
+      }
+    }
+    .blog__main {
+      border-bottom: var(--border);
+      border-bottom-style: dashed;
+      border-bottom-width: 0.2rem;
+      padding-bottom: 6px;
+      label {
+        margin-bottom: 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+      span {
+        font-weight: 1.2rem;
+      }
+      & + .blog__main {
+        margin-top: 10px;
       }
     }
   }

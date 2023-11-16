@@ -1,31 +1,99 @@
 .wrapper__table {
+  --color-header: #f7f7f7;
+  &::-webkit-scrollbar-track {
+    background-color: var(--white-color);
+  }
   border: var(--border);
-  overflow-y: hidden;
+  // overflow-y: hidden;
   overflow-x: scroll;
-  height: calc(100% - 68px);
+  height: calc(100% - 77px);
   .table {
     width: 100%;
     table-layout: fixed;
     &.table__header {
+      position: sticky;
+      top: -1px;
+      z-index: 100;
       tr {
         th {
-          background-color: #f7f7f7;
-          border-bottom: var(--border);
+          &:last-child {
+            background-color: var(--color-header);
+          }
+          &.actions {
+            &.scroll-Table {
+              background: var(--color-header);
+            }
+          }
+        }
+      }
+    }
+    &.table__main {
+      tr {
+        cursor: pointer;
+        border-bottom: var(--border);
+        border-color: #f0f0f0;
+        background-color: var(--white-color);
+        td {
+          &:last-child {
+            .action-container {
+              position: relative;
+              z-index: 100;
+            }
+          }
+          &.scroll-Table {
+            background-color: var(--white-color);
+            &::after {
+              content: '';
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              right: 0;
+              width: 100%;
+              background: var(--white-color);
+            }
+          }
+        }
+        &:nth-child(even) {
+          background: var(--extra-color-1);
+          td {
+            &::after {
+              background-color: var(--extra-color-1);
+            }
+            &.scroll-Table {
+              background-color: var(--extra-color-1);
+            }
+          }
+        }
+        &:hover {
+          td {
+            background: rgba(var(--main-rgba-color)) !important;
+          }
         }
       }
     }
     tr {
-      th,
-      td {
+      background-color: var(--color-header);
+      border-bottom: var(--border);
+      td,
+      th {
         padding: 6px 10px;
-        background-color: var(--white-color);
         &.actions {
+          position: sticky;
+          right: 0;
+          min-width: 150px;
+          z-index: 10;
           &.scroll-Table {
-            background-color: var(--white-color);
-            position: absolute;
-            right: 0;
-            box-shadow: var(--box-shadow);
-            min-width: 150px;
+            background: var(--white-color);
+            &::before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 2rem;
+              height: 100%;
+              box-shadow: inset -15px 0 12px -11px rgba(0, 0, 0, 0.15);
+              transform: translateX(-100%);
+            }
           }
           svg {
             cursor: pointer;
@@ -33,6 +101,16 @@
             height: 2rem;
             path {
               fill: var(--main-color);
+            }
+          }
+          .view-detail {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &.action__item {
+              svg {
+                height: auto !important;
+              }
             }
           }
         }

@@ -5,16 +5,20 @@
       width: calc(100% - 260px);
     }
     &--content {
-      padding: 10px 0;
+      // padding: 10px 0;
       height: calc(100vh - 50px);
       position: relative;
       overflow-x: hidden;
       overflow-y: auto;
       background: #ebeef2;
+      // padding: 0 10px;
+      .header__main {
+        padding: 10px;
+        &.sticky {
+          top: 0px;
+        }
+      }
     }
-  }
-  .header__main {
-    padding: 0 10px;
   }
   .wrapper__chat {
     position: fixed;

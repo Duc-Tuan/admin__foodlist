@@ -45,4 +45,184 @@ export const dataProducts: IProducts[] = [
         source: "Việt Nam",
         status: "ACTIVE"
     },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
+    {
+        id: 4,
+        code: 'SP00004',
+        name: "Sản phẩm trị ngu 4",
+        price: 400000,
+        quantity: 190,
+        source: "Việt Nam",
+        status: "ACTIVE"
+    },
 ]

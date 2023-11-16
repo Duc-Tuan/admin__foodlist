@@ -353,9 +353,12 @@ import { ReactComponent as IconChatSend } from './icons/icon-send.svg';
 import { ReactComponent as IconSecurity } from './icons/icon-security.svg';
 import { ReactComponent as IconLanguage } from './icons/icon-language.svg';
 import { ReactComponent as IconCategory } from './icons/icon-category.svg';
+import { ReactComponent as IconBlog } from './icons/icon-blog.svg';
 
 export default function Icon(props: any) {
   switch (props?.name?.toLowerCase()) {
+    case 'icon-blog':
+      return <IconBlog {...props} />;
     case 'icon-category':
       return <IconCategory {...props} />;
     case 'icon-language':

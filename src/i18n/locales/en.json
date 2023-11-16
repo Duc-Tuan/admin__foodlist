@@ -114,5 +114,7 @@
   "Giá tiền": "Price",
   "Thao tác": "Operate",
   "Điều chỉnh cột": "Adjustment column",
-  "Trạng thái": "Status"
+  "Trạng thái": "Status",
+  "Không được để trống tên vai trò!": "Role names cannot be left blank!",
+  "Tên vai trò": "Name role"
 }

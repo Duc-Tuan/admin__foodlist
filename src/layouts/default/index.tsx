@@ -51,7 +51,7 @@ const Index = (props: Props) => {
         <Header isHeader={isHeader} title={title} placeholder={placeholder} onChange={onChange} isSearch={isSearch} />
         <div className="main__app--content scroll__foodApp">
           {isBack && (
-            <div className="header__main d-flex justify-content-between align-items-center gap-10">
+            <div className="header__main d-flex justify-content-between align-items-center gap-10 sticky">
               <div className="d-flex justify-content-start align-items-center gap-10">
                 {!noBack && (
                   <Button color="nomal" onClick={onClickBack}>

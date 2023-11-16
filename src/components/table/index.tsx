@@ -11,6 +11,7 @@ import Checkbox from '../checkboxTabel/checkbox';
 import { Pagination } from '../pagination/pagination';
 import { IAction, PaginationModel } from './const';
 import './index.scss';
+import { useHeader } from '../../hooks/common/useHeader';
 
 interface Props {
   name: string;
@@ -21,6 +22,7 @@ interface Props {
   isPagination?: boolean;
   isBulkAction?: boolean;
   className?: string;
+  classWrapper?: string;
   dynamicTitles?: string | React.ReactNode[] | { title: string; sort: boolean; nameSort: string; align?: string }[];
   listIdChecked?: (number | string)[];
   bulkActionItems?: BulkActionItemModel[];
@@ -49,10 +51,12 @@ interface Props {
   dataPagination?: PaginationModel;
   isEditColumns?: boolean;
   hasCachedCookie?: boolean;
+  onClickColumn?: (id: number) => void;
 }
 
 const Table: FC<Props> = ({
   name,
+  classWrapper,
   titles,
   formats,
   sizes,
@@ -88,8 +92,11 @@ const Table: FC<Props> = ({
   dataPagination,
   isEditColumns,
   hasCachedCookie = true,
+  onClickColumn,
 }) => {
   const { t } = useTranslation();
+  const { isHeader, isSubMenu } = useHeader();
+
   const refActions = React.useRef<any>();
   const refViewDetail = React.useRef<any>();
   const clickOut = React.useRef<boolean>(true);
@@ -330,24 +337,16 @@ const Table: FC<Props> = ({
     return () => reftable?.current?.removeEventListener('scroll', onScroll);
   }, []);
 
-  console.log(reftable?.current?.clientWidth, totalWidth);
-
-  const reportWindowSize = () => {
-    console.log(reftable?.current?.clientWidth);
-  }
-
   React.useEffect(() => {
-    // if (reftable?.current?.clientWidth > (totalWidth ?? 0)) {
-    //   setScrollTable(false);
-    // } else {
-    //   setScrollTable(true);
-    // }
-    reftable?.current?.addEventListener("change", reportWindowSize)
-    return () => reftable?.current?.removeEventListener('change', reportWindowSize);
+    if (reftable?.current?.clientWidth > (totalWidth ?? 0)) {
+      setScrollTable(false);
+    } else {
+      setScrollTable(true);
+    }
   }, []);
 
   return (
-    <div className={`scroll__foodApp wrapper__table`} ref={reftable}>
+    <div className={`scroll__foodApp wrapper__table mt-10 ${classWrapper}`} ref={reftable}>
       {sizes && (
         <>
           <table
@@ -460,7 +459,7 @@ const Table: FC<Props> = ({
           </table>
 
           <table
-            className={`table${striped ? ' table-striped' : ''}${isPagination ? ' has-pagination' : ''}${
+            className={`table table__main ${striped ? ' table-striped' : ''}${isPagination ? ' has-pagination' : ''}${
               className ? ` ${className}` : ''
             }`}
           >
@@ -510,7 +509,11 @@ const Table: FC<Props> = ({
                         return (
                           showTitles[idx] && (
                             <React.Fragment key={idx}>
-                              <td className={`${formats ? formats[idx] : ''}`} style={{ width: `${sizes[idx]}px` }}>
+                              <td
+                                className={`${formats ? formats[idx] : ''}`}
+                                style={{ width: `${sizes[idx]}px` }}
+                                onClick={() => onClickColumn && onClickColumn(d?.id)}
+                              >
                                 {d?.data}
                               </td>
                             </React.Fragment>
@@ -523,14 +526,12 @@ const Table: FC<Props> = ({
                           //   style={{
                           //     position: isStickyActionCol ? 'sticky' : 'relative',
                           //   }}
-                          className={`actions d-flex justify-content-center align-items-center gap-6 ${
-                            !scrollTable ? '' : 'scroll-Table'
-                          }`}
+                          className={`actions ${!scrollTable ? '' : 'scroll-Table'}`}
                           onClick={async (e) => {
                             e.stopPropagation();
                           }}
                         >
-                          <div className="action-container">
+                          <div className="action-container d-flex justify-content-center align-items-center gap-6">
                             {renderActions.map((value, index) => {
                               if (value?.type === 'view_detail')
                                 return (
