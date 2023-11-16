@@ -346,7 +346,7 @@ const Table: FC<Props> = ({
   }, []);
 
   return (
-    <div className={`scroll__foodApp wrapper__table mt-10 ${classWrapper}`} ref={reftable}>
+    <div className={`scroll__foodApp wrapper__table ${classWrapper}`} ref={reftable}>
       {sizes && (
         <>
           <table

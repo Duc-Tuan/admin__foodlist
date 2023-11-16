@@ -13,7 +13,7 @@ const ScreenSetting = (props: Props) => {
   const { t } = useTranslation();
   return (
     <DefaultLayout title="Thiết lập" isSearch>
-      <div className="wrapper__setting grid_4">
+      <div className="wrapper__setting grid_4 mt-3">
         {fakeNav?.map((i: INavMenu, idx: number) => (
           <div
             className="item d-flex justify-content-start align-items-center gap-10"

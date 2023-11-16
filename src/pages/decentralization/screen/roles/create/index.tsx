@@ -11,7 +11,7 @@ import { IDecentralization, dataDecentralization } from './const';
 import { Option } from '../../../../../types/general';
 import Checkbox from '../../../../../components/checkboxTabel/checkbox';
 import { cloneDeep } from 'lodash';
-import { useToast } from 'hooks';
+import { useBoolean, useToast } from 'hooks';
 
 type Props = {};
 
@@ -37,7 +37,6 @@ const ScreenCreateRole = (props: Props) => {
   const onSubmit = handleSubmit(async (data: any) => {
     console.log(data);
     if (selected?.length === 0) {
-
     }
   });
 
@@ -110,31 +109,15 @@ const ScreenCreateRole = (props: Props) => {
                 return selected?.some((c: string) => c === s?.value);
               });
               return (
-                <div className="manganer__item" key={`key-roles-${idx}`}>
-                  <div className="manganer__item--header p-10 d-flex justify-content-start align-items-center gap-10">
-                    <Checkbox
-                      checked={isCheckedAll?.some((ck: boolean) => ck === false) ? false : true}
-                      label={label}
-                      onChange={(e: any) => handleCheck(e?.target?.checked, i, 'parent')}
-                    />
-                  </div>
-                  <div className="manganer__item--subMenu p-10-20">
-                    {children?.map((d: Option, idx: number) => {
-                      return (
-                        <div
-                          className="subMenu__children p-6 d-flex justify-content-start align-items-center gap-10"
-                          key={idx}
-                        >
-                          <Checkbox
-                            checked={selected?.some((s: string) => s === d?.value)}
-                            label={d?.label}
-                            onChange={(e: any) => handleCheck(e?.target?.checked, d, 'children')}
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                <Item
+                  data={i}
+                  children={children}
+                  handleCheck={handleCheck}
+                  isCheckedAll={isCheckedAll}
+                  label={label}
+                  selected={selected}
+                  key={`key-roles-${idx}`}
+                />
               );
             })}
           </main>
@@ -145,3 +128,45 @@ const ScreenCreateRole = (props: Props) => {
 };
 
 export default ScreenCreateRole;
+
+interface IItem {
+  data: any;
+  isCheckedAll: any;
+  label: any;
+  handleCheck: any;
+  children: any;
+  selected: string[];
+}
+
+const Item = (props: IItem) => {
+  const { data, isCheckedAll, label, handleCheck, children, selected } = props;
+  const [show, { on, off, toggle }] = useBoolean(true);
+  return (
+    <div className="manganer__item" style={{ height: show ? '100%' : '44px' }}>
+      <div className="manganer__item--header p-10 d-flex justify-content-between align-items-center gap-10">
+        <Checkbox
+          checked={isCheckedAll?.some((ck: boolean) => ck === false) ? false : true}
+          label={label}
+          onChange={(e: any) => handleCheck(e?.target?.checked, data, 'parent')}
+        />
+
+        <div className="icon d-flex justify-content-end align-items-center" onClick={toggle}>
+          <Icon name="chevron-down" className={`${show ? 'on' : 'off'}`} />
+        </div>
+      </div>
+      <div className="manganer__item--subMenu p-10-20">
+        {children?.map((d: Option, idx: number) => {
+          return (
+            <div className="subMenu__children p-6 d-flex justify-content-start align-items-center gap-10" key={idx}>
+              <Checkbox
+                checked={selected?.some((s: string) => s === d?.value)}
+                label={d?.label}
+                onChange={(e: any) => handleCheck(e?.target?.checked, d, 'children')}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};

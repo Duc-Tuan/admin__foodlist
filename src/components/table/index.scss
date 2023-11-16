@@ -6,7 +6,8 @@
   border: var(--border);
   // overflow-y: hidden;
   overflow-x: scroll;
-  height: calc(100% - 77px);
+  // position: relative;
+  height: calc(100vh - 148px);
   .table {
     width: 100%;
     table-layout: fixed;
@@ -40,6 +41,9 @@
               z-index: 100;
             }
           }
+          &.actions {
+            background-color: var(--white-color);
+          }
           &.scroll-Table {
             background-color: var(--white-color);
             &::after {
@@ -59,7 +63,8 @@
             &::after {
               background-color: var(--extra-color-1);
             }
-            &.scroll-Table {
+            &.scroll-Table,
+            &.actions {
               background-color: var(--extra-color-1);
             }
           }

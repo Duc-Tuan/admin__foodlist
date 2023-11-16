@@ -28,7 +28,7 @@ const Index = () => {
     },
   });
   const [tableConfigs, setTableConfigs] = React.useState<TableConfigs>({
-    titles: ['STT', 'Mã', 'Tên sản phẩm', 'Giá tiền', 'Nguồn hàng', 'Trạng thái'],
+    titles: ['STT', 'Mã', 'Tên sản phẩm', 'Giá tiền (vnđ)', 'Nguồn hàng', 'Trạng thái'],
     formats: ['text-center', 'text-left', 'text-left', 'text-right', 'text-center', 'text-center'],
     sizes: [60, 100, 600, 150, 200, 200],
     shows: [true, true, true, true, true, true],
@@ -82,7 +82,7 @@ const Index = () => {
         size: 600,
       },
       {
-        title: 'Giá tiền',
+        title: 'Giá tiền (vnđ)',
         data: formatCurrency(item?.price, ''),
         show: true,
         format: 'text-right',
@@ -181,7 +181,9 @@ const Index = () => {
                 </span>
               </div>
               <div className="blog__main d-flex justify-content-end align-items-center">
-                <Button color="primary" className='mt-10'>{t('Xem chi tiết')}</Button>
+                <Button color="primary" className="mt-10">
+                  {t('Xem chi tiết')}
+                </Button>
               </div>
             </div>
           </div>
@@ -200,6 +202,8 @@ const Index = () => {
       isBack
       reactNodeRight={reactNodeRight}
       noBack
+      isScroll
+      isScrollX
     >
       <Table
         items={dataProducts}

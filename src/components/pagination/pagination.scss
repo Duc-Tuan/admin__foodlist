@@ -9,6 +9,7 @@
   letter-spacing: 0.4px;
   color: var(--text-extra-color);
   border-top: 0.1rem solid var(--main-grey-color);
+  z-index: 100;
   .count-item {
     width: 20%;
     flex-shrink: 0;

@@ -104,7 +104,7 @@ const Index = (props: Props) => {
                   return (
                     <SortableItem id={i} key={i}>
                       <div className="item__title d-flex justify-content-between align-items-center gap-10">
-                        <div className="d-flex justify-content-start align-items-center gap-10">
+                        <div className="d-flex justify-content-start align-items-center">
                           <div className="icon__left">
                             <Checkbox
                               checked={showSelected?.find((d: any) => d?.title === i)?.show}

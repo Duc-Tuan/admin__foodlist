@@ -22,6 +22,8 @@ type Props = {
   filter?: React.ReactNode[];
   noBack?: boolean;
   isSearch?: boolean;
+  isScroll?: boolean;
+  isScrollX?: boolean;
 };
 
 const Index = (props: Props) => {
@@ -37,6 +39,8 @@ const Index = (props: Props) => {
     reactNodeRight,
     filter,
     noBack,
+    isScroll,
+    isScrollX,
   } = props;
   const { t } = useTranslation();
   const showChat = useSelector(isChat);
@@ -49,7 +53,7 @@ const Index = (props: Props) => {
       </section>
       <main className={`main__app ${isHeader ? 'open' : 'off'}`}>
         <Header isHeader={isHeader} title={title} placeholder={placeholder} onChange={onChange} isSearch={isSearch} />
-        <div className="main__app--content scroll__foodApp">
+        <div className={`main__app--content ${!isScroll ? 'scroll__foodApp' : ''} ${!isScrollX ? 'scrollX' : ''}`}>
           {isBack && (
             <div className="header__main d-flex justify-content-between align-items-center gap-10 sticky">
               <div className="d-flex justify-content-start align-items-center gap-10">
@@ -73,7 +77,7 @@ const Index = (props: Props) => {
               )}
             </div>
           )}
-          {children}
+          <div className={`${!isBack ? 'mt-10' : ''}`}>{children}</div>
         </div>
       </main>
 

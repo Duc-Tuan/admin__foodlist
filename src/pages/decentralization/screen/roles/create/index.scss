@@ -1,6 +1,7 @@
 .wrapper__createRoles {
   background-color: var(--white-color);
   padding: 10px;
+  min-height: calc(100vh - 102px);
   section {
     &.manganer {
       label {
@@ -14,8 +15,24 @@
           border: var(--border);
           border-radius: 0.4rem;
           overflow: hidden;
+          transition: var(--transition);
           &--header {
             background-color: var(--extra-color-5);
+            .icon {
+              flex: 1;
+              cursor: pointer;
+              svg {
+                width: 2rem;
+                height: 2rem;
+                transition: var(--transition);
+                &.on {
+                  transform: rotate(-180deg);
+                }
+                &.off {
+                  transform: rotate(0);
+                }
+              }
+            }
           }
           &--subMenu {
             border-top: var(--border);

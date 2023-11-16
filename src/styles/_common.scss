@@ -112,6 +112,10 @@ hr {
     background-color: transparent;
   }
 }
+.scrollX {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
 
 h1,
 h2,
@@ -3486,7 +3490,7 @@ pre code {
   top: -10px;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 100;
   background: var(--bg-color);
 }
 .mt-10 {
