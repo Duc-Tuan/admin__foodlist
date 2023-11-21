@@ -21,7 +21,7 @@ root.render(
       <App />
       <ToastContainer
         theme="colored"
-        position="top-right"
+        position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

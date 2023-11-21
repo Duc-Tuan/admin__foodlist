@@ -3,49 +3,7 @@ import { Option } from "../../../../../types/general";
 export interface IDecentralization extends Option {
     children: Option[]
 }
-// 'ViewProducts',
-// 'ViewProducts',
-// 'ViewShipping',
-// 'ViewUsers',
-// 'ViewCategories',
-// 'ViewOrders',
-// 'ViewStatus',
-// 'ViewPromotions',
-// 'ViewRoles',
-// 'ViewStaff',
 
-// 'CreateProducts',
-// 'CreateShipping',
-// 'CreateUsers',
-// 'CreateCategories',
-// 'CreateBanners',
-// 'CreateOrders',
-// 'CreateStatus',
-// 'CreatePromotions',
-// 'CreateRoles',
-// 'CreateStaff',
-
-// 'DeleteProducts',
-// 'DeleteShipping',
-// 'DeleteUsers',
-// 'DeleteCategories',
-// 'DeleteBanners',
-// 'DeleteOrders',
-// 'DeleteStatus',
-// 'DeletePromotions',
-// 'DeleteRoles',
-// 'DeleteStaff',
-
-// 'EditProducts',
-// 'EditShipping',
-// 'EditUsers',
-// 'EditCategories',
-// 'EditOrders',
-// 'EditBanners',
-// 'EditStatus',
-// 'EditPromotions',
-// 'EditRoles',
-// 'EditStaff',
 export const dataDecentralization: IDecentralization[] = [
     {
         value: 'Dashboard',
@@ -156,15 +114,15 @@ export const dataDecentralization: IDecentralization[] = [
                 value: 'VIEWPACCOUNTSTAFF',
             },
             {
-                label: 'Thêm khoản nhân viên',
+                label: 'Thêm tài khoản nhân viên',
                 value: 'CREATEPACCOUNTSTAFF',
             },
             {
-                label: 'Sửa khoản nhân viên',
+                label: 'Sửa tài khoản nhân viên',
                 value: 'EDITPACCOUNTSTAFF',
             },
             {
-                label: 'Xóa khoản nhân viên',
+                label: 'Xóa tài khoản nhân viên',
                 value: 'DELETEPACCOUNTSTAFF',
             },
         ]
@@ -178,15 +136,15 @@ export const dataDecentralization: IDecentralization[] = [
                 value: 'VIEWPACCOUNTUSER',
             },
             {
-                label: 'Thêm khoản khách hàng',
+                label: 'Thêm tài khoản khách hàng',
                 value: 'CREATEPACCOUNTUSER',
             },
             {
-                label: 'Sửa khoản khách hàng',
+                label: 'Sửa tài khoản khách hàng',
                 value: 'EDITPACCOUNTUSER',
             },
             {
-                label: 'Xóa khoản khách hàng',
+                label: 'Xóa tài khoản khách hàng',
                 value: 'DELETEPACCOUNTUSER',
             },
         ]
@@ -262,11 +220,11 @@ export const dataDecentralization: IDecentralization[] = [
         label: 'Thiết lập',
         children: [
             {
-                label: 'Xem Thông tin cửa hàng',
+                label: 'Xem thông tin cửa hàng',
                 value: 'VIEWSTORE',
             },
             {
-                label: 'Sửa Thông tin cửa hàng',
+                label: 'Sửa thông tin cửa hàng',
                 value: 'EDITSTORE',
             },
             {

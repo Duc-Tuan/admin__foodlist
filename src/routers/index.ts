@@ -83,7 +83,7 @@ export const privateRouters: IRouter[] = [
     },
     {
 
-        title: 'Phân quyền nhận viên | admin',
+        title: 'Phân quyền nhân viên | admin',
         path: PATHNAME.SCREENDECENTRALIZATION,
         component: ScreenDecentralization,
         isDefaultSales: true,

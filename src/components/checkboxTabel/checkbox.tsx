@@ -1,6 +1,7 @@
 import React from 'react';
 import './checkbox.scss';
 import Icon from '../../assets/icon';
+import { useTranslation } from 'react-i18next';
 
 interface CheckboxProps {
   label?: string | number;
@@ -15,6 +16,7 @@ interface CheckboxProps {
 
 export default function Checkbox(props: CheckboxProps) {
   const { label, checked, indeterminate, onChange, onClick, className, disabled, styles } = props;
+  const { t } = useTranslation();
   return (
     <div
       className={`foodApp-checkbox${className ? ` ${className}` : ''}${label ? '' : ' isofh-checkbox__no-label'}${
@@ -29,7 +31,7 @@ export default function Checkbox(props: CheckboxProps) {
           <Icon name="icon-interminate" className="minus" />
           <Icon name="checked" className="check" />
         </span>
-        {label || null}
+        {t(String(label)) || null}
       </label>
     </div>
   );

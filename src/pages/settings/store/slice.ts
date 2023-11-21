@@ -2,6 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import * as operations from './operations';
 import i18next from 'i18next';
 import { Option } from '../../../types/general';
+import { getLocation, setLocation } from 'utils/localStorage';
+
+export const nameLanguage: string = 'Language';
 
 interface State {
     isChat?: boolean;
@@ -10,7 +13,7 @@ interface State {
 
 const initialState: State = {
     isChat: false,
-    language: {
+    language: getLocation(nameLanguage) ? JSON.parse(getLocation(nameLanguage) ?? "") : {
         label: "Tiếng việt",
         value: 'vn'
     }
@@ -25,6 +28,7 @@ const payment = createSlice({
         },
         setLanguage: (state, { payload }: PayloadAction<{ language: Option }>) => {
             state.language = payload?.language;
+            setLocation(nameLanguage, JSON.stringify(payload?.language))
             i18next.changeLanguage(payload?.language?.value);
         },
     },

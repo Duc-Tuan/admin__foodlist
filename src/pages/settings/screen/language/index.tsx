@@ -26,7 +26,7 @@ const ScreenLanguage = (props: Props) => {
       isBack
       onClickBack={() => navigate(PATHNAME.SCREENSETTINGS)}
     >
-      <div className="wrapper__settingLanguage compont mt-2 d-flex justify-content-start align-items-center">
+      <div className="wrapper__settingLanguage compont d-flex justify-content-start align-items-center">
         <div className="describe p-10">
           <div className="title">{t('Ngôn ngữ')}</div>
           <div className="sub">{t('Thiết lập chức năng chuyển đổi ngôn ngữ của hệ thống')}</div>

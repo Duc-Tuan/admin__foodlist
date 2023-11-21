@@ -17,7 +17,7 @@ const ScreenInfoStore = (props: Props) => {
       isBack
       onClickBack={() => navigate(PATHNAME.SCREENSETTINGS)}
     >
-      <div className="wrapper__settingStore compont mt-2 d-flex justify-content-start align-items-center">
+      <div className="wrapper__settingStore compont d-flex justify-content-start align-items-center">
         <div className="describe p-10">
           <div className="title">{t('Thông tin cửa hàng')}</div>
           <div className="sub">{t('Quản lý thông tin liên hệ và địa chỉ của cửa hàng')}</div>

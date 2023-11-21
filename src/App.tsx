@@ -11,6 +11,9 @@ import Protectedroute from './routers/protectedroute';
 import { IRouter } from './routers/types';
 
 import './i18n';
+import i18next from 'i18next';
+import { getLocation } from 'utils/localStorage';
+import { nameLanguage } from 'pages/settings/store/slice';
 
 const ScreenLogin = lazy(() => import('./pages/login/screen'));
 
@@ -18,6 +21,10 @@ function App() {
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
+    if (getLocation(nameLanguage)) {
+      i18next.changeLanguage(JSON.parse(getLocation(nameLanguage) ?? '')?.value);
+    }
+
     const token: string = JSON.parse(JSON.stringify(localStorage.getItem('token_foodlist')));
     if (token) {
       dispatch(actionsAccount?.autologin());

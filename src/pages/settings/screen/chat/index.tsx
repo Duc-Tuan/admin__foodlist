@@ -20,7 +20,7 @@ const ScreenChat = (props: Props) => {
 
   return (
     <DefaultLayout title="Thiết lập chat" isSearch isBack onClickBack={() => navigate(PATHNAME.SCREENSETTINGS)}>
-      <div className="wrapper__settingChat compont mt-2 d-flex justify-content-start align-items-center">
+      <div className="wrapper__settingChat compont d-flex justify-content-start align-items-center">
         <div className="describe p-10">
           <div className="title">{t('Tin nhắn')}</div>
           <div className="sub">{t('Thiết lập chức năng nhắn tin với khách hàng')}</div>

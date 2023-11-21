@@ -36,8 +36,7 @@ const ScreenCreateRole = (props: Props) => {
 
   const onSubmit = handleSubmit(async (data: any) => {
     console.log(data);
-    if (selected?.length === 0) {
-    }
+    if (selected?.length === 0) return toast(t('Vui lòng chọn ít nhất 1 phân quyền!'), 'error');
   });
 
   const reactNodeRight = [
@@ -93,11 +92,11 @@ const ScreenCreateRole = (props: Props) => {
       <div className="wrapper__createRoles">
         <InputCompDev
           label="Tên vai trò"
-          placeholder="Full quyền"
+          placeholder="Ăn hại"
           required
           inputProps={{ ...register('name', { required: true }) }}
           errors={errors.name?.message === '' ? true : false}
-          messErrors="Không được để trống tên vai trò!"
+          messErrors="Không được để trống trường tên vai trò!"
         />
 
         <section className="manganer">

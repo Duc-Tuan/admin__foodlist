@@ -17,7 +17,7 @@ const ScreenNotifi = (props: Props) => {
       isBack
       onClickBack={() => navigate(PATHNAME.SCREENSETTINGS)}
     >
-      <div className="wrapper__settingNotifi compont mt-2 d-flex justify-content-start align-items-center">
+      <div className="wrapper__settingNotifi compont d-flex justify-content-start align-items-center">
         <div className="describe p-10">
           <div className="title">{t('Thông báo')}</div>
           <div className="sub">{t('Thiết lập chức năng thông báo của hệ thống')}</div>

@@ -1,3 +1,56 @@
 .wrapper__settingPrint {
   @import '../styleCompon.scss';
+  .detail {
+    & > div {
+      // background: #f8f9fa !important;
+      // margin: 1rem;
+      height: calc(100%);
+      .edit,
+      .view {
+        background-color: var(--white-color) !important;
+        margin: 1rem;
+        // padding: 0.6rem;
+        // border: var(--border);
+        border-radius: 0.8rem;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        height: calc(100% - 2rem);
+        overflow: hidden;
+        .header__print {
+          text-align: center;
+          background-color: #f2f2f2;
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: 1.5rem;
+          color: var(--extra-color-80);
+          padding: 0.6rem;
+          position: relative;
+          .icon {
+            position: absolute;
+            top: 48%;
+            right: 0.6rem;
+            transform: translateY(-50%);
+            button {
+              height: 3rem !important;
+              border-radius: 0.6rem;
+              svg {
+                width: 1.4rem;
+                height: 1.4rem;
+              }
+            }
+          }
+        }
+        .main{
+          overflow: scroll;
+          height: 61rem;
+        }
+      }
+      .edit {
+        margin-right: 0.5rem;
+        
+      }
+      .view {
+        margin-left: 0.5rem;
+      }
+    }
+  }
 }
