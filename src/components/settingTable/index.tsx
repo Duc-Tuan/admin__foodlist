@@ -107,6 +107,7 @@ const Index = (props: Props) => {
                         <div className="d-flex justify-content-start align-items-center">
                           <div className="icon__left">
                             <Checkbox
+                              label={i}
                               checked={showSelected?.find((d: any) => d?.title === i)?.show}
                               onChange={() => {
                                 const flag = cloneDeep(showSelected);
@@ -118,7 +119,7 @@ const Index = (props: Props) => {
                               }}
                             />
                           </div>
-                          {t(i)}
+                          {/* {t(i)} */}
                         </div>
 
                         <div className="icon__right d-flex justify-content-center align-items-center">
