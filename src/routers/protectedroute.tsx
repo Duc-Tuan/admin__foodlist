@@ -4,8 +4,8 @@ import { PATHNAME } from '../configs/pathname';
 import React from 'react';
 
 const Protectedroute = () => {
-  // const isLogin = sessionStorage.getItem('token_foodlist');
-  const isLogin = true;
+  const isLogin = sessionStorage.getItem('token_foodlist');
+  // const isLogin = true;
   return isLogin ? <Outlet /> : <Navigate replace to={PATHNAME.SCREENLOGIN} />;
 };
 
