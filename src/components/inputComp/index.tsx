@@ -13,6 +13,7 @@ type Props = {
   value?: string;
   inputProps?: any;
   type?: 'text' | 'password';
+  classNameWrapper?: string;
 };
 
 const Index = (props: Props) => {
@@ -25,12 +26,13 @@ const Index = (props: Props) => {
     required,
     type,
     value,
+    classNameWrapper
   } = props;
   const [showPassword, { on, off, toggle }] = useBoolean();
   const { t } = useTranslation();
 
   return (
-    <div className="wrapper__inputComp d-flex justify-content-end align-items-start flex-column gap-2 w-100">
+    <div className={`wrapper__inputComp d-flex justify-content-end align-items-start flex-column gap-2 w-100 ${classNameWrapper}`}>
       <div className={`input w-100 ${value !== '' ? 'active' : ''}`}>
         {label && (
           <label className={`${value !== '' ? 'active' : ''}`}>

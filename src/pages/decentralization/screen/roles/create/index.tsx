@@ -90,36 +90,46 @@ const ScreenCreateRole = (props: Props) => {
       onClickBack={() => navigate(PATHNAME.SCREENROLE)}
     >
       <div className="wrapper__createRoles">
-        <InputCompDev
-          label="Tên vai trò"
-          placeholder="Ăn hại"
-          required
-          inputProps={{ ...register('name', { required: true }) }}
-          errors={errors.name?.message === '' ? true : false}
-          messErrors="Không được để trống trường tên vai trò!"
-        />
+        <div style={{ paddingBottom: `${errors.name && (errors.name?.message === '' ? true : false) ? '0' : '1rem'}` }}>
+          <InputCompDev
+            classNameWrapper="mb-0"
+            label="Tên vai trò"
+            placeholder="Ăn hại"
+            required
+            inputProps={{ ...register('name', { required: true }) }}
+            errors={errors.name?.message === '' ? true : false}
+            messErrors="Không được để trống trường tên vai trò!"
+          />
+        </div>
 
         <section className="manganer">
-          <label htmlFor="">{t('Phân quyền')}</label>
-          <main>
-            {dataDecentralization.map((i: IDecentralization, idx: number) => {
-              const { children, label, value } = i;
-              const isCheckedAll = children?.map((s: Option) => {
-                return selected?.some((c: string) => c === s?.value);
-              });
-              return (
-                <Item
-                  data={i}
-                  children={children}
-                  handleCheck={handleCheck}
-                  isCheckedAll={isCheckedAll}
-                  label={label}
-                  selected={selected}
-                  key={`key-roles-${idx}`}
-                />
-              );
-            })}
-          </main>
+          <label className="label">{t('Phân quyền')}</label>
+          <div
+            className="scroll__foodApp"
+            style={{
+              height: `calc(100% - ${errors.name && (errors.name?.message === '' ? true : false) ? '14rem' : '12rem'})`,
+            }}
+          >
+            <main>
+              {dataDecentralization.map((i: IDecentralization, idx: number) => {
+                const { children, label, value } = i;
+                const isCheckedAll = children?.map((s: Option) => {
+                  return selected?.some((c: string) => c === s?.value);
+                });
+                return (
+                  <Item
+                    data={i}
+                    children={children}
+                    handleCheck={handleCheck}
+                    isCheckedAll={isCheckedAll}
+                    label={label}
+                    selected={selected}
+                    key={`key-roles-${idx}`}
+                  />
+                );
+              })}
+            </main>
+          </div>
         </section>
       </div>
     </DefaultLayout>
@@ -145,7 +155,7 @@ const Item = (props: IItem) => {
       <div className="manganer__item--header p-10 d-flex justify-content-between align-items-center gap-10">
         <Checkbox
           checked={isCheckedAll?.some((ck: boolean) => ck === false) ? false : true}
-          label={label}
+          label={`${label} (${isCheckedAll?.filter((ck: boolean) => ck === true)?.length})`}
           onChange={(e: any) => handleCheck(e?.target?.checked, data, 'parent')}
         />
 

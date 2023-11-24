@@ -10,10 +10,12 @@
     position: relative;
     input {
       border: var(--border) !important;
-      padding: 6px 10px !important;
-      margin-top: 8px;
+      padding: 4px 10px !important;
+      margin-top: 0.6rem;
       border-radius: 4px;
       font-size: 1.5rem;
+      height: 3.4rem;
+
       &:focus {
         border-color: var(--main-color) !important;
       }
