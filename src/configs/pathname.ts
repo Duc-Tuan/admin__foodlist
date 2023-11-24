@@ -1,6 +1,7 @@
 export const PATHNAME = {
     SCREENDASHBOARD: '/home',
-    SCREENLOGIN: '/login',
+    // SCREENLOGIN: '/login',
+    SCREENLOGIN: '/',
     SCREENORDERCOUNTERS: '/order-counters',
     SCREENORDERUSER: '/order-onlines',
     SCREENPROMMOTIONS: '/prommotions',

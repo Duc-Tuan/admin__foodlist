@@ -155,7 +155,7 @@ const Item = (props: IItem) => {
       <div className="manganer__item--header p-10 d-flex justify-content-between align-items-center gap-10">
         <Checkbox
           checked={isCheckedAll?.some((ck: boolean) => ck === false) ? false : true}
-          label={`${label} (${isCheckedAll?.filter((ck: boolean) => ck === true)?.length}) `}
+          label={`${label} (${isCheckedAll?.filter((ck: boolean) => ck === true)?.length})`}
           onChange={(e: any) => handleCheck(e?.target?.checked, data, 'parent')}
         />
 
