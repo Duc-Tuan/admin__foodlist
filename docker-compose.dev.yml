@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  food_app:
+    container_name: food_app
+    command: sh -c "yarn install && yarn run dev"
+    image: food_app
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./src:/app/src
+    ports:
+      - 127.0.0.1:3000:3000
+    restart: always

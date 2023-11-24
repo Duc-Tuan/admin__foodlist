@@ -8,13 +8,33 @@ import Icon from 'assets/icon';
 import { Button } from 'components';
 import OrderPrintForm from './components/order/OrderPrintForm';
 import { dataFormDefalut } from './form';
+import { useReactToPrint } from 'react-to-print';
 
 type Props = {};
 
 const ScreenPrint = (props: Props) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const refPrintTest = React.useRef<any>();
   const [editHTML, setEditHTML] = React.useState<string>(dataFormDefalut);
+  const [printTest, setPrintTest] = React.useState<{
+    type: string;
+    status: boolean;
+  }>({
+    type: 'stock_adjustment',
+    status: false,
+  });
+
+  const handlePrint = useReactToPrint({
+    content: () => refPrintTest?.current,
+    onAfterPrint: () => {
+      setPrintTest({
+        type: 'order',
+        status: false,
+      });
+    },
+  });
+
   return (
     <DefaultLayout title="Thiết lập mẫu phiếu in" isSearch isBack onClickBack={() => navigate(PATHNAME.SCREENSETTINGS)}>
       <div className="wrapper__settingPrint compont d-flex justify-content-start align-items-center">
@@ -43,7 +63,7 @@ const ScreenPrint = (props: Props) => {
               <div className="header__print">
                 {t('Bản xem trước')}
                 <div className="icon">
-                  <Button color="primary">
+                  <Button color="primary" onClick={handlePrint}>
                     <Icon name="v2-print" />
                     {t('In thử')}
                   </Button>
@@ -51,7 +71,7 @@ const ScreenPrint = (props: Props) => {
               </div>
 
               <div className="main">
-                <OrderPrintForm size={'K80'} html={editHTML} isTest />
+                <OrderPrintForm size={'K80'} html={editHTML} isTest ref={refPrintTest}/>
               </div>
             </div>
           </div>

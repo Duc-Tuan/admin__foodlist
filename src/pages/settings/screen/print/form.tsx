@@ -2,12 +2,14 @@ import { formatVietnameseCurrency } from 'utils';
 
 export const dataFormDefalut: () => string = () => {
   return `<div style="padding: 2rem">
-    <div style="display: flex; justify-content: flex-start; align-items: center; gap: 10px">
-        {store_logo}
-        <div>
-            <div style="font-size: 1.4rem">Cửa hàng: {store_name}</div>
-            <div style="font-size: 1.4rem">Địa chỉ: {location_address}, {location_ward}, {location_district}, {location_province}</div>
-            <div style="font-size: 1.4rem">Số điện thoại: {store_phone}</div>
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 2rem">
+        <div style="display: flex; justify-content: flex-start; align-items: center; gap: 2rem">
+            <div>{store_logo}</div>
+            <div>
+                <div style="font-size: 1.4rem">Cửa hàng: {store_name}</div>
+                <div style="font-size: 1.4rem">Địa chỉ: {location_address}, {location_ward}, {location_district}, {location_province}</div>
+                <div style="font-size: 1.4rem">Số điện thoại: {store_phone}</div>
+            </div>
         </div>
         <div>
             <div>{order_code_barcode}</div>
@@ -77,7 +79,9 @@ export const dataFormDefalut: () => string = () => {
         <div>{total}</div>
    </div>
    <div>
-    <div style="color:#000;font-size:1.5rem;font-weight:400;line-height:1.5rem; float: right"><i>Bằng chữ: ${formatVietnameseCurrency(3250000)}</i></div>
+    <div style="color:#000;font-size:1.5rem;font-weight:400;line-height:1.5rem; float: right"><i>Bằng chữ: ${formatVietnameseCurrency(
+      3250000,
+    )}</i></div>
    </div>
 
     <div style="color:#000;font-size:1.3rem;font-weight:400;line-height:1.5rem; text-align: center; margin-top: 4rem"><i>Cảm ơn quý khách và hẹn gặp lại!</i></div>
