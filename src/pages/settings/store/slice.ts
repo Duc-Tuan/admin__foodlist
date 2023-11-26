@@ -12,7 +12,7 @@ interface State {
 }
 
 const initialState: State = {
-    isChat: false,
+    isChat: true,
     language: getLocation(nameLanguage) ? JSON.parse(getLocation(nameLanguage) ?? "") : {
         label: "Tiếng việt",
         value: 'vn'

@@ -9,7 +9,7 @@ interface State {
 }
 
 const initialState: State = {
-    isShow: true,
+    isShow: false,
     selected: undefined
 };
 

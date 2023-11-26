@@ -24,10 +24,9 @@ function App() {
     if (getLocation(nameLanguage)) {
       i18next.changeLanguage(JSON.parse(getLocation(nameLanguage) ?? '')?.value);
     }
-
     const token: string = JSON.parse(JSON.stringify(localStorage.getItem('token_foodlist')));
     if (token) {
-      dispatch(actionsAccount?.autologin());
+      dispatch(actionsAccount?.autologin())
     }
   }, []);
 
