@@ -11,21 +11,21 @@ export interface ISelectUser {
 
 export const dataUserChat: ISelectUser[] = [
     {
-        id: 1,
+        id: '650bbb2315c0e10c0ed839d9',
         name: 'Phạm Đức Tuấn',
         image: avatar__user,
         date: "Tue Nov 07 2023 23:43:21 GMT+0700 (Indochina Time)",
         contentNew: 'Nhìn cái méo gì không biết nữa',
     },
     {
-        id: 2,
+        id: '651fa7a8009e2784634b5329',
         name: 'Mr.Tuan',
         image: avatar__user,
         date: "Tue Nov 06 2023 23:43:21 GMT+0700 (Indochina Time)",
         contentNew: 'Nhìn cái con củ...',
     },
     {
-        id: 3,
+        id: "1234234234",
         name: 'Mr.John',
         image: avatar__user,
         date: "Th Oct 26 2023 16:49:39 GMT+0700 (Indochina Time) ",
@@ -34,9 +34,9 @@ export const dataUserChat: ISelectUser[] = [
 ]
 
 export interface IMessager {
-    id: number | string;
+    id?: number | string;
     senderId: number | string;
-    receiverId: number | string;
+    receiverId?: number | string;
     content: string;
     date: string;
 }

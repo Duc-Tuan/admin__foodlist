@@ -1,5 +1,6 @@
 import Tippy from '@tippyjs/react';
 import React from 'react';
+import * as axiosInstance from '../../../store/axios';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import Icon from '../../../assets/icon';
@@ -8,7 +9,7 @@ import { WrapTooltip } from '../../../components/wrapTooltip/WrapTooltip';
 import { useAppDispatch, useBoolean } from '../../../hooks';
 import useDebounce from '../../../hooks/components/useDebounce';
 import { actions as actionsChat } from '../store';
-import { isShow, selected } from '../store/select';
+import { isShow, selected, socketClient } from '../store/select';
 import {
   IMessager,
   ISelectUser,
@@ -24,9 +25,15 @@ import { cloneDeep } from 'lodash';
 import { Loading, LoadingDots } from '../../../components';
 import Images from '../../../components/image';
 
+import { io } from 'socket.io-client';
+import { useLocation } from 'react-router-dom';
+import { accountSelect } from 'pages/login/store/select';
+
 const Chat = () => {
   const { t } = useTranslation();
   const showChat = useSelector(isShow);
+  const dataUserRedux = useSelector(accountSelect);
+  const socket = useSelector(socketClient);
   const refChat = React.useRef<any>();
   const dispatch = useAppDispatch();
   const selectedUser = useSelector(selected);
@@ -37,6 +44,12 @@ const Chat = () => {
   let dateTimeMessRef = React.useRef() as React.MutableRefObject<string>;
   const [isFetching, setIsFetching] = React.useState(false);
   const [isScrollBottom, setScrollBottom] = React.useState<boolean>(false);
+
+  const [idChat, setIdChat] = React.useState<string | number>('');
+
+  const [dataScreen, setDataScreen] = React.useState<any[]>([]);
+
+  const { pathname } = useLocation();
 
   React.useEffect(() => {
     refChat?.current?.scrollTo({ top: refChat?.current?.scrollHeight });
@@ -81,6 +94,29 @@ const Chat = () => {
     dispatch(actionsChat.setChat({ isShow: isShowChat }));
   }, [isShowChat]);
 
+  React.useEffect(() => {
+    socket?.on('server_send', (data: any) => {
+      setDataScreen((prev) => [...prev, data]);
+      console.log('send : ', data);
+    });
+    // socket?.on('admin_merchant', (data: any) => {
+    //   console.log('admin_merchant: ', data);
+    //   setDataScreen((prev) => [...prev, data]);
+    // });
+  }, [socket]);
+
+  const handleSend = () => {
+    // const id = pathname === '/home' || pathname === '/order-counters' ? 'zoom ngon' : 'cút ngay';
+    const dataSend: IMessager = {
+      content: value,
+      date: new Date().toString(),
+      id: undefined,
+      receiverId: undefined,
+      senderId: idChat,
+    };
+    socket.emit('client_send', dataSend);
+  };
+
   return (
     <div className="wrapper_compChat">
       <div className="icon" onClick={toggle}>
@@ -90,7 +126,15 @@ const Chat = () => {
       {isShowChat && (
         <div className="main__chat">
           <div className="header__chat d-flex justify-content-between align-items-center gap-10">
-            <div className="header__chat--notifi-qty">{t('Tin nhắn')} (09)</div>
+            <div className="header__chat--notifi-qty">
+              {t('Tin nhắn')} (
+              {dataScreen?.length > 10
+                ? dataScreen?.length > 99
+                  ? '+99'
+                  : dataScreen?.length
+                : `0${dataScreen?.length}`}
+              )
+            </div>
             <div className="right d-flex justify-content-end align-items-center gap-4">
               <div className="user__chat  d-flex justify-content-start align-items-end gap-4">
                 <div className="title">{t('Đang chat bằng')}: </div>
@@ -127,6 +171,7 @@ const Chat = () => {
                     selectUser?.id === i?.id ? 'active' : ''
                   }`}
                   onClick={() => {
+                    setIdChat(i?.id);
                     dispatch(actionsChat.setSelected({ selected: i }));
                     setSelectUser(i);
                   }}
@@ -217,6 +262,7 @@ const Chat = () => {
                         className={`icon d-flex justify-content-center align-items-center ${
                           value !== '' ? 'active' : ''
                         }`}
+                        onClick={handleSend}
                       >
                         <Icon name="icon-send-chat" />
                       </div>

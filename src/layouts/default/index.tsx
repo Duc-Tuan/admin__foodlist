@@ -10,6 +10,11 @@ import { useSelector } from 'react-redux';
 import { isChat } from '../../pages/settings/store/select';
 import { useHeader } from '../../hooks/common/useHeader';
 
+import { io } from 'socket.io-client';
+import { accountSelect } from 'pages/login/store/select';
+import { useAppDispatch, useToast } from 'hooks';
+import { actions as actionsChat } from 'layouts/chat/store';
+
 type Props = {
   children: React.ReactNode | string;
   isHeader?: boolean;
@@ -44,7 +49,29 @@ const Index = (props: Props) => {
   } = props;
   const { t } = useTranslation();
   const showChat = useSelector(isChat);
+  const dataUserRedux = useSelector(accountSelect);
   const { isHeader: isSlidebar, isSubMenu } = useHeader();
+  const [socket, setSocket] = React.useState<any>(null);
+  const toast = useToast();
+  const dispath = useAppDispatch();
+
+  React.useEffect(() => {
+    const newSocket = io('http://localhost:3036');
+    setSocket(newSocket);
+    dispath(actionsChat.setSocketChat({ socket: newSocket }));
+    return () => {
+      newSocket?.disconnect();
+    };
+  }, []);
+
+  React.useEffect(() => {
+    socket?.emit('client_send-merchant', { data: { value: '', idMerchant: '650bbb2315c0e10c0ed839d9' } });
+    // socket?.emit('client_send', { data: { id: dataUserRedux?._id, type: 'server' } });
+  }, [socket, dataUserRedux?._id]);
+
+  React.useEffect(() => {
+    socket?.on('admin_merchant', (data: any) => toast(data?.value, 'success'));
+  }, [socket]);
 
   return (
     <div className="app__food d-flex">
