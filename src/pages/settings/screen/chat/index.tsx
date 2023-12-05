@@ -7,7 +7,7 @@ import Switch from '../../../../components/switch/switch';
 import { useAppDispatch } from '../../../../hooks';
 import { actions as actionsChat } from '../../store';
 import { useSelector } from 'react-redux';
-import { isChat } from '../../store/select';
+import { isSettingChat } from '../../store/select';
 import { useTranslation } from 'react-i18next';
 
 type Props = {};
@@ -16,7 +16,7 @@ const ScreenChat = (props: Props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const shshowChat = useSelector(isChat);
+  const shshowChat = useSelector(isSettingChat);
 
   return (
     <DefaultLayout title="Thiết lập chat" isSearch isBack onClickBack={() => navigate(PATHNAME.SCREENSETTINGS)}>

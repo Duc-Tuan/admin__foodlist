@@ -6,13 +6,11 @@ import { ISelectUser } from '../screen/const';
 interface State {
     isShow: boolean;
     selected?: ISelectUser;
-    socket?: any;
 }
 
 const initialState: State = {
-    isShow: false,
+    isShow: true,
     selected: undefined,
-    socket: undefined
 };
 
 const chat = createSlice({
@@ -22,10 +20,6 @@ const chat = createSlice({
         setChat(state, action: PayloadAction<Pick<Required<State>, 'isShow'>>) {
             const { payload } = action;
             state.isShow = payload.isShow;
-        },
-        setSocketChat(state, action: PayloadAction<Pick<Required<State>, 'socket'>>) {
-            const { payload } = action;
-            state.socket = payload.socket;
         },
         setSelected(state, action: PayloadAction<Pick<Required<State>, 'selected'>>) {
             const { payload } = action;

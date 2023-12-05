@@ -20,21 +20,4 @@
       }
     }
   }
-  .wrapper__chat {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: var(--main-color);
-    box-shadow: var(--box-shadow);
-    border-radius: 100%;
-    z-index: 100;
-    cursor: pointer;
-    .icon {
-      padding: 10px;
-      svg {
-        width: 28px;
-        height: 28px;
-      }
-    }
-  }
 }

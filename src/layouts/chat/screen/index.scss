@@ -1,4 +1,31 @@
 .wrapper_compChat {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--main-color);
+  box-shadow: var(--box-shadow);
+  border-radius: 100%;
+  z-index: 100;
+  cursor: pointer;
+  .icon {
+    position: relative;
+    padding: 10px;
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+    .notifiMess {
+      position: absolute;
+      top: -0.4rem;
+      right: -0.4rem;
+      width: 2rem;
+      height: 2rem;
+      background-color: red;
+      color: var(--white-color);
+      border-radius: 100%;
+      font-size: 1.4rem;
+    }
+  }
   .main__chat {
     position: absolute;
     bottom: calc(100% + 14px);
@@ -82,12 +109,24 @@
           transition: var(--transition);
           border-top-left-radius: 4px;
           border-bottom-left-radius: 4px;
+          position: relative;
           &.active {
             background-color: rgba(0, 0, 0, 0.04);
           }
           &:hover {
             transition: var(--transition);
             background-color: rgba(0, 0, 0, 0.04);
+          }
+          .notifi {
+            position: absolute;
+            top: 0.4rem;
+            left: 0;
+            background-color: red;
+            width: 1.8rem;
+            height: 1.8rem;
+            border-radius: 100%;
+            color: var(--white-color);
+            font-size: 1.2rem;
           }
         }
         .avatar {
@@ -97,6 +136,7 @@
           border-radius: 100%;
           overflow: hidden;
         }
+
         .info {
           flex: 1;
           .time {
@@ -199,6 +239,7 @@
               }
             }
             .icon {
+              position: relative;
               background-color: var(--white-color);
               border: var(--border);
               height: 100%;

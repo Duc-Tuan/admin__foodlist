@@ -11,18 +11,11 @@ export interface ISelectUser {
 
 export const dataUserChat: ISelectUser[] = [
     {
-        id: '650bbb2315c0e10c0ed839d9',
+        id: '651fa7a8009e2784634b5329',
         name: 'Phạm Đức Tuấn',
         image: avatar__user,
         date: "Tue Nov 07 2023 23:43:21 GMT+0700 (Indochina Time)",
         contentNew: 'Nhìn cái méo gì không biết nữa',
-    },
-    {
-        id: '651fa7a8009e2784634b5329',
-        name: 'Mr.Tuan',
-        image: avatar__user,
-        date: "Tue Nov 06 2023 23:43:21 GMT+0700 (Indochina Time)",
-        contentNew: 'Nhìn cái con củ...',
     },
     {
         id: "1234234234",
@@ -34,127 +27,52 @@ export const dataUserChat: ISelectUser[] = [
 ]
 
 export interface IMessager {
-    id?: number | string;
-    senderId: number | string;
+    zoom?: number | string;
+    senderId?: number | string;
     receiverId?: number | string;
-    content: string;
+    content?: string;
     date: string;
 }
 
 export const fakeDataMessage: IMessager[] = [
     {
-        id: 1,
-        senderId: 2222,
-        receiverId: 11,
+        zoom: '651fa7a8009e2784634b5329',
+        senderId: '651fa7a8009e2784634b5329',
+        receiverId: '650bbb2315c0e10c0ed839d9',
         content: "mmmmmmmmmm",
         date: "Wed Oct 25 2023 16:49:39 GMT+0700 (Indochina Time) ",
     },
     {
-        id: 2,
-        senderId: 11,
-        receiverId: 2222,
+        zoom: '651fa7a8009e2784634b5329',
+        senderId: '650bbb2315c0e10c0ed839d9',
+        receiverId: '651fa7a8009e2784634b5329',
         content: "aaaaaa",
         date: "Wed Oct 25 2023 16:49:39 GMT+0700 (Indochina Time) ",
     },
     {
-        id: 3,
-        senderId: 11,
-        receiverId: 11,
+        zoom: '651fa7a8009e2784634b5329',
+        senderId: '650bbb2315c0e10c0ed839d9',
+        receiverId: '650bbb2315c0e10c0ed839d9',
         content: "bbbb",
         date: "Wed Oct 25 2023 16:49:39 GMT+0700 (Indochina Time) ",
     },
     {
-        id: 4,
-        senderId: 2222,
-        receiverId: 11,
+        zoom: '651fa7a8009e2784634b5329',
+        senderId: '651fa7a8009e2784634b5329',
+        receiverId: '650bbb2315c0e10c0ed839d9',
         content: "lượn ngay",
         date: "Wed Oct 25 2023 16:49:39 GMT+0700 (Indochina Time) ",
     },
     {
-        id: 5,
-        senderId: 2222,
-        receiverId: 11,
+        zoom: '651fa7a8009e2784634b5329',
+        senderId: '651fa7a8009e2784634b5329',
+        receiverId: '650bbb2315c0e10c0ed839d9',
         content: "Nhắn cái cc Nhắn cái cc",
         date: "Wed Oct 25 2023 16:49:39 GMT+0700 (Indochina Time) ",
     },
-    {
-        id: 6,
-        senderId: 11,
-        receiverId: 2222,
-        content: "aaaaaa",
-        date: "Wed Oct 25 2023 16:49:39 GMT+0700 (Indochina Time) ",
-    },
-    {
-        id: 7,
-        senderId: 11,
-        receiverId: 11,
-        content: "bbbb",
-        date: "Wed Oct 25 2023 16:49:39 GMT+0700 (Indochina Time) ",
-    },
-    {
-        id: 8,
-        senderId: 2222,
-        receiverId: 11,
-        content: "lượn ngay",
-        date: "Tue Nov 07 2023 23:43:21 GMT+0700 (Indochina Time)",
-    },
-    {
-        id: 9,
-        senderId: 11,
-        receiverId: 2222,
-        content: "aaaaaa",
-        date: "Tue Nov 07 2023 23:43:21 GMT+0700 (Indochina Time)",
-    },
-    {
-        id: 10,
-        senderId: 11,
-        receiverId: 11,
-        content: "bbbb",
-        date: "Tue Nov 07 2023 23:43:21 GMT+0700 (Indochina Time)",
-    },
-    {
-        id: 11,
-        senderId: 2222,
-        receiverId: 11,
-        content: "lượn ngay",
-        date: "Tue Nov 07 2023 23:43:21 GMT+0700 (Indochina Time)",
-    }
+
 ]
 export const fakeDataMessage2: IMessager[] = [
-    {
-        id: 1,
-        senderId: 2222,
-        receiverId: 11,
-        content: "mmmmmmmmmm 1",
-        date: "Wed Oct 24 2023 16:49:39 GMT+0700 (Indochina Time) ",
-    },
-    {
-        id: 2,
-        senderId: 11,
-        receiverId: 2222,
-        content: "aaaaaa 2",
-        date: "Wed Oct 24 2023 16:49:39 GMT+0700 (Indochina Time) ",
-    },
-    {
-        id: 3,
-        senderId: 11,
-        receiverId: 11,
-        content: "bbbb 3",
-        date: "Wed Oct 24 2023 16:49:39 GMT+0700 (Indochina Time) ",
-    }, {
-        id: 4,
-        senderId: 2222,
-        receiverId: 11,
-        content: "lượn ngay",
-        date: "Wed Oct 24 2023 16:49:39 GMT+0700 (Indochina Time) ",
-    },
-    {
-        id: 5,
-        senderId: 2222,
-        receiverId: 11,
-        content: "Nhắn cái cc Nhắn cái cc",
-        date: "Wed Oct 24 2023 16:49:39 GMT+0700 (Indochina Time) ",
-    },
 ]
 
 
