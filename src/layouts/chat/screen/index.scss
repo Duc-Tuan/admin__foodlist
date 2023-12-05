@@ -158,6 +158,7 @@
       &--right {
         background-color: #f2f2f2;
         flex: 1;
+        width: calc(100% - 22rem);
         height: 100%;
         .title__user {
           width: 100%;
@@ -190,6 +191,8 @@
               }
               .mess {
                 font-size: 1.4rem;
+                word-break: break-all;
+                text-align: left;
               }
               & > div {
                 background-color: rgba(var(--main-rgba-color));
@@ -208,12 +211,121 @@
                 line-height: 14px;
               }
             }
+            .user__screen {
+              width: 1.8rem;
+              height: 1.8rem;
+              border-radius: 100%;
+              overflow: hidden;
+              background-color: var(--white-color);
+              box-shadow: var(--border);
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+          }
+          .image__send {
+            padding: 1rem;
+            padding-bottom: 0;
+            background-color: var(--white-color);
+            // max-width: 36rem;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            &.scroll__foodApp::-webkit-scrollbar {
+              height: 0.8rem !important;
+            }
+            .img,
+            .add {
+              width: 6rem;
+              min-width: 6rem;
+              height: 6rem;
+              border-radius: 0.6rem;
+              overflow: hidden;
+              border: 1px dashed #d9d9d9;
+              img {
+                object-fit: cover;
+              }
+            }
+            .img {
+              position: relative;
+              .clear-one-img {
+                position: absolute;
+                display: flex;
+                visibility: hidden;
+                opacity: 0;
+                top: 0;
+                right: 0;
+                cursor: pointer;
+                border-radius: 100%;
+                padding: 0.4rem;
+                background-color: #666;
+                transition: var(--transition);
+                svg {
+                  width: 0.8rem;
+                  height: 0.8rem;
+                  path {
+                    fill: var(--white-color);
+                    transition: var(--transition);
+                  }
+                }
+                &:hover {
+                  transform: scale(0.9);
+                }
+              }
+              &:hover .clear-one-img {
+                opacity: 1;
+                visibility: visible;
+                transition: var(--transition);
+              }
+            }
+            .add {
+              svg {
+                width: 2rem;
+                height: 2rem;
+                path {
+                  fill: #d9d9d9;
+                }
+              }
+            }
+            .clear {
+              position: absolute;
+              top: 0;
+              right: 0;
+              cursor: pointer;
+              background-color: var(--white-color);
+              border-radius: 100%;
+              svg {
+                width: 1.8rem;
+                height: 1.8rem;
+                path {
+                  fill: var(--extra-color-80);
+                  transition: var(--transition);
+                }
+              }
+              &:hover {
+                svg {
+                  transform: scale(0.9);
+                  path {
+                    fill: var(--main-color);
+                    transition: var(--transition);
+                  }
+                }
+              }
+            }
           }
           .send {
             position: relative;
+            height: 3.8rem;
+            > div {
+              background-color: var(--white-color);
+              border-top: var(--border);
+              border-bottom: var(--border);
+            }
             input {
               outline: none;
-              border: var(--border);
+              border: none;
+              border-left: var(--border);
               padding: 6px;
               font-size: 1.4rem;
               padding-right: 40px;
@@ -225,6 +337,7 @@
               transform: translateY(-50%);
               cursor: pointer;
               transition: var(--transition);
+              border: none;
               &:hover {
                 svg {
                   path {

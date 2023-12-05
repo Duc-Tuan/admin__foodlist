@@ -215,3 +215,31 @@
     }
   }
 }
+
+.wrapper__morechat {
+  .menu__chat {
+    .icon {
+      cursor: pointer;
+      svg {
+        width: 1.8rem;
+        height: 1.8rem;
+        path {
+          fill: #9a9a9a;
+          transition: var(--transition);
+        }
+      }
+      &:first-child {
+        svg {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+      }
+      &:hover {
+        path {
+          fill: var(--main-color);
+          transition: var(--transition);
+        }
+      }
+    }
+  }
+}

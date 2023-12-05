@@ -32,6 +32,13 @@ export interface IMessager {
     receiverId?: number | string;
     content?: string;
     date: string;
+    screen?: boolean;
+}
+
+export interface uploadFile {
+    id: number;
+    url?: string;
+    file?: File
 }
 
 export const fakeDataMessage: IMessager[] = [
@@ -41,6 +48,7 @@ export const fakeDataMessage: IMessager[] = [
         receiverId: '650bbb2315c0e10c0ed839d9',
         content: "mmmmmmmmmm",
         date: "Wed Oct 25 2023 16:49:39 GMT+0700 (Indochina Time) ",
+        screen: true,
     },
     {
         zoom: '651fa7a8009e2784634b5329',
@@ -48,13 +56,15 @@ export const fakeDataMessage: IMessager[] = [
         receiverId: '651fa7a8009e2784634b5329',
         content: "aaaaaa",
         date: "Wed Oct 25 2023 16:49:39 GMT+0700 (Indochina Time) ",
+        screen: true,
     },
     {
         zoom: '651fa7a8009e2784634b5329',
         senderId: '650bbb2315c0e10c0ed839d9',
-        receiverId: '650bbb2315c0e10c0ed839d9',
+        receiverId: '651fa7a8009e2784634b5329',
         content: "bbbb",
         date: "Wed Oct 25 2023 16:49:39 GMT+0700 (Indochina Time) ",
+        screen: true,
     },
     {
         zoom: '651fa7a8009e2784634b5329',
@@ -62,6 +72,7 @@ export const fakeDataMessage: IMessager[] = [
         receiverId: '650bbb2315c0e10c0ed839d9',
         content: "lượn ngay",
         date: "Wed Oct 25 2023 16:49:39 GMT+0700 (Indochina Time) ",
+        screen: true,
     },
     {
         zoom: '651fa7a8009e2784634b5329',
@@ -69,6 +80,7 @@ export const fakeDataMessage: IMessager[] = [
         receiverId: '650bbb2315c0e10c0ed839d9',
         content: "Nhắn cái cc Nhắn cái cc",
         date: "Wed Oct 25 2023 16:49:39 GMT+0700 (Indochina Time) ",
+        screen: true,
     },
 
 ]

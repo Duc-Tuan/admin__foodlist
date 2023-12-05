@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import Icon from '../../../assets/icon';
 import NoMess from '../../../assets/images/no-messager.png';
 import { WrapTooltip } from '../../../components/wrapTooltip/WrapTooltip';
-import { useAppDispatch, useBoolean } from '../../../hooks';
+import { useAppDispatch, useBoolean, useToast } from '../../../hooks';
 import useDebounce from '../../../hooks/components/useDebounce';
 import { actions as actionsChat } from '../store';
 import { selected } from '../store/select';
@@ -18,6 +18,7 @@ import {
   dateTimeMess,
   fakeDataMessage,
   fakeDataMessage2,
+  uploadFile,
 } from './const';
 import './index.scss';
 import dayjs from 'dayjs';
@@ -29,10 +30,15 @@ import { accountSelect } from 'pages/login/store/select';
 import { isSettingChat } from 'pages/settings/store/select';
 import { useLocation } from 'react-router-dom';
 import { PATHNAME } from 'configs/pathname';
+import { inValidFileImage, inValidateSizeFile } from 'utils';
+import SelectImage from './SelectImage';
 
 const Chat = ({ socket }: any) => {
   const { t } = useTranslation();
   const url = useLocation();
+  const toast = useToast();
+  const refImageScroll = React.useRef<any>();
+  const refFile = React.useRef<any>();
   const refInput = React.useRef<any>();
   const showChat = useSelector(isSettingChat);
   const dataUserRedux = useSelector(accountSelect);
@@ -51,6 +57,9 @@ const Chat = ({ socket }: any) => {
   const [dataSocket, setDataSocket] = React.useState<any>();
 
   const [dataScreen, setDataScreen] = React.useState<any[]>([]);
+
+  const [imageSend, setImageSend] = React.useState<uploadFile[]>([]);
+  const refImageIndex = React.useRef<number>(imageSend?.length);
 
   React.useEffect(() => {
     refInput.current?.focus();
@@ -116,6 +125,7 @@ const Chat = ({ socket }: any) => {
       zoom: id,
       receiverId: id,
       senderId: '650bbb2315c0e10c0ed839d9',
+      screen: false,
     };
 
     socket?.emit('client_send', dataSend);
@@ -151,11 +161,64 @@ const Chat = ({ socket }: any) => {
 
   const handleClearNotifi = () => {
     const dataNew = cloneDeep(dataScreen);
+    // const dataMess = cloneDeep(dataMessage);
+    // const dataFilter = dataMess?.filter((i: IMessager) => i?.senderId === selectUser?.id);
+    // dataFilter?.map((i: IMessager) => {
+    //   if (!i?.screen) i.screen = true;
+    //   return i;
+    // });
+    // setDataMessage([...dataMess]);
+
     if (isShowChat && dataNew?.length !== 0) {
       const dataAfter = dataNew?.filter((i: any) => i?.zoom !== selectUser?.id);
       setDataScreen(dataAfter);
     }
   };
+
+  React.useEffect(() => {
+    if (imageSend?.length !== 0) {
+      refImageIndex.current = Math.max(...imageSend?.map((i: uploadFile) => i?.id));
+    }
+
+    if (imageSend?.length > 5) {
+      const setTime = setTimeout(() => {
+        refImageScroll.current.scrollLeft += refImageScroll.current?.scrollWidth;
+      }, 100);
+      return () => clearTimeout(setTime);
+    }
+  }, [refImageScroll, imageSend]);
+
+  const uploadImage = (e: any) => {
+    const { target } = e;
+    const getFile = target?.files?.item(0);
+    if (!getFile) return;
+    if (!inValidFileImage(e)) {
+      return toast('Loại file upload không hợp lệ!', 'error');
+    }
+    if (!inValidateSizeFile(getFile)) {
+      return toast('Không được upload file lớn hơn 5MB!', 'error');
+    }
+    if (e.target.files[0]) {
+      const reader: any = new FileReader();
+      reader.addEventListener('load', () => {
+        setImageSend((prev) => [
+          ...prev,
+          { id: refImageIndex.current + 1, file: e.target.files[0], url: reader.result.toString() },
+        ]);
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  const clearImageSend = () => {
+    setImageSend([]);
+  };
+
+  const handleRemove = (id: number) => {
+    const dataNew = cloneDeep(imageSend);
+    const dataRemove = dataNew?.filter((i: uploadFile) => i?.id !== id);
+    setImageSend(dataRemove);
+  }
 
   return showChat && !(url?.pathname === PATHNAME.SCREENSALESCOUNTER) ? (
     <div className="wrapper_compChat">
@@ -281,6 +344,7 @@ const Chat = ({ socket }: any) => {
                           } else {
                             if (idx === 0) flag = true;
                           }
+
                           return (
                             <React.Fragment key={idx}>
                               {dateTimeMessRef?.current && flag && (
@@ -288,44 +352,102 @@ const Chat = ({ socket }: any) => {
                                   <span>{t(dateTimeMessRef?.current)}</span>
                                 </div>
                               )}
-                              <div
-                                className={`show__messager d-flex align-items-center ${
-                                  i?.receiverId === selectUser?.id
-                                    ? 'sender justify-content-end'
-                                    : 'receiver justify-content-start'
-                                } `}
-                              >
-                                <div className="d-flex justify-content-start flex-column ">
-                                  <div className="mess">{i?.content}</div>
-                                  <div className="time">{dayjs(i?.date).format('HH:mm')}</div>
+                              <div className="">
+                                <div
+                                  className={`show__messager d-flex align-items-center ${
+                                    i?.receiverId === selectUser?.id
+                                      ? 'sender justify-content-end'
+                                      : 'receiver justify-content-start'
+                                  } `}
+                                >
+                                  <div className="d-flex justify-content-start flex-column ">
+                                    <div className="mess">{i?.content}</div>
+                                    <div className="time">{dayjs(i?.date).format('HH:mm')}</div>
+                                  </div>
                                 </div>
+                                {/* {i?.screen && i?.senderId !== selectUser.id && (
+                                  <div className="mt-1 d-flex justify-content-end align-items-center">
+                                    <div className="user__screen">
+                                      <Tippy
+                                        appendTo={document.body}
+                                        content={
+                                          <span
+                                            className="trunc-one-line"
+                                            style={{ wordBreak: 'break-word', maxWidth: '20rem' }}
+                                          >
+                                            Mr.Tuan
+                                          </span>
+                                        }
+                                      >
+                                        <img src="https://imgupscaler.com/images/samples/animal-before.webp" alt="" />
+                                      </Tippy>
+                                    </div>
+                                  </div>
+                                )} */}
                               </div>
                             </React.Fragment>
                           );
                         })}
                     </div>
-                    <div className="send w-100 d-flex justify-content-start align-items-center gap-2">
-                      <input
-                        type="text"
-                        placeholder={t('Nhập nội dung tin nhắn...')}
-                        className="w-100"
-                        onChange={(e: any) => setValue(e?.target?.value)}
-                        value={value}
-                        ref={refInput}
-                        onFocus={handleClearNotifi}
-                      />
-                      {value !== '' && (
-                        <div className="icon__clear" onClick={() => setValue('')}>
-                          <Icon name="times-circle" />
-                        </div>
+                    <div className="w-100">
+                      {imageSend?.length !== 0 && (
+                        <SelectImage
+                          data={imageSend}
+                          clearImageSend={clearImageSend}
+                          uploadImage={() => refFile.current.click()}
+                          handleRemove={handleRemove}
+                          ref={refImageScroll}
+                        />
                       )}
-                      <div
-                        className={`icon d-flex justify-content-center align-items-center ${
-                          value !== '' ? 'active' : ''
-                        }`}
-                        onClick={handleSend}
-                      >
-                        <Icon name="icon-send-chat" />
+                      <div className="send w-100 d-flex justify-content-start align-items-center gap-2">
+                        <div className="d-flex justify-content-start align-items-center flex-fill">
+                          <div className="more">
+                            <Tippy
+                              interactive={true}
+                              appendTo={document.body}
+                              content={
+                                <div className="menu__chat d-flex justify-content-start align-items-center gap-10">
+                                  <div className="icon" onClick={() => refFile.current.click()}>
+                                    <Icon name="icon-image" />
+                                  </div>
+                                  <div className="icon">
+                                    <Icon name="order-nav" />
+                                  </div>
+                                </div>
+                              }
+                              trigger="click"
+                              theme="light"
+                              className="wrapper__morechat"
+                            >
+                              <div className="icon__more">
+                                <Icon name="more-options" />
+                              </div>
+                            </Tippy>
+                          </div>
+                          <input
+                            type="text"
+                            placeholder={t('Nhập nội dung tin nhắn...')}
+                            className="w-100"
+                            onChange={(e: any) => setValue(e?.target?.value)}
+                            value={value}
+                            ref={refInput}
+                            onFocus={handleClearNotifi}
+                            onKeyDown={(e: any) => e?.keyCode == 13 && handleSend()}
+                          />
+                        </div>
+                        {value !== '' && (
+                          <div className="icon__clear" onClick={() => setValue('')}>
+                            <Icon name="times-circle" />
+                          </div>
+                        )}
+                        <div
+                          className={`icon d-flex justify-content-center align-items-center ${
+                            value !== '' ? 'active' : ''
+                          }`}
+                          onClick={handleSend}
+                        >
+                          <Icon name="icon-send-chat" />
+                        </div>
                       </div>
                     </div>
                     {isScrollBottom && (
@@ -348,6 +470,8 @@ const Chat = ({ socket }: any) => {
           </div>
         </div>
       )}
+
+      <input type="file" hidden ref={refFile} multiple onChange={(e) => uploadImage(e)} />
     </div>
   ) : (
     <></>

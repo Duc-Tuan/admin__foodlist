@@ -40,6 +40,24 @@ export const getCookieByName = (cname: string) => {
     return '';
 };
 
+/// check Invalid format file images ///
+export const inValidFileImage = (event: any, isArr?: boolean) => {
+    const acceptFileTypes = ['png', 'jpg', 'jpeg']; /// type file image accept
+    const file = event.target.files.item(0);
+    const fileType = file.type;
+    const type = fileType.replace('image/', '');
+    if (!isArr) return acceptFileTypes.includes(type);
+    const fileList: any = event.target.files;
+    const fileTypes = Object.values(fileList).map((file: any) => file?.type?.replace('image/', ''));
+    return fileTypes?.every((file) => acceptFileTypes.includes(file));
+};
+
+/// check size image
+export const inValidateSizeFile = (files: File | File[], isArr?: boolean) => {
+    if (!files) return;
+    if (!isArr && !Array.isArray(files)) return files.size / 1024 < 5 * 1024; /// check file > 5MB
+    return (files as File[]).every((file) => file.size / 1024 < 5 * 1024);
+};
 
 // format number to vietnamese currency
 export const formatVietnameseCurrency = (number: Number) => {
