@@ -121,6 +121,9 @@ const Chat = ({ socket }: any) => {
   const socketEmit = (id?: string | number, valueDefault?: string) => {
     const dataSend: IMessager = {
       content: valueDefault ?? undefined,
+      images: imageSend?.length !== 0 ? imageSend?.map((i: uploadFile) => i?.url) : undefined,
+      link: undefined,
+      products: undefined,
       date: new Date().toString(),
       zoom: id,
       receiverId: id,
@@ -132,7 +135,7 @@ const Chat = ({ socket }: any) => {
   };
 
   const handleSend = () => {
-    if (value !== '') {
+    if (value !== '' || imageSend?.length !== 0) {
       socketEmit(selectUser?.id, value);
       setValue('');
       setIsScroll(true);
@@ -156,6 +159,7 @@ const Chat = ({ socket }: any) => {
 
     return () => {
       setDataSocket(undefined);
+      setImageSend([]);
     };
   }, [valueSocketDebouce, selectUser]);
 
@@ -189,25 +193,58 @@ const Chat = ({ socket }: any) => {
   }, [refImageScroll, imageSend]);
 
   const uploadImage = (e: any) => {
+    // const { target } = e;
+    // const getFile = target?.files?.item(0);
+    // if (!getFile) return;
+    // if (!inValidFileImage(e)) {
+    //   return toast('Loại file upload không hợp lệ!', 'error');
+    // }
+    // if (!inValidateSizeFile(getFile)) {
+    //   return toast('Không được upload file lớn hơn 5MB!', 'error');
+    // }
+    // if (e.target.files[0]) {
+    //   const reader: any = new FileReader();
+    //   reader.addEventListener('load', () => {
+    //     setImageSend((prev) => [
+    //       ...prev,
+    //       { id: refImageIndex.current + 1, file: e.target.files[0], url: reader.result.toString() },
+    //     ]);
+    //   });
+    //   reader.readAsDataURL(e.target.files[0]);
+    // }
+
     const { target } = e;
-    const getFile = target?.files?.item(0);
-    if (!getFile) return;
-    if (!inValidFileImage(e)) {
-      return toast('Loại file upload không hợp lệ!', 'error');
-    }
-    if (!inValidateSizeFile(getFile)) {
-      return toast('Không được upload file lớn hơn 5MB!', 'error');
-    }
-    if (e.target.files[0]) {
-      const reader: any = new FileReader();
-      reader.addEventListener('load', () => {
-        setImageSend((prev) => [
-          ...prev,
-          { id: refImageIndex.current + 1, file: e.target.files[0], url: reader.result.toString() },
-        ]);
-      });
-      reader.readAsDataURL(e.target.files[0]);
-    }
+    // const sizeImageCurrent =
+    //   (watch('images') && watch('images')?.reduce((size, file) => size + file['size'], 0)) ?? 0;
+    const getFiles = target?.files;
+    if (getFiles?.length < 1) return;
+    const convertArrayFileList = Object.values(getFiles);
+    let size = 0;
+    const fileList = convertArrayFileList?.filter((file: any) => {
+      const fileType = file['type'];
+      const fileSize = file['size'];
+      const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+      if (!validImageTypes.includes(fileType)) {
+        toast('File ảnh không hợp lệ', 'error');
+        return;
+      }
+      if (fileSize > 5 * 1024 * 1024) {
+        toast('File ảnh không được lớn hơn 5MB', 'error');
+        return;
+      }
+      //@ts-ignore
+      size = size + file['size'];
+      if (size > 50 * 1024 * 1024) {
+        toast('File ảnh không được lớn hơn 5MB', 'error');
+        return;
+      }
+
+      return file;
+    });
+
+    fileList.map((file: any, idx: number) => {
+      setImageSend((prev) => [...prev, { id: idx + 1, file: file, url: window.URL.createObjectURL(file as Blob) }]);
+    });
   };
 
   const clearImageSend = () => {
@@ -218,7 +255,7 @@ const Chat = ({ socket }: any) => {
     const dataNew = cloneDeep(imageSend);
     const dataRemove = dataNew?.filter((i: uploadFile) => i?.id !== id);
     setImageSend(dataRemove);
-  }
+  };
 
   return showChat && !(url?.pathname === PATHNAME.SCREENSALESCOUNTER) ? (
     <div className="wrapper_compChat">
@@ -323,7 +360,7 @@ const Chat = ({ socket }: any) => {
                   </div>
                   <div className="content d-flex justify-content-between align-items-center flex-column">
                     <div
-                      className="show scroll__foodApp d-flex justify-content-start gap-10 flex-column w-100"
+                      className="show scroll__foodApp d-flex justify-content-start gap-4 flex-column w-100"
                       ref={refChat}
                     >
                       {isFetching && <LoadingDots />}
@@ -361,7 +398,21 @@ const Chat = ({ socket }: any) => {
                                   } `}
                                 >
                                   <div className="d-flex justify-content-start flex-column ">
-                                    <div className="mess">{i?.content}</div>
+                                    <div className="mess">
+                                      {i?.images && (
+                                        <div className="images__send d-flex justify-content-start align-items-canter gap-4 flex-wrap">
+                                          {i?.images?.map((d: string, idx: number) => {
+                                            return (
+                                              <div className="images__send--image">
+                                                <img src={d} alt="image" key={idx} />
+                                              </div>
+                                            );
+                                          })}
+                                        </div>
+                                      )}
+                                      {i?.link && <a href={i?.link}>{i?.link}</a>}
+                                      <span>{i?.content}</span>
+                                    </div>
                                     <div className="time">{dayjs(i?.date).format('HH:mm')}</div>
                                   </div>
                                 </div>
@@ -405,13 +456,17 @@ const Chat = ({ socket }: any) => {
                             <Tippy
                               interactive={true}
                               appendTo={document.body}
+                              placement="left"
                               content={
-                                <div className="menu__chat d-flex justify-content-start align-items-center gap-10">
+                                <div className="menu__chat d-flex justify-content-start align-items-center gap-6">
                                   <div className="icon" onClick={() => refFile.current.click()}>
                                     <Icon name="icon-image" />
                                   </div>
                                   <div className="icon">
                                     <Icon name="order-nav" />
+                                  </div>
+                                  <div className="icon link">
+                                    <Icon name="link-2" />
                                   </div>
                                 </div>
                               }
@@ -479,3 +534,7 @@ const Chat = ({ socket }: any) => {
 };
 
 export default React.memo(Chat);
+
+const DiagLink = () => {
+  return <div>Điền linh</div>;
+};

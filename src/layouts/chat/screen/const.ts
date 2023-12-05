@@ -33,6 +33,9 @@ export interface IMessager {
     content?: string;
     date: string;
     screen?: boolean;
+    images?: any[];
+    products?: any[];
+    link?: string;
 }
 
 export interface uploadFile {
