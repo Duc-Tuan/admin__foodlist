@@ -1,0 +1,31 @@
+.wrapper__loadingImage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000059;
+  }
+
+  div {
+    width: 30px;
+    height: 30px;
+    border: 0.4rem solid #eeeeee88;
+    border-top: 0.4rem solid #363b3e;
+    border-radius: 100%;
+    animation: loader 1s infinite linear;
+  }
+
+  @keyframes loader {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

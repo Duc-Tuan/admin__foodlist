@@ -3,8 +3,8 @@ import { pickBy } from 'lodash';
 
 const httpRequest = axios.create({
     //   baseURL: process.env.API,
-    // baseURL: 'http://localhost:3036/api/v1',
-    baseURL: 'https://food-chef-ebon.vercel.app/api/v1/',
+    baseURL: 'http://localhost:3036/api/v1',
+    // baseURL: 'https://food-chef-ebon.vercel.app/api/v1/',
 });
 
 export const get = async (path: string, options = {}) => {

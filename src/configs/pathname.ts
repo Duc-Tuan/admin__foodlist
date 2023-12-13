@@ -23,5 +23,8 @@ export const PATHNAME = {
     SCREENSETTINGCATEGORIES: '/bc/categories',
     SCREENSETTINGPRODUCTS: '/sp/products',
     SCREENSETTINGPROMMOTIONS: '/sp/prommotions',
+    SCREENSTATUSPRODUCT: '/st/status-product',
+    SCREENSTATUSORDER: '/st/status-oders',
+    SCREENSTATUSUSER: '/st/status-user',
     SCREENERROR: '/error-404',
 }

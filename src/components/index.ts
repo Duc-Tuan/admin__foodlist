@@ -11,3 +11,4 @@ export { default as LoadingDots } from './loadingDots';
 export { default as Table } from './table';
 export { default as SettingTable } from './settingTable';
 export { default as InputCompDev } from './inputComp';
+export { default as LoadingImage } from './loadingImage';

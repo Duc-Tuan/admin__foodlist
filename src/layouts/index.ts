@@ -107,6 +107,29 @@ export const navMenu: INavMenu[] = [
         ]
     },
     {
+        id: 9,
+        name: 'Quản lý trạng thái',
+        icon: 'ql-status',
+        link: PATHNAME.SCREENDECENTRALIZATION,
+        subMenu: [
+            {
+                name: 'Trạng thái người dùng',
+                link: PATHNAME.SCREENSTATUSUSER,
+                namePath: 'st',
+            },
+            {
+                name: 'Trạng thái sản phẩm',
+                link: PATHNAME.SCREENSTATUSPRODUCT,
+                namePath: 'st',
+            },
+            {
+                name: 'Trạng thái đơn hàng',
+                link: PATHNAME.SCREENSTATUSORDER,
+                namePath: 'st',
+            }
+        ]
+    },
+    {
         id: 8,
         name: 'Thiết lập',
         icon: 'settings-nav',

@@ -194,6 +194,7 @@
                   width: 32.4%;
                   min-width: 10.5rem;
                   height: 10.5rem;
+                  position: relative;
                   img {
                     border-radius: 0.4rem;
                     object-fit: cover;
@@ -332,6 +333,14 @@
               background-color: var(--white-color);
               border-top: var(--border);
               border-bottom: var(--border);
+            }
+            .more {
+              &:hover {
+                path {
+                  fill: var(--main-color);
+                  transition: var(--transition);
+                }
+              }
             }
             input {
               outline: none;

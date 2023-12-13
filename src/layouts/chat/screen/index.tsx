@@ -23,7 +23,7 @@ import {
 import './index.scss';
 import dayjs from 'dayjs';
 import { cloneDeep } from 'lodash';
-import { Loading, LoadingDots } from '../../../components';
+import { Loading, LoadingDots, LoadingImage } from '../../../components';
 import Images from '../../../components/image';
 
 import { accountSelect } from 'pages/login/store/select';
@@ -32,6 +32,7 @@ import { useLocation } from 'react-router-dom';
 import { PATHNAME } from 'configs/pathname';
 import { inValidFileImage, inValidateSizeFile } from 'utils';
 import SelectImage from './SelectImage';
+import ApiImageChat from 'assets/apis/ApiImageChat';
 
 const Chat = ({ socket }: any) => {
   const { t } = useTranslation();
@@ -52,6 +53,7 @@ const Chat = ({ socket }: any) => {
   let dateTimeMessRef = React.useRef() as React.MutableRefObject<string>;
   const [isFetching, setIsFetching] = React.useState(false);
   const [isScrollBottom, setScrollBottom] = React.useState<boolean>(false);
+  const [loadingImages, setLoadingImages] = React.useState<boolean>(true);
 
   const [isScroll, setIsScroll] = React.useState(true);
   const [dataSocket, setDataSocket] = React.useState<any>();
@@ -118,10 +120,15 @@ const Chat = ({ socket }: any) => {
     });
   }, [socket]);
 
-  const socketEmit = (id?: string | number, valueDefault?: string) => {
+  const socketEmit = (id?: string | number, valueDefault?: string, imageApi?: string[]) => {
     const dataSend: IMessager = {
       content: valueDefault ?? undefined,
-      images: imageSend?.length !== 0 ? imageSend?.map((i: uploadFile) => i?.url) : undefined,
+      images:
+        imageApi?.length !== 0
+          ? imageApi
+          : imageSend?.length !== 0
+          ? imageSend?.map((i: uploadFile) => i?.url)
+          : undefined,
       link: undefined,
       products: undefined,
       date: new Date().toString(),
@@ -134,19 +141,49 @@ const Chat = ({ socket }: any) => {
     socket?.emit('client_send', dataSend);
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (value !== '' || imageSend?.length !== 0) {
-      socketEmit(selectUser?.id, value);
+      const data: IMessager = {
+        content: value ?? undefined,
+        images: imageSend?.length !== 0 ? imageSend?.map((i: uploadFile) => i?.url) : undefined,
+        link: undefined,
+        products: undefined,
+        date: new Date().toString(),
+        zoom: selectUser?.id,
+        receiverId: selectUser?.id,
+        senderId: '650bbb2315c0e10c0ed839d9',
+        screen: false,
+      };
+      setDataMessage((prev) => [...prev, data]);
       setValue('');
       setIsScroll(true);
     }
-    refInput.current?.focus();
+    try {
+      if (imageSend?.length > 0) {
+        const dataForm = new FormData();
+        imageSend?.map((i: uploadFile) => {
+          dataForm.append('image', i?.file ?? '');
+        });
+        setImageSend([]);
+        setLoadingImages(true);
+        const fetch = await ApiImageChat.postImage(dataForm);
+        if (fetch) {
+          socketEmit(selectUser?.id, value, fetch.data);
+        }
+      }
+    } catch (error) {
+    } finally {
+      setLoadingImages(false);
+      refInput.current?.focus();
+    }
   };
 
   const valueSocketDebouce = useDebounce(dataSocket, 100);
 
   React.useEffect(() => {
-    valueSocketDebouce?.content !== undefined && setDataMessage((prev) => [...prev, valueSocketDebouce]);
+    valueSocketDebouce?.content !== undefined &&
+      valueSocketDebouce?.senderId !== '650bbb2315c0e10c0ed839d9' &&
+      setDataMessage((prev) => [...prev, valueSocketDebouce]);
 
     if (!isShowChat && valueSocketDebouce !== undefined) {
       valueSocketDebouce?.content !== undefined && setDataScreen((prev) => [...prev, valueSocketDebouce]);
@@ -401,10 +438,14 @@ const Chat = ({ socket }: any) => {
                                     <div className="mess">
                                       {i?.images && (
                                         <div className="images__send d-flex justify-content-start align-items-canter gap-4 flex-wrap">
-                                          {i?.images?.map((d: string, idx: number) => {
+                                          {i?.images?.map((d: string, idxs: number) => {
                                             return (
-                                              <div className="images__send--image">
-                                                <img src={d} alt="image" key={idx} />
+                                              <div className="images__send--image" key={idxs}>
+                                                <img src={d} alt="image" key={idxs} />
+                                                {loadingImages &&
+                                                  idx ===
+                                                    dataMessage?.filter((f: any) => f?.zoom === selectUser.id)?.length -
+                                                      1 && <LoadingImage />}
                                               </div>
                                             );
                                           })}
@@ -474,7 +515,7 @@ const Chat = ({ socket }: any) => {
                               theme="light"
                               className="wrapper__morechat"
                             >
-                              <div className="icon__more">
+                              <div className="icon__more d-flex justify-content-center align-align-center">
                                 <Icon name="more-options" />
                               </div>
                             </Tippy>

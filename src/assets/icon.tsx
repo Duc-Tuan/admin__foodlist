@@ -355,9 +355,12 @@ import { ReactComponent as IconLanguage } from './icons/icon-language.svg';
 import { ReactComponent as IconCategory } from './icons/icon-category.svg';
 import { ReactComponent as IconBlog } from './icons/icon-blog.svg';
 import { ReactComponent as IconImage } from './icons/icon_image.svg';
+import { ReactComponent as QlStatus } from './icons/icon-ql-status.svg';
 
 export default function Icon(props: any) {
   switch (props?.name?.toLowerCase()) {
+    case 'ql-status':
+      return <QlStatus {...props} />;
     case 'icon-image':
       return <IconImage {...props} />;
     case 'icon-blog':

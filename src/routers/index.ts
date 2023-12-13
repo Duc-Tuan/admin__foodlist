@@ -1,3 +1,4 @@
+import { StatusOrder, StatusProduct, StatusUser } from "pages/status";
 import { PATHNAME } from "../configs/pathname";
 import { ScreenStaff, ScreenUsers } from "../pages/accounts";
 import { ScreenInfoAccount } from "../pages/auth";
@@ -156,6 +157,27 @@ export const privateRouters: IRouter[] = [
         title: 'Quản lý khuyến mãi | admin',
         path: PATHNAME.SCREENSETTINGPROMMOTIONS,
         component: ScreenPrommtions,
+        isDefaultSales: true,
+    },
+    {
+
+        title: 'Quản lý trạng thái sản phẩm | admin',
+        path: PATHNAME.SCREENSTATUSPRODUCT,
+        component: StatusProduct,
+        isDefaultSales: true,
+    },
+    {
+
+        title: 'Quản lý trạng thái người dùng | admin',
+        path: PATHNAME.SCREENSTATUSUSER,
+        component: StatusUser,
+        isDefaultSales: true,
+    },
+    {
+
+        title: 'Quản lý trạng thái đơn hàng | admin',
+        path: PATHNAME.SCREENSTATUSORDER,
+        component: StatusOrder,
         isDefaultSales: true,
     },
 ]
